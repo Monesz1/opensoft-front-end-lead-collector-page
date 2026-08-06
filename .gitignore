@@ -1,0 +1,11 @@
+﻿# OS / editor cruft
+Thumbs.db
+.DS_Store
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Nothing here is built - there is no node_modules, no dist, no lockfile.
+# If you add tooling later, keep its output out of the published root:
+# GitHub Pages publishes the repository root (see .github/workflows/deploy.yml).
