@@ -1,9 +1,15 @@
 name: Deploy to GitHub Pages
 
+# NOTE: this account's GitHub-hosted runners are unavailable (jobs hang at
+# "waiting for a runner to come online"), so this workflow is left as
+# manual-only rather than firing a doomed run on every push. The site is
+# published WITHOUT a runner by tools/publish.sh, which builds and pushes the
+# gh-pages branch directly from a workstation. Re-enable the push trigger below
+# if a self-hosted runner is added or hosted runners are restored.
 on:
-  push:
-    branches: [main]
   workflow_dispatch: {}
+  # push:
+  #   branches: [main]
 
 concurrency:
   group: pages-deploy

@@ -9,3 +9,6 @@ desktop.ini
 # Nothing here is built - there is no node_modules, no dist, no lockfile.
 # If you add tooling later, keep its output out of the published root:
 # GitHub Pages publishes the repository root (see .github/workflows/deploy.yml).
+
+# local gh-pages publish worktree (tools/publish.sh)
+.ghpages-worktree/
