@@ -1,0 +1,8 @@
+# Normalise all text to LF in the repository, regardless of contributor OS.
+# GitHub Pages serves whatever is committed; LF avoids noisy cross-platform diffs.
+* text=auto eol=lf
+
+# Treat these as binary so Git never touches their bytes.
+*.png binary
+*.jpg binary
+*.svg text eol=lf
