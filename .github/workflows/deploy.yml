@@ -207,6 +207,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
           publish_branch: gh-pages
+          # Preserve the custom domain on the published branch (the CNAME file lives on main).
+          cname: www.opensoft.hu
           exclude_assets: '.github,n8n,docs,content,tools,*.md,**/*.md,.gitignore,.editorconfig'
           commit_message: 'deploy: ${{ github.event.head_commit.message || github.sha }}'
           user_name: 'github-actions[bot]'
