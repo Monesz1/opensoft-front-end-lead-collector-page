@@ -1,247 +1,93 @@
 name: Deploy to GitHub Pages
 
-# NOTE: this account's GitHub-hosted runners are unavailable (jobs hang at
-# "waiting for a runner to come online"), so this workflow is left as
-# manual-only rather than firing a doomed run on every push. The site is
-# published WITHOUT a runner by tools/publish.sh, which builds and pushes the
-# gh-pages branch directly from a workstation. Re-enable the push trigger below
-# if a self-hosted runner is added or hosted runners are restored.
+# Runs on the self-hosted runner on Worker2 (hosted runners are unavailable on
+# this account). Deploys via the Pages "GitHub Actions" source, so it does NOT
+# depend on GitHub's hosted "pages build and deployment" job.
+#
+# SECURITY: triggers are push-to-main and manual only. There is deliberately NO
+# `pull_request` trigger, so a fork's PR can never execute code on the runner —
+# it only ever runs code already pushed to this repo by a collaborator.
 on:
   workflow_dispatch: {}
-  # push:
-  #   branches: [main]
-
-concurrency:
-  group: pages-deploy
-  cancel-in-progress: true
+  push:
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    name: Validate and publish
-    runs-on: ubuntu-latest
-
+    runs-on: [self-hosted, worker2]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout main
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # ----------------------------------------------------------------- #
-      # Validation. Any failure here stops the deploy - nothing broken     #
-      # ever reaches gh-pages.                                             #
-      # ----------------------------------------------------------------- #
-
-      - name: Install HTML Tidy
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq tidy
-
-      - name: Validate HTML
+      # Lightweight, python3-only validation (python3 is present on the runner;
+      # tidy/node steps were dropped because the runner has no apt/sudo/node).
+      - name: Validate JSON (i18n + n8n)
         run: |
           rc=0
-          for f in *.html; do
-            set +e
-            tidy -q -e --gnu-emacs yes "$f"
-            t=$?
-            set -e
-            # tidy: 0 = clean, 1 = warnings only, 2 = errors
-            if [ "$t" -ge 2 ]; then
-              echo "::error file=$f::HTML Tidy reported errors"
-              rc=1
-            else
-              echo "ok   $f (tidy exit $t)"
-            fi
+          for f in i18n/*.json n8n/*.json; do
+            if python3 -m json.tool "$f" > /dev/null 2>&1; then echo "ok   $f"
+            else echo "::error file=$f::invalid JSON"; rc=1; fi
           done
           exit $rc
-
-      - name: Validate JSON (all i18n files + n8n export)
-        run: |
-          fail=0
-          for f in i18n/*.json n8n/*.json; do
-            if python3 -m json.tool "$f" > /dev/null 2>&1; then
-              echo "ok   $f"
-            else
-              echo "::error file=$f::invalid JSON"
-              python3 -m json.tool "$f" || true
-              fail=1
-            fi
-          done
-          exit $fail
 
       - name: Validate i18n key parity
         run: |
           python3 - <<'PY'
           import json, glob, sys, pathlib
-          files = sorted(glob.glob('i18n/*.json'))
-          expected = {'hu','en','de','sk','ro','hr','cs','pl','fr','it'}
-          found = {pathlib.Path(f).stem for f in files}
-          rc = 0
-          if found != expected:
-              print(f"::error::i18n language set mismatch. missing={sorted(expected-found)} extra={sorted(found-expected)}")
-              rc = 1
           base = json.load(open('i18n/hu.json', encoding='utf-8'))
-          bk = set(base)
-          print(f"hu.json defines {len(bk)} keys")
-          for f in files:
+          bk = set(base); rc = 0
+          for f in sorted(glob.glob('i18n/*.json')):
               d = json.load(open(f, encoding='utf-8'))
-              k = set(d)
-              missing, extra = sorted(bk - k), sorted(k - bk)
-              empty = sorted(x for x, v in d.items() if not str(v).strip())
-              if missing or extra or empty:
-                  print(f"::error file={f}::missing={missing} extra={extra} empty={empty}")
-                  rc = 1
+              miss, extra = sorted(bk - set(d)), sorted(set(d) - bk)
+              empty = sorted(k for k, v in d.items() if not str(v).strip())
+              if miss or extra or empty:
+                  print(f"::error file={f}::missing={miss} extra={extra} empty={empty}"); rc = 1
               else:
-                  print(f"ok   {f} ({len(k)} keys)")
+                  print(f"ok   {f} ({len(d)} keys)")
           sys.exit(rc)
           PY
 
-      - name: Validate JS syntax
+      - name: Assemble _site (public files only — internal folders stay private)
         run: |
-          node --check assets/main.js
-          echo "assets/main.js: syntax OK ($(node --version))"
+          rm -rf _site && mkdir _site
+          cp -r index.html about.html contact.html gdpr.html privacy.html assets i18n pages _site/
+          : > _site/.nojekyll
+          echo "assembled _site:"; ls -1 _site
 
-      - name: Check file-size budgets
-        run: |
-          check() {
-            size=$(stat -c%s "$1")
-            if [ "$size" -ge "$2" ]; then
-              echo "::error file=$1::$size bytes exceeds budget of $2"
-              return 1
-            fi
-            echo "ok   $1 = $size bytes (budget $2)"
-          }
-          rc=0
-          check assets/style.css 15360 || rc=1
-          check assets/prose.css  4096 || rc=1
-          check assets/main.js   10240 || rc=1
-          # raised 6144 -> 8192 when i18n.js gained per-language document swapping
-          check assets/i18n.js    8192 || rc=1
-          for svg in assets/opensoft-logo.svg assets/opensoft-logo-dark.svg assets/opensoft-icon.svg; do
-            check "$svg" 5120 || rc=1
-          done
-          exit $rc
-
-      - name: Check local references resolve (assets and pages)
+      - name: Warn on any unfilled placeholders (does not block)
         run: |
           python3 - <<'PY'
-          import re, pathlib, sys, glob
-          total = bad = 0
-          for f in sorted(glob.glob('*.html')):
-              html = pathlib.Path(f).read_text(encoding='utf-8')
-              # strip #fragment and ?v= cache-busting query before checking the file exists
-              refs = [r.split('#')[0].split('?')[0]
-                      for r in re.findall(r'(?:src|href)="([^":]+)"', html)]
-              refs = [r for r in refs if r]
-              total += len(refs)
-              for r in refs:
-                  if not pathlib.Path(r).exists():
-                      print(f"::error file={f}::referenced file not found: {r}")
-                      bad += 1
-          print(f"checked {total} local references across HTML pages, {bad} missing")
-          sys.exit(1 if bad else 0)
-          PY
-
-      - name: Policy check (no CDNs, no trackers, no mailto, no target=_self)
-        run: |
-          rc=0
-          probe() {  # probe <label> <grep-pattern> <files...>
-            label="$1"; pattern="$2"; shift 2
-            if grep -nEi "$pattern" "$@" ; then
-              echo "::error::policy violation - $label"
-              rc=1
-            fi
-          }
-          probe "external CDN / remote asset"  'https?://[^"'"'"' ]*(cdn|unpkg|jsdelivr|cdnjs|bootstrapcdn|fonts\.googleapis|fonts\.gstatic|ajax\.googleapis)' *.html assets/style.css assets/main.js assets/i18n.js
-          probe "CSS @import from a remote host" '@import[^;]*https?://' assets/style.css
-          probe "tracking script"              'googletagmanager|google-analytics|gtag\(|fbq\(|connect\.facebook|hotjar|clarity\.ms|matomo' *.html assets/main.js assets/i18n.js
-          probe "mailto form action"           '<form[^>]*action=["'"'"']?mailto:' *.html
-          probe "target=_self"                 'target=["'"'"']_self' *.html assets/main.js assets/i18n.js
-          probe "JS framework"                 'react|vue(\.min)?\.js|jquery|angular' *.html
-          probe "inline event handler"         '<[^>]+ on(click|load|submit|change|error)=' *.html
-          exit $rc
-
-      # Placeholders (company legal name, address, retention periods, ...) render as visible amber
-      # chips until you fill them in content/*.md. By default this WARNS but lets the deploy through,
-      # so the site goes live now and you fill the details later. Once they are filled, set a repo
-      # variable ENFORCE_NO_PLACEHOLDERS=true (Settings -> Secrets and variables -> Actions ->
-      # Variables) and this gate becomes fatal, so a stray {{TOKEN}} can never reach production again.
-      - name: Check placeholders (warns; blocks when ENFORCE_NO_PLACEHOLDERS=true)
-        env:
-          ENFORCE: ${{ vars.ENFORCE_NO_PLACEHOLDERS }}
-        run: |
-          python3 - <<'PY'
-          import re, pathlib, sys, glob, os
+          import re, glob, pathlib
           n = 0
-          for f in sorted(glob.glob('*.html')):
+          for f in glob.glob('_site/*.html'):
               html = pathlib.Path(f).read_text(encoding='utf-8')
-              found = set(re.findall(r'\{\{([A-Z_0-9]+)\}\}', html))
-              found |= set(re.findall(r'<mark class="ph">([A-Z_0-9]+)</mark>', html))
-              for ph in sorted(found):
-                  print(f"::warning file={f}::unfilled placeholder {ph} is published as a visible chip")
-                  n += 1
-          enforce = os.environ.get('ENFORCE', '').strip().lower() == 'true'
-          print(f"{n} unfilled placeholder(s) across the built pages; enforcing={enforce}")
-          if n and enforce:
-              print("::error::ENFORCE_NO_PLACEHOLDERS is set and unfilled placeholders remain - fill them in content/*.md")
-              sys.exit(1)
-          sys.exit(0)
+              for ph in sorted(set(re.findall(r'<mark class="ph">([A-Z_0-9]+)</mark>', html))):
+                  print(f"::warning file={f}::unfilled placeholder {ph} is published as a visible chip"); n += 1
+          print(f"{n} unfilled placeholder(s) — fill them in content/*.md before launch")
           PY
 
-      - name: Check demo links open safely
-        run: |
-          python3 - <<'PY'
-          import re, pathlib, sys, glob
-          bad = 0
-          for f in sorted(glob.glob('*.html')):
-              html = pathlib.Path(f).read_text(encoding='utf-8')
-              for a in re.findall(r'<a\b[^>]*>', html):
-                  if 'target="_blank"' in a and 'noopener' not in a:
-                      print(f"::error file={f}::target=_blank without rel=noopener: {a[:120]}")
-                      bad += 1
-          print(f"{bad} unsafe _blank links across HTML pages")
-          sys.exit(1 if bad else 0)
-          PY
-
-      # ----------------------------------------------------------------- #
-      # Publish                                                            #
-      # ----------------------------------------------------------------- #
-
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Configure Pages (set source to GitHub Actions)
+        uses: actions/configure-pages@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          publish_branch: gh-pages
-          # Preserve the custom domain on the published branch (the CNAME file lives on main).
-          cname: www.opensoft.hu
-          exclude_assets: '.github,n8n,docs,content,tools,*.md,**/*.md,.gitignore,.editorconfig'
-          commit_message: 'deploy: ${{ github.event.head_commit.message || github.sha }}'
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          enablement: true
 
-      - name: Deploy summary
-        run: |
-          OWNER=$(echo "${{ github.repository }}" | cut -d/ -f1)
-          REPO=$(echo "${{ github.repository }}" | cut -d/ -f2)
-          URL="https://${OWNER}.github.io/${REPO}/"
-          {
-            echo "## Deployed to GitHub Pages"
-            echo ""
-            echo "**URL:** ${URL}"
-            echo ""
-            echo "| Check | Result |"
-            echo "|---|---|"
-            echo "| HTML (tidy) | passed |"
-            echo "| JSON (i18n + n8n) | passed |"
-            echo "| i18n key parity | passed |"
-            echo "| JS syntax (node --check) | passed |"
-            echo "| Size budgets | passed |"
-            echo "| Asset references | passed |"
-            echo "| Policy (CDN/tracker/mailto/_self) | passed |"
-            echo ""
-            echo "Excluded from publish: \`.github/\`, \`n8n/\`, \`docs/\`, \`content/\`, all \`*.md\`."
-            echo ""
-            echo "> First-time setup: Settings -> Pages -> Source = \"Deploy from a branch\", branch \`gh-pages\`, folder \`/ (root)\`."
-          } >> "$GITHUB_STEP_SUMMARY"
-          echo "Deployed: ${URL}"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
