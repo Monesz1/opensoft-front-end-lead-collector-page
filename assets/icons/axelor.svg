@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-hidden="true" focusable="false">
+  <title>Axelor</title>
+  <rect x="0" y="0" width="48" height="48" rx="12" fill="#32325D"/>
+  <path d="M24 14 32.66 29 15.34 29Z" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linejoin="round" stroke-opacity="0.55"/>
+  <g fill="#FFFFFF">
+    <circle cx="24" cy="14" r="4"/>
+    <circle cx="15.34" cy="29" r="4"/>
+    <circle cx="32.66" cy="29" r="4"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-hidden="true" focusable="false">
+  <title>Dolibarr</title>
+  <rect x="0" y="0" width="48" height="48" rx="12" fill="#263C5C"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round">
+    <path d="M32.49 15.51A12 12 0 1 0 32.49 32.49"/>
+    <path d="M28.67 19.33A6.6 6.6 0 1 0 28.67 28.67" stroke-opacity="0.55"/>
+    <path d="M32.94 21.44A9.3 9.3 0 0 1 32.94 26.56"/>
+  </g>
+</svg>

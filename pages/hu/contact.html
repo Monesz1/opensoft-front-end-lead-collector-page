@@ -1,0 +1,58 @@
+<h1 class="page-title" data-desc="Írjon nekünk, hívjon minket, vagy találkozzunk Budapesten. A kezdéshez elég egy rövid üzenet; általában egy munkanapon belül válaszolunk.">Kapcsolat</h1>
+<div class="prose">
+<h2>Köszönjön be</h2>
+<p>Nem kell specifikáció, költségvetés vagy kész döntés ahhoz, hogy beszélgessünk. A jó projektjeink többsége három mondattal kezdődött valakitől, akinek enyhén elege lett egy táblázatból.</p>
+<p>Mondja el nagyjából, mi a helyzet — mit értékesít, hányan nyúlnak hozzá a folyamathoz, és mi romlik el a leggyakrabban —, mi pedig őszintén megmondjuk, tudunk-e segíteni, és melyik rendszerünk illik Önhöz. Ha az a válasz, hogy egyelőre nincs ránk szüksége, azt is megmondjuk.</p>
+<p>Minden üzenetre mi magunk válaszolunk. Nálunk semmi nem megy át ügyfélszolgálati központon.</p>
+<hr>
+<h2>Hol vagyunk</h2>
+<p><strong>Itt élünk.</strong> Nem „van itt egy irodánk” — az egész csapat Budapesten van, és ez tudatos döntés, nem a toborzás véletlene.</p>
+<p>Ez azt jelenti, hogy találkozhat azokkal, akik ténylegesen üzemeltetni fogják a rendszerét. Azt jelenti, hogy egy időzónában vagyunk Önnel, ugyanazzal a naptárral dolgozunk, és tudjuk, mi történik egy magyar céggel január második hetében. És azt jelenti, hogy amikor valamihez ember kell a szobában, akkor lesz ott ember.</p>
+<p>Ha szívesebben beszélne személyesen, mint hogy e-maileket váltsunk, csak szóljon. Javasolunk egy kávét valahol a belvárosban, és viszünk laptopot.</p>
+<hr>
+<h2>A városunk</h2>
+<p>Ésszerűtlenül szeretjük ezt a helyet, ezért bocsásson meg nekünk egy rövid kitérőt.</p>
+<h3>A Lánchíd</h3>
+<p>Az állandó átkelők közül a legrégebbi, és máig ez az, amelyre az emberek gondolnak, amikor <em>a</em> hidat mondják. Két-két kőoroszlán a hídfőknél, egy halvány hídszerkezet, amely a rakpartról nézve szinte súlytalannak tűnik, és egy lassú gyalogos átkelés, amely az ötperces sétából tizenöt percest csinál, mert mindenki megáll a közepén. Ez volt az első építmény, amely Budát és Pestet egyetlen gondolattá tette ahelyett, hogy két város nézte volna egymást a víz két partjáról. Éjszaka kigyulladnak a kábelekre szerelt fények, és az egész olyan, mintha krétával rajzolták volna.</p>
+<p>alkonyatkor, a pesti rakpartról nézve.”</p>
+<h3>Az Országház</h3>
+<p>Hatalmas, valószerűtlen, és a túlpartról a legszebb, ahonnan egyszerre látszik a teljes kilencvenhat méteres kupola és a hosszú neogótikus homlokzat. Kevésbé tűnik épületnek, mint kijelentésnek. Késő délután a mészkő a gyenge tea színét veszi fel; sötétedés után a fényszórók csontszínűvé teszik, a tükörkép pedig megkettőzi a folyóban. A helyiek minden nap elsétálnak mellette, és időnként még mindig felnéznek rá.</p>
+<p>éjszaka, tükröződve a Dunában.”</p>
+<h3>A Halászbástya</h3>
+<p>Fent a budai oldalon fehér kőteraszok és hét hegyes tornyocska — egy-egy a honfoglaló magyar törzsek mindegyikének —, amelyek úgy néznek ki, mintha egy meséhez rajzolták volna őket, aztán véletlenül megépültek volna. Már a kilátásért is megéri felkapaszkodni: az egész Pest laposan elterülve odalent, a folyó északnak kanyarodva, szemben, szemmagasságban az Országház. Menjen korán. Tizenegyre már mindenkié.</p>
+<p>kőteraszai és tornyai, kilátással Pestre.”</p>
+<h3>A Duna</h3>
+<p>Mindennek ez az oka. A folyó északról érkezik, tisztán kettévágja a várost, és megadja Budapestnek a maga sajátos geometriáját: dombok és csendes utcák a budai oldalon, lapos körutak és zaj a pesti oldalon, és nyolc-kilenc mód arra, hogy az ember átjusson egyikről a másikra. Nyáron esténként megtelnek a rakpartok; télen a víz palaszürkévé válik, és délig ül rajta a köd. Ebben a városban minden jó kilátás végső soron a Dunára néz.</p>
+<p>budai hegyekkel.”</p>
+<hr>
+<h2>Írjon nekünk</h2>
+<p>Küldjön nekünk egy e-mailt, és válaszolunk, jellemzően egy munkanapon belül. Néhány mondat bőven elég — mondja el nagyjából, mit szeretne megjavítani, a többit már mi visszük tovább.</p>
+<p>Munkaidőben a lenti telefonszámon is elérhet minket, vagy a főoldalról bármelyik rendszerünkhöz kérhet bemutatót.</p>
+<hr>
+<h2>Megvalósítási specifikáció — csak a szerkesztőnek</h2>
+<p><em>Az e cím alatti teljes tartalom fejlesztői dokumentáció, nem oldalszöveg. Az oldal generálásakor automatikusan eltávolítjuk.</em></p>
+<p><strong>Űrlapmezők</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th>Mező</th><th>Típus</th><th>Kötelező</th><th>Ellenőrzés / működés</th></tr></thead>
+<tbody>
+<tr><td>E-mail cím</td><td><code>email</code></td><td>igen</td><td>Tartalmaznia kell egy helyi részt, egy <code>@</code> jelet, egy domainnevet és egy legfelső szintű domaint. Az ellenőrzés a mezőből való kilépéskor fut; az üzenet a mező alatt jelenik meg, nem böngészőbuborékban.</td></tr>
+<tr><td>Üzenet</td><td><code>textarea</code></td><td>igen</td><td>Legalább 10 karakter. A tartalommal együtt nő; nincs kemény felső korlát.</td></tr>
+<tr><td><code>website</code></td><td>szöveg, a képernyőn kívül</td><td>—</td><td><strong>Csapdamező.</strong> <code>tabindex="-1"</code>, <code>aria-hidden</code>, <code>autocomplete="off"</code>. Ember számára soha nem látszik; üresen kell érkeznie.</td></tr>
+<tr><td>—</td><td>Spamvédelem</td><td>—</td><td><strong>Szerveroldali. Nincs CAPTCHA — ez döntés, nem alapértelmezés.</strong> A webhookon három réteg fut le, mielőtt bármi tárolásra kerülne: a fenti csapdamező, egy minimális kitöltési idő (2,5 s), és egy <code>Origin</code>/<code>Referer</code> ellenőrzés. A fennakadt küldések szokásos kinézetű <code>200</code> választ kapnak, így a robotok semmit nem tanulnak belőle. Az indoklás az <code>n8n/README.md</code> 7. pontjában olvasható; a <code>deploy.yml</code> <code>Policy check</code> lépése megbuktatja a buildet, ha valaha külső widget kerülne az oldalra.</td></tr>
+<tr><td>Küldés</td><td><code>submit</code></td><td>—</td><td>Felirat: <strong>Üzenet küldése</strong>. Amíg mindkét mező nem érvényes, inaktív. Küldés közben „Küldés…” felirat látszik.</td></tr>
+</tbody></table></div>
+<p><strong>Mikroszövegek</strong></p>
+<ul><li>Az űrlap fölött: <em>„Néhány mondat bőven elég. Általában egy munkanapon belül válaszolunk.”</em></li><li>Az e-mail mező alatt: <em>„Ezt kizárólag arra használjuk, hogy válaszoljunk Önnek.”</em></li><li>A gomb alatt: <em>„Nem kerül fel semmilyen levelezőlistára. Lásd az adatkezelési tájékoztatónkat.”</em> → az <code>adatkezeles.html</code> fájlra mutat (relatív hivatkozás — a GitHub Pages alkönyvtárból szolgálja ki a webhelyet, így egy gyökérhez viszonyított <code>/adatkezeles</code> rossz helyre mutatna)</li><li>Sikeres állapot: <em>„Köszönjük — az üzenete megérkezett. Általában egy munkanapon belül válaszolunk.”</em></li><li>Hibaállapot: <em>„Valami hiba történt, és az üzenete nem ment el. Kérjük, próbálja újra, vagy írjon nekünk közvetlenül a <mark class="ph">CONTACT_EMAIL</mark> címre.”</em></li></ul>
+<hr>
+<h2>Közvetlen elérhetőségek</h2>
+<div class="table-wrap"><table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr><td><strong>E-mail</strong></td><td><mark class="ph">CONTACT_EMAIL</mark></td></tr>
+<tr><td><strong>Telefon</strong></td><td><mark class="ph">CONTACT_PHONE</mark></td></tr>
+<tr><td><strong>Cím</strong></td><td><mark class="ph">COMPANY_ADDRESS</mark></td></tr>
+<tr><td><strong>Nyitvatartás</strong></td><td>Hétfőtől péntekig, 09:00–17:00 (közép-európai idő)</td></tr>
+<tr><td><strong>Cégadatok</strong></td><td><mark class="ph">COMPANY_LEGAL_NAME</mark> · Cégjegyzékszám: <mark class="ph">COMPANY_REG_NUMBER</mark> · Adószám: <mark class="ph">COMPANY_TAX_NUMBER</mark></td></tr>
+</tbody></table></div>
+<hr>
+</div>
