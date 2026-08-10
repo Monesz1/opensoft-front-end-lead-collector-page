@@ -97,23 +97,9 @@
         <p>budai hegyekkel.”</p>
         <hr>
         <h2>Írjon nekünk</h2>
-        <p>Küldjön nekünk egy e-mailt, és válaszolunk, jellemzően egy munkanapon belül. Néhány mondat bőven elég — mondja el nagyjából, mit szeretne megjavítani, a többit már mi visszük tovább.</p>
+        <p>Van kérdése? Örömmel hallunk Ön felől. Néhány mondat bőven elég, és általában egy munkanapon belül válaszolunk.</p>
+        <p><a href="https://n8n.opensoft.hu/webhook/contact" target="_blank" rel="noopener noreferrer">Küldjön nekünk üzenetet</a></p>
         <p>Munkaidőben a lenti telefonszámon is elérhet minket, vagy a főoldalról bármelyik rendszerünkhöz kérhet bemutatót.</p>
-        <hr>
-        <h2>Megvalósítási specifikáció — csak a szerkesztőnek</h2>
-        <p><em>Az e cím alatti teljes tartalom fejlesztői dokumentáció, nem oldalszöveg. Az oldal generálásakor automatikusan eltávolítjuk.</em></p>
-        <p><strong>Űrlapmezők</strong></p>
-        <div class="table-wrap"><table>
-        <thead><tr><th>Mező</th><th>Típus</th><th>Kötelező</th><th>Ellenőrzés / működés</th></tr></thead>
-        <tbody>
-        <tr><td>E-mail cím</td><td><code>email</code></td><td>igen</td><td>Tartalmaznia kell egy helyi részt, egy <code>@</code> jelet, egy domainnevet és egy legfelső szintű domaint. Az ellenőrzés a mezőből való kilépéskor fut; az üzenet a mező alatt jelenik meg, nem böngészőbuborékban.</td></tr>
-        <tr><td>Üzenet</td><td><code>textarea</code></td><td>igen</td><td>Legalább 10 karakter. A tartalommal együtt nő; nincs kemény felső korlát.</td></tr>
-        <tr><td><code>website</code></td><td>szöveg, a képernyőn kívül</td><td>—</td><td><strong>Csapdamező.</strong> <code>tabindex="-1"</code>, <code>aria-hidden</code>, <code>autocomplete="off"</code>. Ember számára soha nem látszik; üresen kell érkeznie.</td></tr>
-        <tr><td>—</td><td>Spamvédelem</td><td>—</td><td><strong>Szerveroldali. Nincs CAPTCHA — ez döntés, nem alapértelmezés.</strong> A webhookon három réteg fut le, mielőtt bármi tárolásra kerülne: a fenti csapdamező, egy minimális kitöltési idő (2,5 s), és egy <code>Origin</code>/<code>Referer</code> ellenőrzés. A fennakadt küldések szokásos kinézetű <code>200</code> választ kapnak, így a robotok semmit nem tanulnak belőle. Az indoklás az <code>server-side notes</code> 7. pontjában olvasható; a <code>deploy.yml</code> <code>Policy check</code> lépése megbuktatja a buildet, ha valaha külső widget kerülne az oldalra.</td></tr>
-        <tr><td>Küldés</td><td><code>submit</code></td><td>—</td><td>Felirat: <strong>Üzenet küldése</strong>. Amíg mindkét mező nem érvényes, inaktív. Küldés közben „Küldés…” felirat látszik.</td></tr>
-        </tbody></table></div>
-        <p><strong>Mikroszövegek</strong></p>
-        <ul><li>Az űrlap fölött: <em>„Néhány mondat bőven elég. Általában egy munkanapon belül válaszolunk.”</em></li><li>Az e-mail mező alatt: <em>„Ezt kizárólag arra használjuk, hogy válaszoljunk Önnek.”</em></li><li>A gomb alatt: <em>„Nem kerül fel semmilyen levelezőlistára. Lásd az adatkezelési tájékoztatónkat.”</em> → az <code>adatkezeles.html</code> fájlra mutat (relatív hivatkozás — a GitHub Pages alkönyvtárból szolgálja ki a webhelyet, így egy gyökérhez viszonyított <code>/adatkezeles</code> rossz helyre mutatna)</li><li>Sikeres állapot: <em>„Köszönjük — az üzenete megérkezett. Általában egy munkanapon belül válaszolunk.”</em></li><li>Hibaállapot: <em>„Valami hiba történt, és az üzenete nem ment el. Kérjük, próbálja újra, vagy írjon nekünk közvetlenül a <mark class="ph">CONTACT_EMAIL</mark> címre.”</em></li></ul>
         <hr>
         <h2>Közvetlen elérhetőségek</h2>
         <div class="table-wrap"><table>

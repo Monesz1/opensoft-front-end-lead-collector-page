@@ -61,6 +61,12 @@
   "success_note": "Zvyčajne odpovedáme do 1 pracovného dňa.",
   "toast_error": "Vyskytla sa chyba. Skúste to prosím znova.",
 
+  "demo_provisioning_msg": "Pripravujeme váš systém…",
+  "demo_redirect_in": "Presmerovanie o",
+  "form_error_no_product": "Vyberte si systém.",
+  "card_cta_soon": "Čoskoro",
+  "contact_form_label": "Napíšte nám",
+  "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Open source firemné systémy prevádzkované maďarským tímom.",
   "footer_links_title": "Informácie",
   "footer_link_about": "O nás",

@@ -3,15 +3,26 @@
 (function () {
 'use strict';
 
-/* Change N8N_WEBHOOK_URL per deployment. */
-const N8N_WEBHOOK_URL = 'https://n8n.opensoft.hu/webhook/lead-collector';
-
-/* Order matches the cards in index.html; icon is derived from id. */
+/* Per-product config. To activate a product: set enabled:true and fill webhookUrl + demoUrl,
+   then set data-disabled + demo-button label on its card in index.html. Order matches the cards.
+   Only enabled products appear in the form picker; disabled ones show "Coming soon". */
 const PRODUCTS = [
-  { id: 'vtiger', name: 'vTiger CRM' }, { id: 'odoo', name: 'Odoo' },
-  { id: 'dolibarr', name: 'Dolibarr' }, { id: 'espocrm', name: 'EspoCRM' },
-  { id: 'suitecrm', name: 'SuiteCRM' }, { id: 'erpnext', name: 'ERPNext' },
-  { id: 'axelor', name: 'Axelor' }, { id: 'metasfresh', name: 'metasfresh' }
+  { id: 'vtiger', name: 'vTiger CRM', enabled: true,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-vtiger', demoUrl: 'https://demo.opensoft.hu' },
+  { id: 'odoo', name: 'Odoo', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-odoo', demoUrl: '' },
+  { id: 'dolibarr', name: 'Dolibarr', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-dolibarr', demoUrl: '' },
+  { id: 'espocrm', name: 'EspoCRM', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-espocrm', demoUrl: '' },
+  { id: 'suitecrm', name: 'SuiteCRM', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-suitecrm', demoUrl: '' },
+  { id: 'erpnext', name: 'ERPNext', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-erpnext', demoUrl: '' },
+  { id: 'axelor', name: 'Axelor', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-axelor', demoUrl: '' },
+  { id: 'metasfresh', name: 'metasfresh', enabled: false,
+    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-metasfresh', demoUrl: '' }
 ].map(p => ({ ...p, icon: `assets/icons/${p.id}.svg` }));
 
 const RE_MOBILE = /^\+?[1-9]\d{7,14}$/;
@@ -39,7 +50,7 @@ function pickerButton(p) {
 }
 
 function initProductSelector() {
-  $('#product-picker').append(...PRODUCTS.map(pickerButton));
+  $('#product-picker').append(...PRODUCTS.filter(p => p.enabled).map(pickerButton));
 }
 
 function selectProduct(id) {
@@ -54,13 +65,32 @@ function selectProduct(id) {
   updateSubmitState();
 }
 
-function initLearnButtons() {
-  $$('.js-learn').forEach(b => b.addEventListener('click', () => {
-    selectProduct(b.dataset.product);
-    OS.scrollTo($('#lead-form'));
-    const empty = FIELDS.map(f => $(`#${f}`)).find(el => !el.value.trim());
-    if (empty) setTimeout(() => empty.focus({ preventScroll: true }), 400);
-  }));
+/* Demo/learn CTAs: on an enabled card, scroll to the form and pre-select that product.
+   Disabled cards are inert (pointer-events:none in CSS) and show a "Coming soon" badge. */
+function goToForm(pid) {
+  selectProduct(pid);
+  OS.scrollTo($('#lead-form'));
+  const empty = FIELDS.map(f => $(`#${f}`)).find(el => !el.value.trim());
+  if (empty) setTimeout(() => empty.focus({ preventScroll: true }), 400);
+}
+
+function initCards() {
+  $$('.product-card').forEach(card => {
+    const pid = card.dataset.product;
+    const product = PRODUCTS.find(p => p.id === pid);
+    const on = !!(product && product.enabled);
+    card.querySelectorAll('.demo-cta-btn').forEach(btn => {
+      if (on) { btn.addEventListener('click', () => goToForm(pid)); }
+      else { btn.setAttribute('aria-disabled', 'true'); btn.setAttribute('tabindex', '-1'); }
+    });
+  });
+  refreshComingSoon();
+}
+
+/* Coming-soon badge text is a CSS ::after content:attr(data-soon); keep it translated. */
+function refreshComingSoon() {
+  const soon = OS.dict.card_cta_soon || 'Coming soon';
+  $$('.product-card[data-disabled]').forEach(c => { c.dataset.soon = soon; });
 }
 
 /* 06... is normalised, not rejected - internal test notes TC-WEB-004. */
@@ -142,31 +172,60 @@ function buildPayload() {
   };
 }
 
+function onSubmitFail(btn) {
+  showToast(OS.dict.toast_error, 'error');
+  btn.disabled = false;
+  btn.textContent = OS.dict.form_submit || '';
+  updateSubmitState();
+}
+
 function submitForm(event) {
   event.preventDefault();
   if (!validateForm()) {
     return $(!$('#selected-product').value
       ? '#product-picker button' : `#${FIELDS.find(checkField)}`).focus();
   }
+  const product = PRODUCTS.find(p => p.id === $('#selected-product').value);
+  if (!product || !product.enabled || !product.webhookUrl) {
+    return showToast(OS.dict.form_error_no_product || OS.dict.err_product, 'error');
+  }
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.textContent = OS.dict.form_submitting || '...';
-  fetch(N8N_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  fetch(product.webhookUrl, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(buildPayload())
   })
-    .then(res => { if (res.ok) showSuccess(); else showToast(OS.dict.toast_error, 'error'); })
-    .catch(() => showToast(OS.dict.toast_error, 'error'))
-    .then(() => { btn.textContent = OS.dict.form_submit || ''; updateSubmitState(); });
+    .then(res => res.json().catch(() => ({})).then(d => ({ ok: res.ok, d })))
+    .then(({ ok, d }) => (ok && d && d.demo_url)
+      ? startDemoCountdown(d.demo_url, Number(d.ready_in_seconds) || 60)
+      : onSubmitFail(btn))
+    .catch(() => onSubmitFail(btn));
 }
 
-function showSuccess() {
-  $('#lead-form-el').hidden = true;
-  const card = $('#success-card');
-  card.hidden = false;
-  card.setAttribute('tabindex', '-1');
+/* n8n responds { demo_url, ready_in_seconds }; show a countdown, then redirect.
+   No localStorage — the URL lives only in this closure (KERNEL: lost on redirect otherwise). */
+function startDemoCountdown(demoUrl, seconds) {
+  const card = OS.mk('div', { id: 'demo-countdown', className: 'success-card' },
+    { role: 'alert', 'aria-live': 'polite', tabindex: '-1' });
+  const num = OS.mk('strong', { id: 'countdown-num', textContent: String(seconds) });
+  const line = OS.mk('p', { className: 'countdown-line' });
+  line.append(
+    document.createTextNode((OS.dict.demo_redirect_in || 'Redirecting in') + ' '),
+    num, document.createTextNode(' s'));
+  card.append(
+    OS.mk('div', { className: 'success-icon', textContent: '✓' }),
+    OS.mk('p', { className: 'success-title', textContent: OS.dict.demo_provisioning_msg || 'Preparing your system…' }),
+    line);
+  $('#lead-form-el').replaceWith(card);
   card.focus({ preventScroll: true });
+  let r = seconds;
+  const timer = setInterval(() => {
+    r -= 1;
+    const el = $('#countdown-num');
+    if (el) el.textContent = String(Math.max(0, r));
+    if (r <= 0) { clearInterval(timer); window.location.href = demoUrl; }
+  }, 1000);
 }
 
 function showToast(message, type) {
@@ -178,10 +237,11 @@ function showToast(message, type) {
 
 document.addEventListener('DOMContentLoaded', function init() {
   initProductSelector();
-  initLearnButtons();
+  initCards();
   initValidation();
   $('#lead-form-el').addEventListener('submit', submitForm);
   updateSubmitState();
-  OS.onApply = renderPickerLabel;   /* i18n.js calls this after every language change */
+  /* i18n.js calls onApply after every language change */
+  OS.onApply = () => { renderPickerLabel(); refreshComingSoon(); };
 });
 }());

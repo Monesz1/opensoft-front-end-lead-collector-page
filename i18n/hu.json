@@ -61,6 +61,12 @@
   "success_note": "Általában 1 munkanapon belül válaszolunk.",
   "toast_error": "Hiba történt. Kérjük, próbálja újra.",
 
+  "demo_provisioning_msg": "Rendszerét előkészítjük…",
+  "demo_redirect_in": "Átirányítás",
+  "form_error_no_product": "Kérjük, válasszon rendszert.",
+  "card_cta_soon": "Hamarosan",
+  "contact_form_label": "Üzenjen nekünk",
+  "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Nyílt forráskódú üzleti rendszerek, magyar üzemeltetéssel.",
   "footer_links_title": "Információk",
   "footer_link_about": "Rólunk",

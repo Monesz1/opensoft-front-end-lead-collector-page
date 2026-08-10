@@ -87,44 +87,15 @@ on the far bank."
 
 ---
 
-## Write to us
+## Send us a message
 
-Send us an email and we will reply, usually within one working day. A couple of sentences is plenty —
-tell us roughly what you are trying to fix and we will take it from there.
+Have a question? We would love to hear from you. A couple of sentences is plenty, and we usually
+reply within one working day.
+
+[Send us a message](https://n8n.opensoft.hu/webhook/contact)
 
 You can also reach us on the phone number below during office hours, or ask for a demonstration of
 any of our systems from the main page.
-
----
-
-## Implementation spec — editor only
-
-*Everything below this heading is build documentation, not page copy. It is stripped automatically
-when the page is generated.*
-
-**Form fields**
-
-| Field | Type | Required | Validation / behaviour |
-|---|---|---|---|
-| Email address | `email` | yes | Must contain a local part, `@`, a domain and a top-level domain. Validated on blur; the message is shown under the field, not as a browser popup. |
-| Message | `textarea` | yes | Minimum 10 characters. Grows with the content; no hard maximum. |
-| `website` | text, off-screen | — | **Honeypot.** `tabindex="-1"`, `aria-hidden`, `autocomplete="off"`. Never shown to a human; must arrive empty. |
-| — | Spam protection | — | **Server-side. No CAPTCHA — this is decided, not a default.** Three layers run at the webhook before anything is stored: the honeypot above, a minimum completion time (2.5 s), and an `Origin`/`Referer` check. Failures get a normal-looking `200` so bots learn nothing. Reasoning in `server-side notes` §7; the `Policy check` step in `deploy.yml` fails the build if a third-party widget is ever added. |
-| Send | `submit` | — | Label: **Send message**. Disabled until both fields are valid. Shows "Sending…" while in flight. |
-
-**Microcopy**
-
-- Above the form: *"A couple of sentences is plenty. We usually reply within one working day."*
-- Under the email field: *"We will only use this to reply to you."*
-- Under the button: *"We do not add you to a mailing list. See our data-handling policy."*
-  → links to `adatkezeles.html` (relative — GitHub Pages serves the site from a sub-path, so a
-  root-relative `/adatkezeles` would resolve to the wrong place)
-- Success state: *"Thank you — your message has arrived. We usually reply within one working day."*
-- Error state: *"Something went wrong and your message was not sent. Please try again, or email us
-  directly at {{CONTACT_EMAIL}}."*
-
-> **Note for the editor.** The error message names a fallback address on purpose. If the form is
-> broken, telling somebody to "try again later" loses the enquiry; giving them an address does not.
 
 ---
 

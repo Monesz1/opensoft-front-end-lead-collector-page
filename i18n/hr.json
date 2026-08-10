@@ -61,6 +61,12 @@
   "success_note": "Obično odgovaramo u roku od jednog radnog dana.",
   "toast_error": "Došlo je do pogreške. Molimo pokušajte ponovno.",
 
+  "demo_provisioning_msg": "Pripremamo vaš sustav…",
+  "demo_redirect_in": "Preusmjeravanje za",
+  "form_error_no_product": "Odaberite sustav.",
+  "card_cta_soon": "Uskoro",
+  "contact_form_label": "Pošaljite nam poruku",
+  "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Poslovni sustavi otvorenog koda, uz održavanje iz Mađarske.",
   "footer_links_title": "Informacije",
   "footer_link_about": "O nama",

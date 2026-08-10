@@ -90,43 +90,13 @@ budínskymi kopcami na druhom brehu.“
 
 ## Napíšte nám
 
-Pošlite nám e-mail a my odpovieme, zvyčajne do jedného pracovného dňa. Pár viet úplne stačí — napíšte
-nám zhruba, čo sa snažíte vyriešiť, a my sa toho chytíme.
+Máte otázku? Budeme radi, keď sa nám ozvete. Pár viet úplne stačí a zvyčajne odpovedáme do jedného
+pracovného dňa.
+
+[Napíšte nám](https://n8n.opensoft.hu/webhook/contact)
 
 Počas úradných hodín nás zastihnete aj na telefónnom čísle nižšie alebo si na hlavnej stránke môžete
 vyžiadať ukážku ktoréhokoľvek z našich systémov.
-
----
-
-## Špecifikácia implementácie — len pre redaktora
-
-*Všetko pod týmto nadpisom je dokumentácia k zostaveniu, nie text stránky. Pri generovaní stránky sa
-automaticky odstráni.*
-
-**Polia formulára**
-
-| Pole | Typ | Povinné | Validácia / správanie |
-|---|---|---|---|
-| E-mailová adresa | `email` | áno | Musí obsahovať lokálnu časť, `@`, doménu a doménu najvyššej úrovne. Validuje sa pri opustení poľa; hlásenie sa zobrazí pod poľom, nie ako vyskakovacie okno prehliadača. |
-| Správa | `textarea` | áno | Minimálne 10 znakov. Rastie s obsahom; bez pevného maxima. |
-| `website` | text, mimo obrazovky | — | **Pasca na roboty (honeypot).** `tabindex="-1"`, `aria-hidden`, `autocomplete="off"`. Človeku sa nikdy nezobrazí; musí prísť prázdne. |
-| — | Ochrana proti spamu | — | **Na strane servera. Žiadna CAPTCHA — je to rozhodnutie, nie prednastavená hodnota.** Na webhooku bežia pred akýmkoľvek uložením tri vrstvy: vyššie uvedená pasca na roboty, minimálny čas vyplnenia (2,5 s) a kontrola hlavičiek `Origin`/`Referer`. Neúspešné pokusy dostanú normálne vyzerajúcu odpoveď `200`, aby sa roboty nič nedozvedeli. Zdôvodnenie v `server-side notes` §7; krok `Policy check` v `deploy.yml` zhodí zostavenie, ak by niekedy pribudol widget tretej strany. |
-| Odoslať | `submit` | — | Označenie: **Odoslať správu**. Neaktívne, kým nie sú platné obe polia. Počas odosielania zobrazuje „Odosielam…“. |
-
-**Mikrotexty**
-
-- Nad formulárom: *„Pár viet úplne stačí. Zvyčajne odpovedáme do jedného pracovného dňa.“*
-- Pod poľom pre e-mail: *„Použijeme ju výhradne na to, aby sme Vám odpovedali.“*
-- Pod tlačidlom: *„Nepridávame Vás do žiadneho zoznamu adresátov. Pozrite si naše zásady spracúvania
-  údajov.“*
-  → odkazuje na `adatkezeles.html` (relatívne — GitHub Pages obsluhuje web zo sub-cesty, takže od
-  koreňa relatívne `/adatkezeles` by sa vyhodnotilo na nesprávne miesto)
-- Stav úspechu: *„Ďakujeme — Vaša správa dorazila. Zvyčajne odpovedáme do jedného pracovného dňa.“*
-- Stav chyby: *„Niečo sa pokazilo a Vaša správa sa neodoslala. Skúste to prosím znova alebo nám
-  napíšte priamo na {{CONTACT_EMAIL}}.“*
-
-> **Poznámka pre redaktora.** Chybová správa zámerne uvádza náhradnú adresu. Ak je formulár pokazený,
-> odkázať niekoho na to, aby to „skúsil neskôr“, znamená stratiť dopyt; dať mu adresu nie.
 
 ---
 
@@ -142,7 +112,7 @@ automaticky odstráni.*
 
 ---
 
-## Editovateľné zástupné symboly
+## Upraviteľné zástupné symboly
 
 | Zástupný symbol | Účel |
 |---|---|
@@ -152,7 +122,7 @@ automaticky odstráni.*
 | `{{GALLERY_IMAGE_FISHERMANS_BASTION}}` | Obrázok galérie 3 |
 | `{{GALLERY_IMAGE_DANUBE}}` | Obrázok galérie 4 |
 | `{{CONTACT_EMAIL}}` · `{{CONTACT_PHONE}}` · `{{COMPANY_ADDRESS}}` | Priame kontaktné údaje |
-| `{{COMPANY_LEGAL_NAME}}` · `{{COMPANY_REG_NUMBER}}` · `{{COMPANY_TAX_NUMBER}}` | Povinné údaje v päte |
+| `{{COMPANY_LEGAL_NAME}}` · `{{COMPANY_REG_NUMBER}}` · `{{COMPANY_TAX_NUMBER}}` | Zákonné údaje v päte |
 | `{{LAST_UPDATED}}` | Dátum zobrazený v päte v CMS |
 
 > **Poznámka k prístupnosti.** Každý obrázok galérie potrebuje alternatívny text uvedený vyššie, alebo

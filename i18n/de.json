@@ -61,6 +61,12 @@
   "success_note": "In der Regel antworten wir innerhalb eines Werktags.",
   "toast_error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
 
+  "demo_provisioning_msg": "Wir richten Ihr System ein…",
+  "demo_redirect_in": "Weiterleitung in",
+  "form_error_no_product": "Bitte wählen Sie ein System.",
+  "card_cta_soon": "Demnächst",
+  "contact_form_label": "Schreiben Sie uns",
+  "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Open-Source-Geschäftssysteme, betrieben und betreut aus Ungarn.",
   "footer_links_title": "Informationen",
   "footer_link_about": "Über uns",

@@ -1,0 +1,187 @@
+---
+page: about-us
+title: À propos de nous
+slug: /about
+lang: fr
+meta_title: À propos d'OpenSoft — des systèmes de gestion open source, exploités depuis Budapest
+meta_description: Comment une petite équipe d'ingénieurs de Budapest en est venue à exploiter des CRM et ERP open source pour des entreprises hongroises, et pourquoi nous avons choisi vTiger, ERPNext et Odoo.
+last_updated: "{{LAST_UPDATED}}"
+---
+
+# À propos de nous
+
+## Tout a commencé par une plainte
+
+Quelques personnes intelligentes se sont réunies et ont décidé de lancer quelque chose de bon pour les
+entreprises.
+
+C'est la version courte et, comme la plupart des versions courtes, elle passe sous silence ce qui
+comptait vraiment. La vérité, c'est que tout a commencé par une plainte — une plainte longue, précise,
+un brin amère, formulée devant un café refroidi depuis quarante minutes.
+
+Nous avions tous passé des années à l'intérieur des logiciels des autres. Certains d'entre nous
+avaient été consultants, appelés à la rescousse de projets déjà en retard de dix-huit mois. D'autres
+avaient été l'informaticien maison d'une entreprise industrielle, celui qu'on appelle quand le module
+de facturation cesse de parler à l'entrepôt. À nous tous, nous avions installé, configuré, corrigé,
+migré et parfois enterré bon nombre de systèmes de gestion.
+
+Et nous voyions sans cesse la même chose arriver au même type d'entreprise.
+
+Une entreprise hongroise — trente personnes, quatre-vingts peut-être, compétente dans son métier, en
+pleine croissance — décidait qu'elle avait dépassé le stade des tableurs. Elle partait à la recherche
+d'un véritable système. Et on lui annonçait un prix qui n'avait pas grand-chose à voir avec la valeur
+qu'elle s'apprêtait à recevoir. Par utilisateur. Par mois. Par module. Plus la mise en œuvre. Plus le
+connecteur vers l'outil qu'elle possédait déjà. L'entreprise signait, car que faire d'autre, et trois
+ans plus tard elle découvrait que les données de ses propres clients se trouvaient quelque part où
+elle ne pouvait pas accéder facilement, dans un format qu'elle ne maîtrisait pas, à des conditions
+qu'elle ne pouvait pas renégocier.
+
+Nous trouvions que c'était un mauvais marché. Rien de diabolique, rien de scandaleux — juste un
+mauvais marché, répété en silence dans des milliers d'entreprises qui méritaient mieux.
+
+Nous nous sommes donc posé une question assez évidente : le logiciel dont ces entreprises ont
+réellement besoin existe déjà, et une bonne partie en est open source et véritablement excellente.
+Pourquoi une entreprise de cent personnes ne l'a-t-elle toujours pas ? Et la réponse, une fois que
+nous avons cessé d'en chercher une astucieuse, était presque ennuyeuse. Personne ne veut l'exploiter.
+L'open source vous remet un système puissant et un trousseau de clés, puis vous souhaite bonne chance.
+Quelqu'un doit l'installer, le sécuriser, le mettre à jour, le sauvegarder et répondre au téléphone à
+8 h 40 un lundi matin lorsque la numérotation des factures tombe en panne.
+
+C'est là que se situe le manque. C'est là toute notre entreprise. Nous l'exploitons pour vous, afin
+que vous n'ayez pas à le faire.
+
+## Notre mission
+
+**Offrir aux petites et moyennes entreprises un système de gestion de la même qualité que celui des
+grands groupes, sans les frais de licence, sans l'enfermement propriétaire et sans devoir recruter une
+équipe technique dédiée.**
+
+Nous ne cherchons pas à créer le prochain grand logiciel. Il en existe déjà plusieurs, ils sont open
+source et ils sont meilleurs que tout ce que nous écririons de zéro. Notre rôle, c'est la moitié
+ingrate de la tâche : les faire fonctionner correctement, en hongrois, sur une infrastructure
+européenne, avec une personne que vous pouvez réellement appeler.
+
+Nous nous jugeons à l'aune d'une seule question, un peu embarrassante — *si notre client nous quittait
+demain, pourrait-il tout emporter et s'en sortir sans problème ?* Si la réponse honnête est un jour
+« non », c'est que nous avons construit la mauvaise chose. Tout ce que nous exploitons stocke ses
+données dans une base de données standard. Tout client peut demander un export complet à tout moment,
+et nous l'aiderons à déménager ses données. Ce n'est pas de la générosité, c'est la discipline qui
+nous garde honnêtes : une entreprise qui peut partir facilement est une entreprise que nous devons
+continuer de mériter.
+
+## Notre vision
+
+Nous voulons que « l'open source » cesse d'être une décision technique pour devenir une décision
+commerciale ordinaire.
+
+Aujourd'hui, choisir un CRM ou un ERP open source ressemble encore à un acte un peu courageux pour un
+dirigeant hongrois. Cela s'accompagne d'une question tacite : *qui va s'occuper de tout cela ?* Nous
+aimerions que cette question ait une réponse si terne et si évidente que plus personne ne prendrait la
+peine de la poser.
+
+Dans cinq ans, nous voulons qu'une entreprise de cinquante personnes à Debrecen, à Győr ou à Pécs
+puisse choisir un ERP sérieux, le voir fonctionner en quelques semaines plutôt qu'en quelques
+trimestres, payer un montant mensuel prévisible, posséder chaque octet de ses propres données et ne
+jamais avoir à penser au serveur sur lequel il tourne. Non parce que ce serait idéaliste, mais parce
+qu'il n'y a aucune bonne raison pour que ce ne soit pas déjà le cas.
+
+## Comment nous travaillons
+
+Nous sommes une petite équipe et nous comptons le rester un certain temps, car notre façon de
+travailler ne survit pas à une croissance menée à la légère.
+
+- **Celui qui sait décide.** La personne la plus proche du problème tranche. Nous ne faisons pas
+  remonter les décisions par pur formalisme. Ici, les intitulés de poste décrivent ce à quoi quelqu'un
+  consacre ses journées, non le poids de son opinion.
+- **Nous disons tôt ce qui dérange.** Si nous pensons qu'un client achète le mauvais système, nous le
+  disons avant le contrat, et non après la troisième demande de modification. Nous avons dissuadé des
+  entreprises de se lancer dans des projets. Cela nous coûte du chiffre d'affaires et cela ne nous a
+  jamais coûté une seule relation.
+- **Celui qui le construit en assure le support.** Personne ne se décharge de son travail par-dessus
+  une cloison. Il est remarquable de voir à quel point cette seule règle impose, à elle seule, de la
+  qualité.
+- **Nous ne faisons pas semblant.** Si quelque chose s'est cassé parce que nous avons commis une
+  erreur, le message le dit exactement. Nos clients font tourner leur activité sur ces systèmes, et
+  ils font la différence entre une explication et un communiqué de presse.
+- **L'ennui est une qualité.** Personne ne veut d'un ERP palpitant. Le meilleur retour possible sur
+  notre travail, c'est que le client ait oublié notre présence.
+
+## Pourquoi Budapest
+
+Nous sommes ici parce que nous sommes d'ici — c'est la réponse la plus honnête — et parce que cela se
+révèle être un endroit véritablement propice à ce travail.
+
+Budapest dispose d'un vivier exceptionnellement profond d'ingénieurs qui ont travaillé sur de vrais
+systèmes pour de vrais industriels, transporteurs et distributeurs — et pas seulement sur des
+applications grand public. Cela compte lorsque le problème posé est un plan de production, une règle de
+TVA ou un entrepôt qui compte les choses différemment le vendredi.
+
+Cela nous place aussi au cœur du marché que nous servons. Nous comprenons ce qu'implique l'intégration
+avec le NAV, pourquoi la facturation hongroise a la forme qu'elle a, et ce qu'un comptable hongrois
+demandera au mois de février. Nos clients peuvent nous rencontrer. Nous pouvons nous asseoir dans leur
+bureau, observer leur véritable flux de travail sur leurs véritables écrans et boire leur café
+étonnamment bon. Fuseau horaire d'Europe centrale, hébergement des données dans l'UE et un court
+trajet en voiture pour rejoindre la plupart de nos clients — rien de tout cela n'est un argument
+marketing, c'est simplement ainsi que le travail se fait correctement.
+
+Et il y a autre chose, plus difficile à justifier sur une diapositive. Budapest est une ville qui a
+été reconstruite plus d'une fois par des gens à qui l'on n'a pas demandé s'ils voulaient de la tâche.
+Il y a ici un certain pragmatisme dans l'air — une préférence pour ce qui fonctionne plutôt que pour
+ce qui impressionne. Cela nous convient.
+
+## Pourquoi ces produits
+
+Nous ne voulions pas d'un catalogue interminable. Nous voulions un ensemble maîtrisable de systèmes
+que nous pourrions véritablement dominer, couvrant l'éventail réaliste des besoins d'une entreprise
+hongroise en croissance.
+
+Trois d'entre eux représentent la majeure partie de nos échanges ; ils méritent donc d'être décrits
+comme il se doit. Le reste de la gamme — Dolibarr, EspoCRM, SuiteCRM, Axelor et metasfresh — figure
+sur la page des produits, et nous vous orienterons volontiers vers l'un d'eux s'il vous convient mieux.
+
+### vTiger CRM — quand le problème, c'est la vente
+
+Le choix mûr et raisonnable lorsqu'une entreprise a dépassé le stade du tableur partagé et de la boîte
+de réception commerciale. Contacts, pipeline, devis, tickets de support et marketing au même endroit,
+sans frais de licence par utilisateur. C'est le système que nous connaissons le plus en profondeur —
+nous y avons bâti la localisation hongroise, l'intégration de la facturation et des modules sur mesure
+— de sorte que, lorsqu'un client demande si telle ou telle chose est possible, nous le savons
+généralement déjà.
+
+### ERPNext — quand le problème, c'est toute l'entreprise
+
+L'option la plus complète que nous proposons, sans aucune formule payante de la part de son éditeur :
+comptabilité, stock, production, achats, projets et RH dans un seul système. Nous la recommandons aux
+entreprises qui fabriquent ou déplacent des objets physiques, là où la véritable difficulté n'est pas
+la vente, mais la distance entre la commande, l'entrepôt et le grand livre. Il fait l'objet d'un
+développement exceptionnellement actif, ce qui nous plaît.
+
+### Odoo — quand le problème est appelé à changer
+
+Modulaire par conception. Une entreprise peut commencer avec le seul CRM, puis activer plus tard la
+facturation, la gestion des stocks ou les RH sans changer de système ni ressaisir ses données. Nous le
+suggérons lorsqu'une entreprise sait qu'elle aura un tout autre visage dans deux ans, sans pouvoir
+encore dire lequel. Son édition Community est réellement performante, et la localisation hongroise y
+est bien établie.
+
+Chaque système que nous exploitons partage les deux propriétés qui nous les ont fait choisir dès le
+départ : une licence ouverte et, en dessous, une base de données standard. Le choix entre eux est une
+conversation sur votre entreprise, non sur un logiciel — et c'est pourquoi nous préférons vous
+présenter toute la gamme plutôt que vous en vendre un seul.
+
+---
+
+## Espaces réservés modifiables
+
+| Espace réservé | Rôle |
+|---|---|
+| `{{LAST_UPDATED}}` | Date affichée dans le pied de page du CMS pour cette page |
+| `{{COMPANY_LEGAL_NAME}}` | À insérer si un nom d'entité juridique est affiché dans le pied de page |
+| `{{TEAM_PHOTO}}` | Bloc photo d'équipe optionnel |
+| `{{TEAM_MEMBERS}}` | Bloc répétable optionnel : nom, fonction, biographie en une ligne |
+
+> **Note à l'éditeur.** Cette page ne contient délibérément **aucune donnée chiffrée** — pas de nombre
+> de clients, pas d'année de création, pas d'effectif, pas de chiffre d'affaires. De tels chiffres
+> sont faciles à ajouter et faciles à se tromper, et un chiffre invérifiable sur une page « À propos »
+> est le moyen le plus rapide de perdre un acheteur attentif. Si vous en ajoutez, assurez-vous de
+> pouvoir les étayer.

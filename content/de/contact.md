@@ -91,49 +91,15 @@ den Budaer Bergen am gegenüberliegenden Ufer.“
 
 ---
 
-## Schreiben Sie uns
+## Schreiben Sie uns eine Nachricht
 
-Senden Sie uns eine E-Mail, und wir antworten, in der Regel innerhalb eines Arbeitstages. Ein paar
-Sätze genügen völlig — sagen Sie uns grob, was Sie in Ordnung bringen wollen, und wir übernehmen von
-dort.
+Haben Sie eine Frage? Wir würden uns freuen, von Ihnen zu hören. Ein paar Sätze genügen völlig, und
+wir antworten in der Regel innerhalb eines Arbeitstages.
+
+[Schreiben Sie uns eine Nachricht](https://n8n.opensoft.hu/webhook/contact)
 
 Sie erreichen uns während der Bürozeiten auch unter der untenstehenden Telefonnummer, oder Sie fragen
 über die Hauptseite eine Vorführung eines beliebigen unserer Systeme an.
-
----
-
-## Implementierungsspezifikation — nur für die Redaktion
-
-*Alles unterhalb dieser Überschrift ist Build-Dokumentation, kein Seitentext. Es wird bei der
-Erzeugung der Seite automatisch entfernt.*
-
-**Formularfelder**
-
-| Feld | Typ | Pflicht | Validierung / Verhalten |
-|---|---|---|---|
-| E-Mail-Adresse | `email` | ja | Muss einen lokalen Teil, ein `@`, eine Domain und eine Top-Level-Domain enthalten. Wird beim Verlassen des Feldes geprüft; die Meldung erscheint unter dem Feld, nicht als Browser-Popup. |
-| Nachricht | `textarea` | ja | Mindestens 10 Zeichen. Wächst mit dem Inhalt; kein hartes Maximum. |
-| `website` | Text, außerhalb des Sichtbereichs | — | **Honeypot.** `tabindex="-1"`, `aria-hidden`, `autocomplete="off"`. Wird einem Menschen nie angezeigt; muss leer ankommen. |
-| — | Spamschutz | — | **Serverseitig. Kein CAPTCHA — das ist entschieden, keine Voreinstellung.** Drei Schichten laufen am Webhook, bevor irgendetwas gespeichert wird: der Honeypot oben, eine Mindestausfüllzeit (2,5 s) und eine `Origin`/`Referer`-Prüfung. Fehlschläge erhalten ein normal aussehendes `200`, damit Bots nichts lernen. Begründung in `server-side notes` §7; der Schritt `Policy check` in `deploy.yml` lässt den Build scheitern, sobald jemals ein Widget eines Drittanbieters hinzugefügt wird. |
-| Senden | `submit` | — | Beschriftung: **Nachricht senden**. Deaktiviert, bis beide Felder gültig sind. Zeigt „Wird gesendet…“ während der Übertragung. |
-
-**Mikrotexte**
-
-- Über dem Formular: *„Ein paar Sätze genügen völlig. Wir antworten in der Regel innerhalb eines
-  Arbeitstages.“*
-- Unter dem E-Mail-Feld: *„Wir verwenden diese Adresse ausschließlich, um Ihnen zu antworten.“*
-- Unter der Schaltfläche: *„Wir nehmen Sie in keine Verteilerliste auf. Siehe unsere Information zur
-  Datenverarbeitung.“*
-  → verweist auf `adatkezeles.html` (relativ — GitHub Pages liefert die Website aus einem Unterpfad
-  aus, ein wurzelrelatives `/adatkezeles` würde daher an der falschen Stelle landen)
-- Erfolgsmeldung: *„Danke — Ihre Nachricht ist angekommen. Wir antworten in der Regel innerhalb eines
-  Arbeitstages.“*
-- Fehlermeldung: *„Etwas ist schiefgegangen, und Ihre Nachricht wurde nicht gesendet. Bitte versuchen
-  Sie es erneut oder schreiben Sie uns direkt an {{CONTACT_EMAIL}}.“*
-
-> **Hinweis für den Redakteur.** Die Fehlermeldung nennt bewusst eine Ausweichadresse. Wenn das
-> Formular kaputt ist, verliert man die Anfrage, indem man jemandem sagt, er solle „es später noch
-> einmal versuchen“; gibt man ihm eine Adresse, verliert man sie nicht.
 
 ---
 

@@ -14,35 +14,21 @@
 <p>Máme toto miesto neprimerane radi, tak nám prepáčte krátku odbočku.</p>
 <h3>Reťazový most</h3>
 <p>Najstarší zo stálych prechodov cez rieku a stále ten, ktorý ľudia myslia, keď povedia <em>ten</em> most. Na oboch koncoch dva kamenné levy, svetlá konštrukcia, ktorá z nábrežia vyzerá takmer beztiažovo, a pomalý peší prechod, ktorý z päťminútovej prechádzky urobí pätnásťminútovú, lebo každý sa zastaví uprostred. Bola to prvá stavba, vďaka ktorej sa z Budína a Pešti stala jedna myšlienka namiesto dvoch miest, ktoré na seba hľadia cez vodu. V noci sa laná rozsvietia a celé to vyzerá, akoby to bolo nakreslené kriedou.</p>
-<p><em>Zástupný symbol obrázka:</em> <code><mark class="ph">GALLERY_IMAGE_CHAIN_BRIDGE</mark></code> — alternatívny text: „Széchenyiho reťazový most za súmraku, pohľad z peštianskeho nábrežia.“</p>
+<p>reťazový most za súmraku, pohľad z peštianskeho nábrežia.“</p>
 <h3>Parlament</h3>
 <p>Obrovský, nepravdepodobný a najlepšie sa naň pozerá z protiľahlého brehu, odkiaľ naraz obsiahnete celú deväťdesiatšesťmetrovú kupolu aj dlhé novogotické priečelie. Vyzerá skôr ako vyhlásenie než ako budova. Neskoro popoludní má vápenec farbu slabého čaju; po zotmení ho reflektory sfarbia do kostenej bielej a odraz ho v rieke zdvojí. Miestni okolo neho chodia každý deň a aj tak občas zdvihnú zrak.</p>
-<p><em>Zástupný symbol obrázka:</em> <code><mark class="ph">GALLERY_IMAGE_PARLIAMENT</mark></code> — alternatívny text: „Budova maďarského parlamentu osvetlená v noci, s odrazom v Dunaji.“</p>
+<p>parlamentu osvetlená v noci, s odrazom v Dunaji.“</p>
 <h3>Rybárska bašta</h3>
 <p>Hore na budínskej strane súbor bielych kamenných terás a sedem špicatých vežičiek — jedna za každý zo zakladajúcich maďarských kmeňov — ktoré vyzerajú ako niečo nakreslené do rozprávky a potom omylom postavené. Výstup sa oplatí už len kvôli výhľadu: celá Pešť rozprestretá naplocho pod Vami, rieka sa odkláňa na sever, parlament priamo oproti v úrovni očí. Choďte skoro ráno. O jedenástej už patrí všetkým.</p>
-<p><em>Zástupný symbol obrázka:</em> <code><mark class="ph">GALLERY_IMAGE_FISHERMANS_BASTION</mark></code> — alternatívny text: „Biele kamenné terasy a vežičky Rybárskej bašty s výhľadom na Pešť.“</p>
+<p>terasy a vežičky Rybárskej bašty s výhľadom na Pešť.“</p>
 <h3>Dunaj</h3>
 <p>Dôvod toho všetkého. Rieka prichádza zo severu, čisto rozotne mesto na dve časti a dáva Budapešti jej osobitú geometriu: kopce a tiché ulice na budínskej strane, rovné bulváre a hluk na peštianskej strane a osem či deväť spôsobov, ako sa medzi nimi dostať. V lete sa nábrežia večer zaplnia; v zime má voda farbu bridlice a hmla na nej sedí až do poludnia. Každý dobrý výhľad v tomto meste je napokon výhľadom na Dunaj.</p>
-<p><em>Zástupný symbol obrázka:</em> <code><mark class="ph">GALLERY_IMAGE_DANUBE</mark></code> — alternatívny text: „Dunaj za súmraku s budínskymi kopcami na druhom brehu.“</p>
+<p>budínskymi kopcami na druhom brehu.“</p>
 <hr>
 <h2>Napíšte nám</h2>
-<p>Pošlite nám e-mail a my odpovieme, zvyčajne do jedného pracovného dňa. Pár viet úplne stačí — napíšte nám zhruba, čo sa snažíte vyriešiť, a my sa toho chytíme.</p>
+<p>Máte otázku? Budeme radi, keď sa nám ozvete. Pár viet úplne stačí a zvyčajne odpovedáme do jedného pracovného dňa.</p>
+<p><a href="https://n8n.opensoft.hu/webhook/contact" target="_blank" rel="noopener noreferrer">Napíšte nám</a></p>
 <p>Počas úradných hodín nás zastihnete aj na telefónnom čísle nižšie alebo si na hlavnej stránke môžete vyžiadať ukážku ktoréhokoľvek z našich systémov.</p>
-<hr>
-<h2>Špecifikácia implementácie — len pre redaktora</h2>
-<p><em>Všetko pod týmto nadpisom je dokumentácia k zostaveniu, nie text stránky. Pri generovaní stránky sa automaticky odstráni.</em></p>
-<p><strong>Polia formulára</strong></p>
-<div class="table-wrap"><table>
-<thead><tr><th>Pole</th><th>Typ</th><th>Povinné</th><th>Validácia / správanie</th></tr></thead>
-<tbody>
-<tr><td>E-mailová adresa</td><td><code>email</code></td><td>áno</td><td>Musí obsahovať lokálnu časť, <code>@</code>, doménu a doménu najvyššej úrovne. Validuje sa pri opustení poľa; hlásenie sa zobrazí pod poľom, nie ako vyskakovacie okno prehliadača.</td></tr>
-<tr><td>Správa</td><td><code>textarea</code></td><td>áno</td><td>Minimálne 10 znakov. Rastie s obsahom; bez pevného maxima.</td></tr>
-<tr><td><code>website</code></td><td>text, mimo obrazovky</td><td>—</td><td><strong>Pasca na roboty (honeypot).</strong> <code>tabindex="-1"</code>, <code>aria-hidden</code>, <code>autocomplete="off"</code>. Človeku sa nikdy nezobrazí; musí prísť prázdne.</td></tr>
-<tr><td>—</td><td>Ochrana proti spamu</td><td>—</td><td><strong>Na strane servera. Žiadna CAPTCHA — je to rozhodnutie, nie prednastavená hodnota.</strong> Na webhooku bežia pred akýmkoľvek uložením tri vrstvy: vyššie uvedená pasca na roboty, minimálny čas vyplnenia (2,5 s) a kontrola hlavičiek <code>Origin</code>/<code>Referer</code>. Neúspešné pokusy dostanú normálne vyzerajúcu odpoveď <code>200</code>, aby sa roboty nič nedozvedeli. Zdôvodnenie v <code>server-side notes</code> §7; krok <code>Policy check</code> v <code>deploy.yml</code> zhodí zostavenie, ak by niekedy pribudol widget tretej strany.</td></tr>
-<tr><td>Odoslať</td><td><code>submit</code></td><td>—</td><td>Označenie: <strong>Odoslať správu</strong>. Neaktívne, kým nie sú platné obe polia. Počas odosielania zobrazuje „Odosielam…“.</td></tr>
-</tbody></table></div>
-<p><strong>Mikrotexty</strong></p>
-<ul><li>Nad formulárom: <em>„Pár viet úplne stačí. Zvyčajne odpovedáme do jedného pracovného dňa.“</em></li><li>Pod poľom pre e-mail: <em>„Použijeme ju výhradne na to, aby sme Vám odpovedali.“</em></li><li>Pod tlačidlom: <em>„Nepridávame Vás do žiadneho zoznamu adresátov. Pozrite si naše zásady spracúvania údajov.“</em> → odkazuje na <code>adatkezeles.html</code> (relatívne — GitHub Pages obsluhuje web zo sub-cesty, takže od koreňa relatívne <code>/adatkezeles</code> by sa vyhodnotilo na nesprávne miesto)</li><li>Stav úspechu: <em>„Ďakujeme — Vaša správa dorazila. Zvyčajne odpovedáme do jedného pracovného dňa.“</em></li><li>Stav chyby: <em>„Niečo sa pokazilo a Vaša správa sa neodoslala. Skúste to prosím znova alebo nám napíšte priamo na <mark class="ph">CONTACT_EMAIL</mark>.“</em></li></ul>
 <hr>
 <h2>Priame kontaktné údaje</h2>
 <div class="table-wrap"><table>
@@ -55,18 +41,4 @@
 <tr><td><strong>Údaje o spoločnosti</strong></td><td><mark class="ph">COMPANY_LEGAL_NAME</mark> · Reg. č. <mark class="ph">COMPANY_REG_NUMBER</mark> · IČ DPH <mark class="ph">COMPANY_TAX_NUMBER</mark></td></tr>
 </tbody></table></div>
 <hr>
-<h2>Editovateľné zástupné symboly</h2>
-<div class="table-wrap"><table>
-<thead><tr><th>Zástupný symbol</th><th>Účel</th></tr></thead>
-<tbody>
-<tr><td>—</td><td><em>(Žiadny zástupný symbol pre CAPTCHA. Táto otázka je uzavretá: ochrana proti spamu je na strane servera. Pozrite špecifikáciu formulára vyššie.)</em></td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_CHAIN_BRIDGE</mark></code></td><td>Obrázok galérie 1</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_PARLIAMENT</mark></code></td><td>Obrázok galérie 2</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_FISHERMANS_BASTION</mark></code></td><td>Obrázok galérie 3</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_DANUBE</mark></code></td><td>Obrázok galérie 4</td></tr>
-<tr><td><code><mark class="ph">CONTACT_EMAIL</mark></code> · <code><mark class="ph">CONTACT_PHONE</mark></code> · <code><mark class="ph">COMPANY_ADDRESS</mark></code></td><td>Priame kontaktné údaje</td></tr>
-<tr><td><code><mark class="ph">COMPANY_LEGAL_NAME</mark></code> · <code><mark class="ph">COMPANY_REG_NUMBER</mark></code> · <code><mark class="ph">COMPANY_TAX_NUMBER</mark></code></td><td>Povinné údaje v päte</td></tr>
-<tr><td><code><mark class="ph">LAST_UPDATED</mark></code></td><td>Dátum zobrazený v päte v CMS</td></tr>
-</tbody></table></div>
-<blockquote class="callout"><p><strong>Poznámka k prístupnosti.</strong> Každý obrázok galérie potrebuje alternatívny text uvedený vyššie, alebo lepší. Dekoratívne spracovanie tu nie je namieste — obrázky nesú obsah tejto sekcie.</p></blockquote>
 </div>

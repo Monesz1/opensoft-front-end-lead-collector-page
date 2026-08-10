@@ -14,7 +14,7 @@ image-slot lines. Every removal is counted so it can be checked rather than trus
 
 Run from anywhere:   python3 tools/build_pages.py
 """
-import re, pathlib, html as _html
+import re, pathlib, html as _html, unicodedata
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CONTENT = ROOT / 'content'
@@ -34,16 +34,75 @@ NAV = [('about', 'about.html', 'footer_link_about', None),
        ('gdpr', 'gdpr.html', None, 'GDPR'),
        ('privacy', 'privacy.html', 'footer_link_privacy', None)]
 
-EDITOR_RE = re.compile(
-    r'editor note|megjegyzés a szerkesztőnek|before you publish|publikálás előtt'
-    r'|verification note|note for the editor|read before publishing|this question is settled'
-    r'|reconciliation note|hinweis für den redakteur|note pour la rédaction|nota per il redattore'
-    r'|uwaga dla redaktora|poznámka pro redaktora|poznámka pre redaktora|napomena za urednika'
-    r'|notă pentru editor', re.I)
-REGISTER_RE = re.compile(
-    r'^##+\s*(editable placeholders|szerkeszthető helyőrzők|implementation spec'
-    r'|review record|decisions taken)', re.I)
-IMG_SLOT_RE = re.compile(r'^\s*\*(image placeholder|képhelyőrző)', re.I)
+# Editor-only callouts and register headings are translated into all ten languages. Rather than list
+# every accented/apostrophised variant (fragile), we FOLD each candidate to plain ASCII (lowercase,
+# strip diacritics, punctuation -> space) and match accent-free phrases. Every phrase below is the
+# folded form of a marker actually present in content/<lang>/*.md; see docs comments per family.
+def _fold(s):
+    s = unicodedata.normalize('NFKD', s.lower())
+    s = ''.join(c for c in s if not unicodedata.combining(c))
+    return re.sub(r'[^a-z0-9]+', ' ', s).strip()
+
+
+# Editor-note / verification-note / accessibility-note / "before you publish" families, all langs.
+# These mark blockquotes written for the editor, never the reader. Substantive reader-facing
+# callouts (the "short answer", GitHub's dual role, "does not touch GitHub", the right-to-object
+# box) deliberately share NO phrase below, so they survive.
+EDITOR_PHRASES = [
+    'editor note', 'note to the editor', 'note for the editor', 'verification note',
+    'reconciliation note', 'accessibility note', 'before you publish',
+    'this question is settled', 'read before publishing',
+    'megjegyzes a szerkesztonek', 'publikalas elott', 'akadalymentessegi megjegyzes',
+    'ellenorzesi megjegyzes',                                                    # hu
+    'redaktionshinweis', 'hinweis fur den redakteur', 'hinweis zur barrierefreiheit',
+    'vor der veroffentlichung', 'prufvermerk',                                   # de
+    'note a l editeur', 'note pour la redaction', 'note a la redaction',
+    'note sur l accessibilite', 'note de verification', 'avant de publier',
+    'avant la publication',                                                      # fr
+    'nota per il redattore', 'nota sull accessibilita', 'nota di verifica',
+    'prima della pubblicazione',                                                 # it
+    'poznamka pre editora', 'poznamka pre redaktora', 'poznamka k pristupnosti',
+    'poznamka k overeniu', 'pred publikovanim', 'pred zverejnenim',              # sk
+    'poznamka pro editora', 'overovaci poznamka', 'nez zverejnite', 'pred publikaci',  # cs
+    'napomena urednika', 'napomena za urednika', 'napomena o pristupacnosti',
+    'napomena o provjeri', 'prije objave',                                       # hr
+    'uwaga dla redaktora', 'uwaga redakcyjna', 'uwaga dotyczaca dostepnosci',
+    'uwaga weryfikacyjna', 'przed publikacja',                                   # pl
+    'nota pentru editor', 'nota privind accesibilitatea', 'nota de verificare',
+    'inainte de publicare',                                                      # ro
+]
+EDITOR_RE = re.compile('|'.join(re.escape(p) for p in EDITOR_PHRASES))
+
+# "Editable placeholders" register-section heading, all languages. Match the STABLE placeholder-noun
+# stem, not the adjective: translators vary the adjective and even the noun per document
+# (sk/cs "Editovateľné/Upraviteľné", "symboly/znaky"; hr "Uredljiva/Urediva"), but the noun stem is
+# constant. Verified: no substantive '## ' heading in any language contains one of these stems.
+REGISTER_STEMS = [
+    'placeholder',            # en: editable placeholders
+    'helyorz',                # hu: szerkeszthető helyőrzők
+    'platzhalter',            # de: bearbeitbare Platzhalter
+    'zastupn',                # sk/cs: (editovateľné/upraviteľné) zástupné symboly/znaky
+    'substituent',            # ro: substituenți editabili
+    'rezervirana mjesta',     # hr: uredljiva/urediva rezervirana mjesta
+    'symbole zastepcze',      # pl: edytowalne symbole zastępcze
+    'espaces reserv',         # fr: espaces réservés modifiables
+    'segnaposto',             # it: segnaposto modificabili
+    'implementation spec', 'review record', 'decisions taken',
+]
+
+# Image-slot lines are italic and cite a {{GALLERY_IMAGE_*}} token in every language, so match on
+# the token (language-agnostic); keep the en/hu prefixes as a belt-and-braces fallback.
+IMG_SLOT_RE = re.compile(
+    r'^\s*\*[^\n]*\{\{GALLERY_IMAGE_[A-Z_]+\}\}'
+    r'|^\s*\*(image placeholder|képhelyőrző)', re.I)
+
+
+def is_register_heading(line):
+    m = re.match(r'^#{2,}\s+(.*)', line)
+    if not m:
+        return False
+    folded = _fold(m.group(1))
+    return any(stem in folded for stem in REGISTER_STEMS)
 
 stripped = 0
 
@@ -59,7 +118,7 @@ def strip_editorial(md):
             stripped += 1
             i += 1
             continue
-        if REGISTER_RE.match(line):
+        if is_register_heading(line):
             j = i + 1
             while j < len(lines) and not re.match(r'^##\s', lines[j]):
                 j += 1
@@ -72,7 +131,7 @@ def strip_editorial(md):
             j = i
             while j < len(lines) and lines[j].startswith('>'):
                 j += 1
-            if EDITOR_RE.search('\n'.join(lines[i:j])):
+            if EDITOR_RE.search(_fold('\n'.join(lines[i:j]))):
                 stripped += 1
                 i = j
                 continue

@@ -14,35 +14,21 @@
 <p>Wir hängen unvernünftig an diesem Ort, verzeihen Sie uns also einen kleinen Umweg.</p>
 <h3>Die Kettenbrücke</h3>
 <p>Die älteste der festen Verbindungen und noch immer die, die man meint, wenn man <em>die</em> Brücke sagt. Zwei steinerne Löwen an jedem Ende, ein blasses Tragwerk, das vom Ufer aus fast schwerelos wirkt, und ein gemächlicher Fußgängerübergang, der aus einem Fünf-Minuten-Weg einen Fünfzehn-Minuten-Weg macht, weil alle in der Mitte stehen bleiben. Sie war das erste Bauwerk, das aus Buda und Pest einen einzigen Gedanken machte statt zweier Städte, die einander über das Wasser hinweg anstarren. Nachts leuchten die Seile auf, und das Ganze sieht aus, als wäre es mit Kreide gezeichnet.</p>
-<p><em>Bildplatzhalter:</em> <code><mark class="ph">GALLERY_IMAGE_CHAIN_BRIDGE</mark></code> — Alternativtext: „Die Széchenyi-Kettenbrücke in der Abenddämmerung, gesehen vom Pester Donauufer.“</p>
+<p>der Abenddämmerung, gesehen vom Pester Donauufer.“</p>
 <h3>Das Parlament</h3>
 <p>Riesig, unwahrscheinlich und am besten vom gegenüberliegenden Ufer aus zu betrachten, wo Sie die gesamte sechsundneunzig Meter hohe Kuppel und die lange neugotische Fassade auf einmal aufnehmen können. Es sieht weniger nach einem Gebäude aus als nach einer Erklärung. Am späten Nachmittag nimmt der Kalkstein die Farbe von dünnem Tee an; nach Einbruch der Dunkelheit färben ihn die Scheinwerfer knochenweiß, und die Spiegelung verdoppelt ihn im Fluss. Einheimische gehen jeden Tag daran vorbei — und schauen trotzdem gelegentlich hinauf.</p>
-<p><em>Bildplatzhalter:</em> <code><mark class="ph">GALLERY_IMAGE_PARLIAMENT</mark></code> — Alternativtext: „Das ungarische Parlamentsgebäude bei Nacht beleuchtet, gespiegelt in der Donau.“</p>
+<p>bei Nacht beleuchtet, gespiegelt in der Donau.“</p>
 <h3>Die Fischerbastei</h3>
 <p>Oben auf der Budaer Seite eine Reihe weißer Steinterrassen und sieben spitze Türmchen — eines für jeden der gründenden Magyarenstämme —, die aussehen, als wären sie für ein Märchen gezeichnet und dann versehentlich gebaut worden. Der Aufstieg lohnt sich allein wegen der Aussicht: ganz Pest flach darunter ausgebreitet, der Fluss, der sich nach Norden fortkrümmt, das Parlament genau gegenüber auf Augenhöhe. Gehen Sie früh. Ab elf gehört sie allen.</p>
-<p><em>Bildplatzhalter:</em> <code><mark class="ph">GALLERY_IMAGE_FISHERMANS_BASTION</mark></code> — Alternativtext: „Die weißen Steinterrassen und Türmchen der Fischerbastei mit Blick über Pest.“</p>
+<p>und Türmchen der Fischerbastei mit Blick über Pest.“</p>
 <h3>Die Donau</h3>
 <p>Der Grund für alles. Der Fluss kommt aus dem Norden, schneidet die Stadt sauber in zwei Teile und gibt Budapest seine besondere Geometrie: Hügel und stille Straßen auf der Budaer Seite, flache Boulevards und Lärm auf der Pester Seite, und acht oder neun Wege, um zwischen beiden zu wechseln. Im Sommer füllen sich abends die Uferpromenaden; im Winter wird das Wasser schiefergrau, und der Nebel liegt bis mittags darauf. Jede gute Aussicht in dieser Stadt ist letztlich eine Aussicht auf die Donau.</p>
-<p><em>Bildplatzhalter:</em> <code><mark class="ph">GALLERY_IMAGE_DANUBE</mark></code> — Alternativtext: „Die Donau in der Abenddämmerung mit den Budaer Bergen am gegenüberliegenden Ufer.“</p>
+<p>den Budaer Bergen am gegenüberliegenden Ufer.“</p>
 <hr>
-<h2>Schreiben Sie uns</h2>
-<p>Senden Sie uns eine E-Mail, und wir antworten, in der Regel innerhalb eines Arbeitstages. Ein paar Sätze genügen völlig — sagen Sie uns grob, was Sie in Ordnung bringen wollen, und wir übernehmen von dort.</p>
+<h2>Schreiben Sie uns eine Nachricht</h2>
+<p>Haben Sie eine Frage? Wir würden uns freuen, von Ihnen zu hören. Ein paar Sätze genügen völlig, und wir antworten in der Regel innerhalb eines Arbeitstages.</p>
+<p><a href="https://n8n.opensoft.hu/webhook/contact" target="_blank" rel="noopener noreferrer">Schreiben Sie uns eine Nachricht</a></p>
 <p>Sie erreichen uns während der Bürozeiten auch unter der untenstehenden Telefonnummer, oder Sie fragen über die Hauptseite eine Vorführung eines beliebigen unserer Systeme an.</p>
-<hr>
-<h2>Implementierungsspezifikation — nur für die Redaktion</h2>
-<p><em>Alles unterhalb dieser Überschrift ist Build-Dokumentation, kein Seitentext. Es wird bei der Erzeugung der Seite automatisch entfernt.</em></p>
-<p><strong>Formularfelder</strong></p>
-<div class="table-wrap"><table>
-<thead><tr><th>Feld</th><th>Typ</th><th>Pflicht</th><th>Validierung / Verhalten</th></tr></thead>
-<tbody>
-<tr><td>E-Mail-Adresse</td><td><code>email</code></td><td>ja</td><td>Muss einen lokalen Teil, ein <code>@</code>, eine Domain und eine Top-Level-Domain enthalten. Wird beim Verlassen des Feldes geprüft; die Meldung erscheint unter dem Feld, nicht als Browser-Popup.</td></tr>
-<tr><td>Nachricht</td><td><code>textarea</code></td><td>ja</td><td>Mindestens 10 Zeichen. Wächst mit dem Inhalt; kein hartes Maximum.</td></tr>
-<tr><td><code>website</code></td><td>Text, außerhalb des Sichtbereichs</td><td>—</td><td><strong>Honeypot.</strong> <code>tabindex="-1"</code>, <code>aria-hidden</code>, <code>autocomplete="off"</code>. Wird einem Menschen nie angezeigt; muss leer ankommen.</td></tr>
-<tr><td>—</td><td>Spamschutz</td><td>—</td><td><strong>Serverseitig. Kein CAPTCHA — das ist entschieden, keine Voreinstellung.</strong> Drei Schichten laufen am Webhook, bevor irgendetwas gespeichert wird: der Honeypot oben, eine Mindestausfüllzeit (2,5 s) und eine <code>Origin</code>/<code>Referer</code>-Prüfung. Fehlschläge erhalten ein normal aussehendes <code>200</code>, damit Bots nichts lernen. Begründung in <code>server-side notes</code> §7; der Schritt <code>Policy check</code> in <code>deploy.yml</code> lässt den Build scheitern, sobald jemals ein Widget eines Drittanbieters hinzugefügt wird.</td></tr>
-<tr><td>Senden</td><td><code>submit</code></td><td>—</td><td>Beschriftung: <strong>Nachricht senden</strong>. Deaktiviert, bis beide Felder gültig sind. Zeigt „Wird gesendet…“ während der Übertragung.</td></tr>
-</tbody></table></div>
-<p><strong>Mikrotexte</strong></p>
-<ul><li>Über dem Formular: <em>„Ein paar Sätze genügen völlig. Wir antworten in der Regel innerhalb eines Arbeitstages.“</em></li><li>Unter dem E-Mail-Feld: <em>„Wir verwenden diese Adresse ausschließlich, um Ihnen zu antworten.“</em></li><li>Unter der Schaltfläche: <em>„Wir nehmen Sie in keine Verteilerliste auf. Siehe unsere Information zur Datenverarbeitung.“</em> → verweist auf <code>adatkezeles.html</code> (relativ — GitHub Pages liefert die Website aus einem Unterpfad aus, ein wurzelrelatives <code>/adatkezeles</code> würde daher an der falschen Stelle landen)</li><li>Erfolgsmeldung: <em>„Danke — Ihre Nachricht ist angekommen. Wir antworten in der Regel innerhalb eines Arbeitstages.“</em></li><li>Fehlermeldung: <em>„Etwas ist schiefgegangen, und Ihre Nachricht wurde nicht gesendet. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an <mark class="ph">CONTACT_EMAIL</mark>.“</em></li></ul>
 <hr>
 <h2>Direkte Kontaktdaten</h2>
 <div class="table-wrap"><table>
@@ -55,18 +41,4 @@
 <tr><td><strong>Firmenangaben</strong></td><td><mark class="ph">COMPANY_LEGAL_NAME</mark> · Reg.-Nr. <mark class="ph">COMPANY_REG_NUMBER</mark> · USt-Nr. <mark class="ph">COMPANY_TAX_NUMBER</mark></td></tr>
 </tbody></table></div>
 <hr>
-<h2>Bearbeitbare Platzhalter</h2>
-<div class="table-wrap"><table>
-<thead><tr><th>Platzhalter</th><th>Zweck</th></tr></thead>
-<tbody>
-<tr><td>—</td><td><em>(Kein CAPTCHA-Platzhalter. Diese Frage ist entschieden: Der Spamschutz läuft serverseitig. Siehe die Formularspezifikation oben.)</em></td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_CHAIN_BRIDGE</mark></code></td><td>Galeriebild 1</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_PARLIAMENT</mark></code></td><td>Galeriebild 2</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_FISHERMANS_BASTION</mark></code></td><td>Galeriebild 3</td></tr>
-<tr><td><code><mark class="ph">GALLERY_IMAGE_DANUBE</mark></code></td><td>Galeriebild 4</td></tr>
-<tr><td><code><mark class="ph">CONTACT_EMAIL</mark></code> · <code><mark class="ph">CONTACT_PHONE</mark></code> · <code><mark class="ph">COMPANY_ADDRESS</mark></code></td><td>Direkte Kontaktdaten</td></tr>
-<tr><td><code><mark class="ph">COMPANY_LEGAL_NAME</mark></code> · <code><mark class="ph">COMPANY_REG_NUMBER</mark></code> · <code><mark class="ph">COMPANY_TAX_NUMBER</mark></code></td><td>Pflichtangaben in der Fußzeile</td></tr>
-<tr><td><code><mark class="ph">LAST_UPDATED</mark></code></td><td>Datum, das in der CMS-Fußzeile angezeigt wird</td></tr>
-</tbody></table></div>
-<blockquote class="callout"><p><strong>Hinweis zur Barrierefreiheit.</strong> Jedes Galeriebild braucht den oben angegebenen Alternativtext oder einen besseren. Eine Behandlung als rein dekoratives Bild ist hier nicht angemessen — die Bilder tragen den Inhalt des Abschnitts.</p></blockquote>
 </div>
