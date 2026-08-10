@@ -188,6 +188,11 @@ a{color:var(--navy-500);text-decoration:none}
 .field-row{display:grid;grid-template-columns:1fr;gap:16px}
 /* honeypot: off-screen rather than display:none, which some bots skip */
 .hp-field{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.check-field{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:start;margin:2px 0 4px}
+.check-field input{width:18px;height:18px;margin-top:1px;accent-color:var(--blue-500);cursor:pointer}
+.check-field label{font-size:.8125rem;color:var(--grey-700);line-height:1.4}
+.check-field label a{color:var(--navy-500);text-decoration:underline}
+.check-field .field-error{grid-column:2}
 .privacy{text-align:center;font-size:.8125rem;color:var(--grey-600)}
 .privacy a{color:var(--navy-500);text-decoration:underline}
 

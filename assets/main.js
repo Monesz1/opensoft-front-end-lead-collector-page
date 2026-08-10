@@ -132,12 +132,14 @@ function validateForm() {
   const fieldsOk = FIELDS.map(f => validateField($(`#${f}`))).every(Boolean);
   const hasProduct = !!$('#selected-product').value;
   if (!hasProduct) showError('product', 'err_product');
-  return fieldsOk && hasProduct;
+  const terms = $('#terms').checked;
+  showError('terms', terms ? '' : 'form_terms_error');
+  return fieldsOk && hasProduct && terms;
 }
 
 function updateSubmitState() {
   $('#submit-btn').disabled =
-    !(FIELDS.every(f => !checkField(f)) && $('#selected-product').value);
+    !(FIELDS.every(f => !checkField(f)) && $('#selected-product').value && $('#terms').checked);
 }
 
 function initValidation() {
@@ -154,7 +156,23 @@ function initValidation() {
 }
 
 /* submit */
-function buildPayload() {
+/* Invisible proof-of-work: find a nonce so SHA-256(challenge+nonce) opens with 12 zero bits.
+   No third party, no external script - but it requires a real JS engine + crypto.subtle, so a
+   blind curl to the webhook cannot forge it. n8n re-verifies the hash, the difficulty and the
+   challenge freshness before provisioning (see server-side notes). */
+async function proofOfWork(challenge) {
+  if (!(window.crypto && crypto.subtle)) return -1;
+  const enc = new TextEncoder();
+  for (let n = 0; n < 5e6; n++) {
+    const h = new Uint8Array(await crypto.subtle.digest('SHA-256', enc.encode(challenge + n)));
+    if (h[0] === 0 && h[1] < 16) return n;          /* 12 leading zero bits */
+  }
+  return -1;
+}
+
+async function buildPayload() {
+  const email = $('#email').value.trim();
+  const challenge = email + ':' + Date.now();       /* bound to submitter + submit time */
   return {
     source: 'opensoft-lead-collector',
     product: $('#selected-product').value,
@@ -162,13 +180,16 @@ function buildPayload() {
     lastName: $('#lastName').value.trim(),
     company: $('#company').value.trim(),
     mobile: normaliseMobile($('#mobile').value.trim()),
-    email: $('#email').value.trim(),
+    email: email,
     language: OS.lang,
     submittedAt: new Date().toISOString(),
     pageUrl: location.href,
-    /* anti-spam signals, re-checked in n8n - see server-side notes */
-    website: $('#website').value,       /* honeypot: must arrive empty */
-    elapsedMs: Date.now() - loadedAt    /* must be >= MIN_FILL_MS */
+    /* anti-spam signals, all re-checked in n8n - see server-side notes */
+    website: $('#website').value,            /* honeypot: must arrive empty */
+    elapsedMs: Date.now() - loadedAt,        /* must be >= MIN_FILL_MS */
+    termsAccepted: $('#terms').checked,      /* T&C consent, re-checked server-side */
+    powChallenge: challenge,                 /* proof-of-work challenge string */
+    powNonce: await proofOfWork(challenge)   /* -1 if crypto.subtle is unavailable */
   };
 }
 
@@ -179,12 +200,15 @@ function onSubmitFail(btn) {
   updateSubmitState();
 }
 
-function submitForm(event) {
+function focusFirstInvalid() {
+  const t = !$('#selected-product').value ? '#product-picker button'
+    : (FIELDS.find(checkField) ? `#${FIELDS.find(checkField)}` : '#terms');
+  $(t).focus();
+}
+
+async function submitForm(event) {
   event.preventDefault();
-  if (!validateForm()) {
-    return $(!$('#selected-product').value
-      ? '#product-picker button' : `#${FIELDS.find(checkField)}`).focus();
-  }
+  if (!validateForm()) return focusFirstInvalid();
   const product = PRODUCTS.find(p => p.id === $('#selected-product').value);
   if (!product || !product.enabled || !product.webhookUrl) {
     return showToast(OS.dict.form_error_no_product || OS.dict.err_product, 'error');
@@ -192,15 +216,15 @@ function submitForm(event) {
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.textContent = OS.dict.form_submitting || '...';
-  fetch(product.webhookUrl, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(buildPayload())
-  })
-    .then(res => res.json().catch(() => ({})).then(d => ({ ok: res.ok, d })))
-    .then(({ ok, d }) => (ok && d && d.demo_url)
-      ? startDemoCountdown(d.demo_url, Number(d.ready_in_seconds) || 60)
-      : onSubmitFail(btn))
-    .catch(() => onSubmitFail(btn));
+  try {
+    const res = await fetch(product.webhookUrl, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(await buildPayload())
+    });
+    const d = await res.json().catch(() => ({}));
+    if (res.ok && d && d.demo_url) return startDemoCountdown(d.demo_url, Number(d.ready_in_seconds) || 60);
+    onSubmitFail(btn);
+  } catch (e) { onSubmitFail(btn); }
 }
 
 /* n8n responds { demo_url, ready_in_seconds }; show a countdown, then redirect.
@@ -240,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function init() {
   initCards();
   initValidation();
   $('#lead-form-el').addEventListener('submit', submitForm);
+  $('#terms').addEventListener('change', () => { showError('terms', ''); updateSubmitState(); });
   updateSubmitState();
   /* i18n.js calls onApply after every language change */
   OS.onApply = () => { renderPickerLabel(); refreshComingSoon(); };

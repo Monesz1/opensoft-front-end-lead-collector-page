@@ -10,9 +10,9 @@
 <meta property="og:title" data-i18n-content="meta_title" content="Nyílt forráskódú CRM és ERP a felhőben | OpenSoft">
 <meta property="og:description" data-i18n-content="meta_description" content="Hostolt és felügyelt nyílt forráskódú CRM és ERP magyar kis- és középvállalkozásoknak. Ingyenes demó, magyar támogatás, GDPR-kompatibilis üzemeltetés.">
 <link rel="icon" href="assets/opensoft-icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=7">
-<script src="assets/i18n.js?v=7" defer></script>
-<script src="assets/main.js?v=7" defer></script>
+<link rel="stylesheet" href="assets/style.css?v=8">
+<script src="assets/i18n.js?v=8" defer></script>
+<script src="assets/main.js?v=8" defer></script>
 </head>
 <body>
 
@@ -299,6 +299,12 @@
           <div class="hp-field" aria-hidden="true">
             <label for="website">Website</label>
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="check-field">
+            <input type="checkbox" id="terms" name="terms" required aria-required="true" aria-describedby="err-terms">
+            <label for="terms"><span data-i18n="form_terms_pre"></span> <a href="gdpr.html" target="_blank" rel="noopener noreferrer" data-i18n="form_terms_link"></a><span class="req" aria-hidden="true">*</span></label>
+            <p class="field-error" id="err-terms" data-error-for="terms" role="alert" hidden></p>
           </div>
 
           <button class="btn btn-primary btn-block" id="submit-btn" type="submit" data-i18n="form_submit" disabled></button>
