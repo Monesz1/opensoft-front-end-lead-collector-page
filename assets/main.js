@@ -300,6 +300,11 @@ function showCheckEmail(status, email) {
     prog.append(bar, OS.mk('p', { className: 'ce-status', textContent: OS.dict.demo_prep_1 || '' }));
     card.append(prog);
   }
+  /* let the visitor return to the home page / a fresh form */
+  const back = OS.mk('button', { type: 'button', className: 'ce-back',
+    textContent: OS.dict.demo_back || 'Back to the home page' });
+  back.addEventListener('click', () => location.reload());
+  card.append(back);
   const host = $('.lead-card') || $('#lead-form-el').parentNode;
   host.textContent = '';                          /* drop heading, intro, required-note and the form */
   host.append(card);

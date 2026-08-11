@@ -80,6 +80,7 @@
   "demo_sent_again_title": "Demo zostało już zamówione",
   "demo_sent_again_msg": "Proszę sprawdzić skrzynkę odbiorczą (i folder spam) w poszukiwaniu linku potwierdzającego.",
   "form_rate_limited": "Zbyt wiele żądań. Proszę odczekać minutę i spróbować ponownie.",
+  "demo_back": "Powrót do strony głównej",
   "contact_form_label": "Napisz do nas",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Biznesowe systemy o otwartym kodzie, utrzymywane na Węgrzech.",

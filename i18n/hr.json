@@ -80,6 +80,7 @@
   "demo_sent_again_title": "Već ste zatražili demonstraciju",
   "demo_sent_again_msg": "Molimo provjerite svoj pretinac (i mapu neželjene pošte) za poveznicu za potvrdu.",
   "form_rate_limited": "Previše zahtjeva. Molimo pričekajte minutu i pokušajte ponovno.",
+  "demo_back": "Natrag na početnu stranicu",
   "contact_form_label": "Pošaljite nam poruku",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Poslovni sustavi otvorenog koda, uz održavanje iz Mađarske.",

@@ -223,6 +223,9 @@ a{color:var(--navy-500);text-decoration:none}
   transition:width 85s cubic-bezier(.15,.6,.25,1)}
 .ce-status{margin-top:8px;font-size:.8125rem;color:var(--grey-600)}
 .check-email.ce-ready .ce-status{color:var(--success);font-weight:600}
+.ce-back{margin-top:20px;background:none;border:none;color:var(--grey-600);font-size:.875rem;
+  cursor:pointer;text-decoration:underline;padding:6px;font-family:inherit}
+.ce-back:hover{color:var(--blue-500)}
 @media (prefers-reduced-motion:reduce){
   .ce-spinner{animation:none}
   .ce-bar>span{transition:width .3s linear}

@@ -340,8 +340,7 @@ TPL = '''<!doctype html>
       <div class="footer-col">
         <h2 class="footer-heading" data-i18n="footer_contact_title"></h2>
         <ul class="footer-links">
-          <li><a href="mailto:info@opensoft.hu">info@opensoft.hu</a></li>
-          <li><a href="tel:+3610000000">+36 1 000 0000</a></li>
+          <li><a href="mailto:administrator@opensoft.hu">administrator@opensoft.hu</a></li>
         </ul>
       </div>
 
