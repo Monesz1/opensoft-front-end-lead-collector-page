@@ -204,7 +204,7 @@ circostanza.
 > preventivo è questione controversa e DEVE essere risolta da un avvocato ungherese esperto in
 > materia di protezione dei dati prima del lancio. Se il consenso è richiesto, aggiunga un banner che
 > impedisca il caricamento di reCAPTCHA finché il visitatore non presta il proprio accordo. Si veda
-> `server-side notes` §7 per il modo in cui i moduli sono protetti lato server.
+> our own server-side anti-abuse measures per il modo in cui i moduli sono protetti lato server.
 
 ---
 
@@ -463,7 +463,7 @@ chiederemo nuovamente il consenso.
 **Questioni risolte, non più segnaposto:** l'host del sito web (GitHub Pages) e la garanzia relativa
 al trasferimento verso gli Stati Uniti sono indicati espressamente nelle sezioni 6 e 7, e non esiste
 alcun segnaposto per il CAPTCHA perché tale questione è chiusa: la protezione antispam è lato server
-(`server-side notes` §7).
+(our own server-side anti-abuse measures).
 
 ---
 

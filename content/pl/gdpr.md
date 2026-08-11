@@ -200,7 +200,7 @@ rozumieniu art. 22 RODO i nie sprzedajemy danych nikomu, w żadnych okolicznośc
 > uprzedniej zgody, jest sporne i MUSI zostać rozstrzygnięte przez węgierskiego prawnika ds. ochrony
 > danych przed uruchomieniem. Jeżeli zgoda jest wymagana, należy dodać baner, który blokuje ładowanie
 > reCAPTCHA do czasu wyrażenia zgody przez odwiedzającego. Opis tego, jak formularze są chronione po
-> stronie serwera, zob. `server-side notes` §7.
+> stronie serwera, zob. our own server-side anti-abuse measures.
 
 ---
 
@@ -453,7 +453,7 @@ elektroniczną, a jeżeli prawo tego wymaga — ponownie poprosimy o Pana/Pani z
 **Rozstrzygnięte, już nie symbole zastępcze:** dostawca hostingu witryny (GitHub Pages) oraz
 zabezpieczenie przekazania danych do Stanów Zjednoczonych są wskazane wprost w punktach 6 i 7, a
 symbol zastępczy dla CAPTCHA nie istnieje, ponieważ ta kwestia jest rozstrzygnięta — ochrona przed
-spamem działa po stronie serwera (`server-side notes` §7).
+spamem działa po stronie serwera (our own server-side anti-abuse measures).
 
 ---
 

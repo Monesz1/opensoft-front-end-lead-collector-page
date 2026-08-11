@@ -201,7 +201,7 @@ decizional automatizat în sensul articolului 22 din GDPR și nu vindem date nim
 > dispozitivul; dacă poate funcționa numai în temeiul interesului legitim sau necesită un banner de
 > consimțământ prealabil este o chestiune contestată și TREBUIE tranșată de un avocat maghiar specializat în
 > protecția datelor înainte de lansare. Dacă este necesar consimțământul, adăugați un banner care împiedică
-> încărcarea reCAPTCHA până când vizitatorul își dă acordul. A se vedea `server-side notes` §7 pentru modul în
+> încărcarea reCAPTCHA până când vizitatorul își dă acordul. A se vedea our own server-side anti-abuse measures pentru modul în
 > care formularele sunt protejate pe partea de server.
 
 ---
@@ -450,7 +450,7 @@ lucru, vă vom cere din nou consimțământul.
 **Soluționate, nu mai sunt substituenți:** furnizorul de găzduire al site-ului web (GitHub Pages) și garanția
 pentru transferul către SUA sunt menționate explicit în secțiunile 6 și 7, iar pentru CAPTCHA nu există niciun
 substituent, deoarece acea chestiune este tranșată — protecția antispam este pe partea de server
-(`server-side notes` §7).
+(our own server-side anti-abuse measures).
 
 ---
 

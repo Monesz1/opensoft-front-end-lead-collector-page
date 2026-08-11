@@ -193,7 +193,7 @@ a za žádných okolností nikomu údaje neprodáváme.
 > oprávněného zájmu, nebo vyžaduje lištu s předchozím souhlasem, je sporné a MUSÍ to před spuštěním
 > vyřešit maďarský advokát specializovaný na ochranu osobních údajů. Je-li souhlas vyžadován,
 > přidejte lištu, která zabrání načtení reCAPTCHA, dokud návštěvník nevysloví souhlas. Jak jsou
-> formuláře chráněny na straně serveru, viz `server-side notes` §7.
+> formuláře chráněny na straně serveru, viz our own server-side anti-abuse measures.
 
 ---
 
@@ -429,7 +429,7 @@ vyžádáme váš souhlas.
 **Vyřešeno, již nejde o zástupné symboly:** poskytovatel hostingu webových stránek (GitHub Pages)
 a záruka pro předání do USA jsou výslovně uvedeny v částech 6 a 7 a žádný zástupný symbol pro CAPTCHA
 neexistuje, protože tato otázka je vyřešena — ochrana proti spamu je na straně serveru
-(`server-side notes` §7).
+(our own server-side anti-abuse measures).
 
 ---
 

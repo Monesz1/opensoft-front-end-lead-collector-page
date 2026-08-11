@@ -192,7 +192,7 @@ smislu članka 22. GDPR-a i ni pod kojim okolnostima nikome ne prodajemo podatke
 > ažurirano). reCAPTCHA postavlja kolačiće i obrađuje podatke o uređaju; pitanje smije li raditi samo
 > na temelju legitimnog interesa ili zahtijeva traku za prethodnu privolu sporno je i to MORA
 > razriješiti mađarski odvjetnik za zaštitu podataka prije objave. Ako je privola potrebna, dodajte
-> traku koja sprječava učitavanje reCAPTCHA-e dok posjetitelj ne pristane. Vidjeti `server-side notes` §7
+> traku koja sprječava učitavanje reCAPTCHA-e dok posjetitelj ne pristane. Vidjeti our own server-side anti-abuse measures
 > za to kako su obrasci zaštićeni na strani poslužitelja.
 
 ---
@@ -436,7 +436,7 @@ zahtijeva, ponovno zatražiti Vašu privolu.
 **Riješeno, više nisu rezervirana mjesta:** poslužitelj internetske stranice (GitHub Pages) i
 zaštitna mjera za prijenos u SAD izrijekom su navedeni u odjeljcima 6. i 7., a rezerviranog mjesta za
 CAPTCHA-u nema jer je to pitanje riješeno — zaštita od neželjene pošte odvija se na strani
-poslužitelja (`server-side notes` §7).
+poslužitelja (our own server-side anti-abuse measures).
 
 ---
 

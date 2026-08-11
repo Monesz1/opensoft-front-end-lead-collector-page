@@ -3,8 +3,8 @@
 (function () {
 'use strict';
 
-/* One n8n webhook handles every product; the workflow routes by the `product` field in the payload.
-   The demo URL is NOT returned here - n8n emails a confirmation link, then the demo after confirming. */
+/* The form is POSTed here; the response is a confirmation status, not the demo URL (a confirmation
+   email is sent, and the demo opens after the visitor confirms). */
 const WEBHOOK_URL = 'https://n8n.opensoft.hu/webhook/demo-request';
 const RECAPTCHA_SITE_KEY = '6Lc6YX4tAAAAALDBYk7jw3GpDot2ZAcRexsxGCVT';
 
@@ -91,7 +91,7 @@ function refreshComingSoon() {
   $$('.product-card[data-disabled]').forEach(c => { c.dataset.soon = soon; });
 }
 
-/* 06... is normalised, not rejected - internal test notes TC-WEB-004. */
+/* 06... is normalised, not rejected. */
 function normaliseMobile(raw) {
   const v = String(raw || '').replace(/[\s\-.\/()]/g, '');
   if (v.startsWith('00')) return `+${v.slice(2)}`;
@@ -156,8 +156,8 @@ function initValidation() {
 /* submit */
 /* Invisible proof-of-work: find a nonce so SHA-256(challenge+nonce) opens with 12 zero bits.
    No third party, no external script - but it requires a real JS engine + crypto.subtle, so a
-   blind curl to the webhook cannot forge it. n8n re-verifies the hash, the difficulty and the
-   challenge freshness before provisioning (see server-side notes). */
+   blind curl to the webhook cannot forge it. The server re-verifies the hash, the difficulty and
+   the challenge freshness. */
 async function proofOfWork(challenge) {
   if (!(window.crypto && crypto.subtle)) return -1;
   const enc = new TextEncoder();
@@ -182,13 +182,13 @@ async function buildPayload() {
     language: OS.lang,
     submittedAt: new Date().toISOString(),
     pageUrl: location.href,
-    /* anti-spam signals, all re-checked in n8n - see server-side notes */
+    /* anti-spam signals, all re-checked server-side */
     website: $('#website').value,            /* honeypot: must arrive empty */
     elapsedMs: Date.now() - loadedAt,        /* must be >= MIN_FILL_MS */
     termsAccepted: $('#terms').checked,      /* T&C consent, re-checked server-side */
     powChallenge: challenge,                 /* proof-of-work challenge string */
     powNonce: await proofOfWork(challenge),  /* -1 if crypto.subtle is unavailable */
-    recaptcha_token: await recaptchaToken()  /* reCAPTCHA v3 token, verified in n8n */
+    recaptcha_token: await recaptchaToken()  /* reCAPTCHA v3 token, verified server-side */
   };
 }
 

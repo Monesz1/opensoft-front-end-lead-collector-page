@@ -187,7 +187,7 @@ Article 22, and we do not sell data to anybody, in any circumstances.
 > device data; whether it may run on legitimate interest alone or requires a prior-consent banner is
 > contested and MUST be settled by a Hungarian data-protection lawyer before launch. If consent is
 > required, add a banner that blocks reCAPTCHA from loading until the visitor agrees. See
-> `server-side notes` §7 for how the forms are protected server-side.
+> our own server-side anti-abuse measures for how the forms are protected server-side.
 
 ---
 
@@ -419,7 +419,7 @@ for your consent again.
 
 **Resolved, no longer placeholders:** the website host (GitHub Pages) and its US transfer safeguard
 are stated outright in sections 6 and 7, and there is no CAPTCHA placeholder because that question is
-settled — spam protection is server-side (`server-side notes` §7).
+settled — spam protection is server-side (our own server-side anti-abuse measures).
 
 ---
 

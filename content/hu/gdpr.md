@@ -202,7 +202,7 @@ döntéshozatalt, és semmilyen körülmények között nem adunk el adatot senk
 > előzetes hozzájárulást kérő bannert igényel, vitatott, és azt élesítés előtt magyar adatvédelmi
 > ügyvédnek KELL eldöntenie. Ha hozzájárulás szükséges, helyezzen el egy bannert, amely
 > megakadályozza a reCAPTCHA betöltődését, amíg a látogató bele nem egyezik. Arról, hogy az
-> űrlapokat szerveroldalon mi védi, lásd az `server-side notes` 7. pontját.
+> űrlapokat szerveroldalon mi védi, lásd az a saját szerveroldali visszaélés-védelmünkját.
 
 ---
 
@@ -450,7 +450,7 @@ jogszabály előírja — újra kérjük a hozzájárulását.
 
 **Eldőlt, már nem helyőrző:** a weboldal tárhelyszolgáltatója (GitHub Pages) és az egyesült
 államokbeli adattovábbítás garanciája a 6. és a 7. pontban kimondva szerepel, CAPTCHA-helyőrző pedig
-nincs, mert ez a kérdés eldőlt — a spamvédelem szerveroldali (`server-side notes` 7. pont).
+nincs, mert ez a kérdés eldőlt — a spamvédelem szerveroldali (a saját szerveroldali visszaélés-védelmünk).
 
 ---
 

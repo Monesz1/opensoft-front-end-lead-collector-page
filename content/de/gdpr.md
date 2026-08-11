@@ -201,7 +201,7 @@ DSGVO durch, und wir verkaufen unter keinen Umständen Daten an irgendjemanden.
 > ob es allein auf das berechtigte Interesse gestützt werden darf oder ein Banner mit vorheriger
 > Einwilligung erfordert, ist umstritten und MUSS vor der Freischaltung von einem ungarischen
 > Datenschutzanwalt geklärt werden. Ist eine Einwilligung erforderlich, fügen Sie ein Banner hinzu,
-> das das Laden von reCAPTCHA blockiert, bis der Besucher zustimmt. Siehe `server-side notes` §7 dafür,
+> das das Laden von reCAPTCHA blockiert, bis der Besucher zustimmt. Siehe our own server-side anti-abuse measures dafür,
 > wie die Formulare serverseitig geschützt sind.
 
 ---
@@ -462,7 +462,7 @@ Einwilligung ein.
 **Geklärt, keine Platzhalter mehr:** Der Host der Website (GitHub Pages) und die Garantie für dessen
 Übermittlung in die USA sind in den Abschnitten 6 und 7 ausdrücklich genannt, und es gibt keinen
 CAPTCHA-Platzhalter, weil diese Frage entschieden ist — der Spam-Schutz erfolgt serverseitig
-(`server-side notes` §7).
+(our own server-side anti-abuse measures).
 
 ---
 

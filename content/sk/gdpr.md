@@ -194,7 +194,7 @@ zmysle článku 22 GDPR a za žiadnych okolností nikomu údaje nepredávame.
 > reCAPTCHA nastavuje súbory cookie a spracúva údaje o zariadení; to, či môže bežať iba na základe
 > oprávneného záujmu, alebo si vyžaduje banner s predchádzajúcim súhlasom, je sporné a MUSÍ to pred
 > spustením vyriešiť maďarský právnik pre ochranu osobných údajov. Ak sa vyžaduje súhlas, pridajte
-> banner, ktorý zablokuje načítanie reCAPTCHA, kým s tým návštevník nesúhlasí. Pozri `server-side notes`
+> banner, ktorý zablokuje načítanie reCAPTCHA, kým s tým návštevník nesúhlasí. Pozri our own server-side measures
 > §7 pre to, ako sú formuláre chránené na strane servera.
 
 ---
@@ -434,7 +434,7 @@ požiadame vás o súhlas znova.
 
 **Vyriešené, už nejde o zástupné symboly:** hostiteľ webovej stránky (GitHub Pages) a záruka pre jeho
 prenos do USA sú výslovne uvedené v častiach 6 a 7 a neexistuje žiadny zástupný symbol pre CAPTCHA,
-pretože táto otázka je vyriešená — ochrana pred spamom je na strane servera (`server-side notes` §7).
+pretože táto otázka je vyriešená — ochrana pred spamom je na strane servera (our own server-side anti-abuse measures).
 
 ---
 

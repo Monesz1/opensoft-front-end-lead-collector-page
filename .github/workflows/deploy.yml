@@ -1,12 +1,7 @@
 name: Deploy to GitHub Pages
 
-# Runs on the self-hosted runner on Worker2 (hosted runners are unavailable on
-# this account). Deploys via the Pages "GitHub Actions" source, so it does NOT
-# depend on GitHub's hosted "pages build and deployment" job.
-#
-# SECURITY: triggers are push-to-main and manual only. There is deliberately NO
-# `pull_request` trigger, so a fork's PR can never execute code on the runner —
-# it only ever runs code already pushed to this repo by a collaborator.
+# Validates the static site and publishes it via the Pages "GitHub Actions" source.
+# Triggers are push-to-main and manual dispatch only (no pull_request trigger).
 on:
   workflow_dispatch: {}
   push:
@@ -33,10 +28,10 @@ jobs:
 
       # Lightweight, python3-only validation (python3 is present on the runner;
       # tidy/node steps were dropped because the runner has no apt/sudo/node).
-      - name: Validate JSON (i18n + n8n)
+      - name: Validate JSON (i18n)
         run: |
           rc=0
-          for f in i18n/*.json n8n/*.json; do
+          for f in i18n/*.json; do
             if python3 -m json.tool "$f" > /dev/null 2>&1; then echo "ok   $f"
             else echo "::error file=$f::invalid JSON"; rc=1; fi
           done

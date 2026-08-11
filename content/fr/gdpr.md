@@ -207,7 +207,7 @@ vendons de données à personne, en aucune circonstance.
 > bannière de consentement préalable est controversée et DOIT être tranchée par un avocat hongrois
 > spécialisé en protection des données avant la mise en ligne. Si le consentement est requis, ajoutez
 > une bannière qui empêche reCAPTCHA de se charger tant que le visiteur n'a pas donné son accord. Voir
-> `server-side notes` §7 pour la manière dont les formulaires sont protégés côté serveur.
+> our own server-side anti-abuse measures pour la manière dont les formulaires sont protégés côté serveur.
 
 ---
 
@@ -463,7 +463,7 @@ demanderons à nouveau votre consentement.
 **Réglés, ce ne sont plus des espaces réservés :** l'hébergeur du site web (GitHub Pages) et la
 garantie encadrant son transfert vers les États-Unis sont énoncés expressément aux sections 6 et 7,
 et il n'existe pas d'espace réservé pour un CAPTCHA parce que la question est tranchée — la
-protection anti-spam est côté serveur (`server-side notes` §7).
+protection anti-spam est côté serveur (our own server-side anti-abuse measures).
 
 ---
 
