@@ -32,8 +32,10 @@ const $$ = s => [...document.querySelectorAll(s)];
 
 /* product picker */
 function renderPickerLabel() {
-  const hit = PRODUCTS.find(p => p.id === $('#selected-product').value);
-  $('#picker-selected').textContent = hit ? hit.name : '';
+  const sel = $('#selected-product'), label = $('#picker-selected');
+  if (!sel || !label) return;                 /* form card is gone after a successful submit */
+  const hit = PRODUCTS.find(p => p.id === sel.value);
+  label.textContent = hit ? hit.name : '';
 }
 
 function pickerButton(p) {
@@ -285,7 +287,7 @@ function showCheckEmail(status, email) {
   const card = OS.mk('div', { id: 'demo-sent', className: 'success-card check-email' + (dup ? ' ce-dup' : '') },
     { role: 'status', 'aria-live': 'polite', tabindex: '-1' });
   card.append(OS.mk('div', { className: 'ce-spinner' + (dup ? ' done' : '') }, { 'aria-hidden': 'true' }));
-  card.append(OS.mk('p', { className: 'success-title',
+  card.append(OS.mk('h2', { className: 'success-title',
     textContent: OS.dict[dup ? 'demo_sent_again_title' : 'demo_sent_title'] || 'Check your email' }));
   card.append(OS.mk('p', { className: 'success-text',
     textContent: OS.dict[dup ? 'demo_sent_again_msg' : 'demo_sent_msg'] || '' }));
