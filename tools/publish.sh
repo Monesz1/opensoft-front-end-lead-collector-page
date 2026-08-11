@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-# Publish the built static site to the gh-pages branch WITHOUT GitHub Actions.
-#
-# This account's GitHub-hosted runners are unavailable, so the deploy.yml
-# workflow can never run. This script does the same job from a workstation:
-# build the pages from content/, assemble only the public files, and push them
-# to gh-pages. GitHub Pages then serves that branch (branch serving does not
-# need your Actions runners).
+# Publish the built static site to the gh-pages branch from a workstation — an
+# alternative to the Actions deploy. Builds the pages from content/, assembles
+# only the public files, and pushes them to gh-pages (which GitHub Pages serves).
 #
 # Usage:  bash tools/publish.sh
 set -euo pipefail
@@ -31,7 +27,7 @@ else
   ( cd "$WT" && git rm -rq -f . >/dev/null 2>&1 || true )
 fi
 
-echo "3/4  copying the public files (internal folders stay private) ..."
+echo "3/4  copying the public files ..."
 ( cd "$WT" && git rm -rq -f . >/dev/null 2>&1 || true )
 cp -r "${PUB[@]}" "$WT"/
 if [ -f CNAME ]; then cp CNAME "$WT"/CNAME; else printf '%s\n' "$DOMAIN" > "$WT"/CNAME; fi
