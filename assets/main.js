@@ -190,8 +190,8 @@ async function buildPayload() {
   };
 }
 
-function onSubmitFail(btn) {
-  showToast(OS.dict.toast_error, 'error');
+function onSubmitFail(btn, msg) {
+  showToast(msg || OS.dict.toast_error, 'error');
   btn.disabled = false;
   btn.textContent = OS.dict.form_submit || '';
   updateSubmitState();
@@ -213,13 +213,16 @@ async function submitForm(event) {
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.textContent = OS.dict.form_submitting || '...';
+  const email = $('#email').value.trim();       /* capture before the form is replaced */
   try {
     const res = await fetch(WEBHOOK_URL, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(await buildPayload())
     });
+    if (res.status === 429) return onSubmitFail(btn, OS.dict.form_rate_limited);   /* Traefik per-IP limit */
     const d = await res.json().catch(() => ({}));
-    if (res.ok && d && d.status === 'pending_confirmation') return showCheckEmail();
+    if (res.ok && d && (d.status === 'pending_confirmation' || d.status === 'already_requested'))
+      return showCheckEmail(d.status, email);
     onSubmitFail(btn);
   } catch (e) { onSubmitFail(btn); }
 }
@@ -233,17 +236,73 @@ function recaptchaToken() {
   });
 }
 
-/* n8n replies {status:"pending_confirmation"} and emails a confirmation link; the demo URL follows by
-   email once the visitor confirms. Replace the form with a "check your email" card. */
-function showCheckEmail() {
-  const card = OS.mk('div', { id: 'demo-sent', className: 'success-card' },
-    { role: 'alert', 'aria-live': 'polite', tabindex: '-1' });
-  card.append(
-    OS.mk('div', { className: 'success-icon', textContent: '✉' }),
-    OS.mk('p', { className: 'success-title', textContent: OS.dict.demo_sent_title || 'Check your email' }),
-    OS.mk('p', { className: 'success-text', textContent: OS.dict.demo_sent_msg || '' }));
-  $('#lead-form-el').replaceWith(card);
+/* Webmail deep-links so the visitor can jump straight to their inbox for the confirmation link. */
+const MAIL_PROVIDERS = {
+  gmail:   { key: 'demo_open_gmail',   url: 'https://mail.google.com/mail/u/0/#search/opensoft' },
+  yahoo:   { key: 'demo_open_yahoo',   url: 'https://mail.yahoo.com/' },
+  outlook: { key: 'demo_open_outlook', url: 'https://outlook.live.com/mail/0/' }
+};
+function providerForEmail(email) {
+  const dom = (String(email).split('@')[1] || '').toLowerCase();
+  if (/(^|\.)gmail\.com$|(^|\.)googlemail\.com$/.test(dom)) return 'gmail';
+  if (/(^|\.)yahoo\./.test(dom)) return 'yahoo';
+  if (/(^|\.)(outlook|hotmail|live|msn)\./.test(dom)) return 'outlook';
+  return null;
+}
+/* Known provider -> one precise button; unknown/corporate domain -> Gmail + Yahoo (the most common). */
+function mailButtons(email) {
+  const hit = providerForEmail(email);
+  return (hit ? [hit] : ['gmail', 'yahoo']).map(id => {
+    const p = MAIL_PROVIDERS[id];
+    return OS.mk('a',
+      { className: 'btn btn-outline btn-sm ce-mail-btn', textContent: OS.dict[p.key] || id },
+      { href: p.url, target: '_blank', rel: 'noopener noreferrer' });
+  });
+}
+
+/* The instance provisions in the background (~90s). The demo URL is deliberately NOT shown before the
+   visitor confirms by email, so this is a timed "preparing" indicator that settles into a ready state. */
+function runReadyAnimation(card) {
+  const bar = card.querySelector('.ce-bar > span');
+  const status = card.querySelector('.ce-status');
+  const spinner = card.querySelector('.ce-spinner');
+  if (bar) setTimeout(() => { bar.style.width = '92%'; }, 50);   /* CSS eases it over ~85s (setTimeout fires in bg tabs too) */
+  setTimeout(() => { if (status) status.textContent = OS.dict.demo_prep_2 || status.textContent; }, 30000);
+  setTimeout(() => { if (status) status.textContent = OS.dict.demo_prep_3 || status.textContent; }, 60000);
+  setTimeout(() => {
+    if (bar) { bar.style.transition = 'width .5s ease-out'; bar.style.width = '100%'; }
+    if (status) status.textContent = OS.dict.demo_prep_ready || status.textContent;
+    if (spinner) spinner.classList.add('done');
+    card.classList.add('ce-ready');
+  }, 88000);
+}
+
+/* n8n replies {status:"pending_confirmation"} (new) or {status:"already_requested"} (duplicate within the
+   cooldown) and emails a confirmation link. Replace the WHOLE form card (heading, intro, form) with a
+   focused "check your email" panel: inbox shortcut(s) + a live "preparing your demo" indicator. */
+function showCheckEmail(status, email) {
+  const dup = status === 'already_requested';
+  const card = OS.mk('div', { id: 'demo-sent', className: 'success-card check-email' + (dup ? ' ce-dup' : '') },
+    { role: 'status', 'aria-live': 'polite', tabindex: '-1' });
+  card.append(OS.mk('div', { className: 'ce-spinner' + (dup ? ' done' : '') }, { 'aria-hidden': 'true' }));
+  card.append(OS.mk('p', { className: 'success-title',
+    textContent: OS.dict[dup ? 'demo_sent_again_title' : 'demo_sent_title'] || 'Check your email' }));
+  card.append(OS.mk('p', { className: 'success-text',
+    textContent: OS.dict[dup ? 'demo_sent_again_msg' : 'demo_sent_msg'] || '' }));
+  if (email) card.append(OS.mk('p', { className: 'ce-email', textContent: email }));
+  const btns = mailButtons(email || '');
+  if (btns.length) { const w = OS.mk('div', { className: 'ce-mail-btns' }); w.append(...btns); card.append(w); }
+  if (!dup) {
+    const prog = OS.mk('div', { className: 'ce-progress' });
+    const bar = OS.mk('div', { className: 'ce-bar' }); bar.append(OS.mk('span', {}));
+    prog.append(bar, OS.mk('p', { className: 'ce-status', textContent: OS.dict.demo_prep_1 || '' }));
+    card.append(prog);
+  }
+  const host = $('.lead-card') || $('#lead-form-el').parentNode;
+  host.textContent = '';                          /* drop heading, intro, required-note and the form */
+  host.append(card);
   card.focus({ preventScroll: true });
+  if (!dup) runReadyAnimation(card);
 }
 
 function showToast(message, type) {

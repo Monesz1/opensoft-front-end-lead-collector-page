@@ -204,6 +204,30 @@ a{color:var(--navy-500);text-decoration:none}
 .success-card p{color:var(--grey-600)}
 .success-card p:last-child{margin-top:10px;font-size:.8125rem}
 
+/* ---------- check-your-email panel ---------- */
+.check-email{display:flex;flex-direction:column;align-items:center;gap:6px}
+.check-email .success-title{margin-bottom:2px}
+.check-email .success-text{margin:0}
+.ce-spinner{width:48px;height:48px;margin-bottom:8px;border-radius:50%;
+  border:4px solid var(--grey-200);border-top-color:var(--blue-500);animation:ce-spin .9s linear infinite}
+.ce-spinner.done{border-color:var(--success);animation:none;position:relative}
+.ce-spinner.done::after{content:"";position:absolute;left:15px;top:7px;width:11px;height:21px;
+  border:solid var(--success);border-width:0 4px 4px 0;transform:rotate(45deg)}
+@keyframes ce-spin{to{transform:rotate(360deg)}}
+.ce-email{font-weight:600;color:var(--text);margin-top:0}
+.ce-mail-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.ce-mail-btn{text-decoration:none}
+.ce-progress{width:100%;max-width:340px;margin-top:20px}
+.ce-bar{height:6px;border-radius:999px;background:var(--grey-200);overflow:hidden}
+.ce-bar>span{display:block;height:100%;width:0;border-radius:999px;background:var(--blue-500);
+  transition:width 85s cubic-bezier(.15,.6,.25,1)}
+.ce-status{margin-top:8px;font-size:.8125rem;color:var(--grey-600)}
+.check-email.ce-ready .ce-status{color:var(--success);font-weight:600}
+@media (prefers-reduced-motion:reduce){
+  .ce-spinner{animation:none}
+  .ce-bar>span{transition:width .3s linear}
+}
+
 /* ---------- toast ---------- */
 #toast-root{position:fixed;bottom:24px;right:24px;left:16px;z-index:100;
   display:flex;flex-direction:column;gap:8px;pointer-events:none}
