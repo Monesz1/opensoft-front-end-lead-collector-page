@@ -68,6 +68,8 @@
   "form_terms_link": "uvjete i odredbe",
   "form_terms_error": "Za nastavak prihvatite uvjete.",
   "card_cta_soon": "Uskoro",
+  "demo_sent_title": "Provjerite svoju e-poštu",
+  "demo_sent_msg": "Poslali smo Vam poveznicu za potvrdu. Kliknite na nju da biste pokrenuli demo.",
   "contact_form_label": "Pošaljite nam poruku",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Poslovni sustavi otvorenog koda, uz održavanje iz Mađarske.",

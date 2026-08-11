@@ -111,8 +111,10 @@ Sigurnosne kopije također ostaju u našoj obradi, šifrirane i jednako tako unu
 ## Kome ih prosljeđujemo
 
 **Vaše podatke ne prodajemo, ne razmjenjujemo, ne posuđujemo u marketinške svrhe i ne dijelimo ih s
-„partnerima”.** Ne postoji treća strana koja bi u vlastite poslovne svrhe — primjerice za marketing
-ili izradu profila — mogla pristupiti Vašim podacima.
+„partnerima”.** Nijedna treća strana ne prima Vaše podatke za marketing ili izradu profila. Jedina
+treća strana koja je uopće uključena jest Google, putem reCAPTCHA provjere protiv robota na našim
+obrascima (vidjeti *Kolačići* gore te točke 5.–7. naše GDPR obavijesti) — a prima samo tehničke
+signale koji su reCAPTCHA-i potrebni, nikada podatke koje upisujete u obrazac.
 
 U dva slučaja podaci ipak mogu izaći iz naših ruku i oba moramo pošteno spomenuti — jer zaokružena
 tvrdnja „nikada, nikome” jednostavno ne bi bila istinita:
@@ -268,14 +270,18 @@ U Vašem pregledniku pohranjujemo samo jednu stvar: dvoslovni kod odabranog jezi
 tehnički nije ni kolačić, nego zapis smješten u pohranu preglednika (`localStorage`), ne stiže do
 poslužitelja i služi isključivo tomu da sljedeći put ne morate ponovno birati jezik.
 
-Zato Vas ne dočekuje banner za kolačiće. Ne zato što smo na njega zaboravili, nego zato što nema čemu
-dati privolu.
+Zato Vas, za ono što *mi* pohranjujemo, ne dočekuje banner za kolačiće — nema ničega našega na što
+biste dali privolu.
 
-**I zato nema ni CAPTCHA-e.** Naše obrasce od robota ne štiti vanjska usluga, nego provjera na strani
-poslužitelja u našem vlastitom sustavu: zamka-polje koje mora stići prazno, minimalno vrijeme
-ispunjavanja i provjera stranice s koje se šalje. CAPTCHA-widget postavio bi kolačić, zahtijevao bi
-prethodnu privolu i poslao bi podatke o Vašem uređaju drugoj tvrtki — a povrh toga onu krajnju točku
-koja je važna ne bi ni zaštitio. Tu odluku podrobno obrazlaže točka 7. datoteke `server-side notes`.
+**Obrasce, međutim, štiti Google reCAPTCHA v3.** reCAPTCHA tiho radi u pozadini kako bi razlikovala
+prave posjetitelje od robota, a da bi to učinila, postavlja vlastite kolačiće i šalje neke podatke o
+uređaju i Vašu IP adresu Googleu, koji ih obrađuje u Sjedinjenim Američkim Državama. Upotrebljavamo
+je *uz* vlastite provjere na strani poslužitelja — skriveno zamka-polje koje mora stići prazno,
+minimalno vrijeme ispunjavanja i provjeru stranice s koje se šalje — koje ostaju prava zaštita za dio
+koji doista dopire do nas. Budući da reCAPTCHA uvodi treću stranu, u našoj GDPR obavijesti (točke 5.,
+6. i 7.) podrobno navodimo što prikuplja i koje su zaštitne mjere za prijenos u SAD. Treba li
+reCAPTCHA-i dodatno vlastiti korak privole jedino je pitanje koje naš savjetnik za zaštitu podataka
+potvrđuje prije nego što krenemo.
 
 ---
 

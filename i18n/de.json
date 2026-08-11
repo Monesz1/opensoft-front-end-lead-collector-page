@@ -68,6 +68,8 @@
   "form_terms_link": "Allgemeinen Geschäftsbedingungen",
   "form_terms_error": "Bitte akzeptieren Sie die Bedingungen, um fortzufahren.",
   "card_cta_soon": "Demnächst",
+  "demo_sent_title": "Prüfen Sie Ihre E-Mails",
+  "demo_sent_msg": "Wir haben Ihnen einen Bestätigungslink geschickt. Klicken Sie darauf, um Ihre Demo zu starten.",
   "contact_form_label": "Schreiben Sie uns",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Open-Source-Geschäftssysteme, betrieben und betreut aus Ungarn.",

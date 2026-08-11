@@ -111,8 +111,10 @@ Zálohy rovněž zůstávají v naší správě, šifrované a stejně tak v rá
 ## Komu údaje předáváme
 
 **Vaše údaje neprodáváme, nesměňujeme, nepůjčujeme pro marketingové účely a nesdílíme je s „partnery“.**
-Neexistuje žádná třetí strana, která by k vašim údajům mohla přistupovat pro vlastní obchodní účely —
-například pro marketing nebo profilování.
+Žádná třetí strana nedostává vaše údaje pro marketing ani profilování. Jedinou třetí stranou, která
+je do věci vůbec zapojena, je Google, a to prostřednictvím antirobotické kontroly reCAPTCHA na našich
+formulářích (viz *Soubory cookie* výše a body 5–7 našich informací podle GDPR) — a dostává pouze
+technické signály, které reCAPTCHA potřebuje, nikdy ne údaje, které do formuláře zadáváte.
 
 Ve dvou případech přesto může údaj opustit naše ruce a oba musíme poctivě zmínit — protože kulaté
 tvrzení „nikdy a nikomu“ by prostě nebylo pravdivé:
@@ -266,14 +268,17 @@ Ve vašem prohlížeči ukládáme jedinou věc: dvoupísmenný kód zvoleného 
 Technicky to ani není soubor cookie, nýbrž záznam umístěný v úložišti prohlížeče (`localStorage`),
 nedostane se na server a slouží výhradně k tomu, abyste příště nemuseli jazyk volit znovu.
 
-Proto vás nevítá cookie lišta. Ne proto, že bychom na ni zapomněli, ale proto, že není k čemu
-udělovat souhlas.
+Proto vás u věcí, které ukládáme *my*, nevítá žádná cookie lišta — není k čemu udělovat souhlas.
 
-**A proto tu není ani CAPTCHA.** Naše formuláře nechrání před roboty externí služba, nýbrž kontrola na
-straně serveru v našem vlastním systému: návnadové pole, které musí dorazit prázdné, minimální doba
-vyplnění a kontrola odesílající stránky. Widget CAPTCHA by umístil soubor cookie, vyžadoval by
-předchozí souhlas a odeslal by údaje o vašem zařízení jiné společnosti — a navíc by ten koncový bod, na
-kterém záleží, vůbec neochránil. Toto rozhodnutí podrobně zdůvodňuje bod 7 souboru `server-side notes`.
+**Formuláře jsou však chráněny službou Google reCAPTCHA v3.** reCAPTCHA běží tiše na pozadí, aby
+odlišila skutečné návštěvníky od robotů, a k tomu nastavuje své vlastní soubory cookie a odesílá
+některé informace o vašem zařízení a vaši IP adresu společnosti Google, která je zpracovává ve
+Spojených státech amerických. Používáme ji *nad rámec* našich vlastních kontrol na straně serveru —
+skrytého návnadového pole, které musí dorazit prázdné, minimální doby vyplnění a kontroly odesílající
+stránky — které zůstávají skutečnou ochranou té části, jež se k nám opravdu dostává. Protože reCAPTCHA
+přivádí třetí stranu, v našich informacích podle GDPR (body 5, 6 a 7) uvádíme, co shromažďuje a jaké
+jsou záruky pro předání do USA. Zda reCAPTCHA navíc potřebuje vlastní krok souhlasu, je jediný bod,
+který náš poradce pro ochranu osobních údajů před spuštěním ověřuje.
 
 ---
 

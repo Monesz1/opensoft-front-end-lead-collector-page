@@ -122,8 +122,11 @@ Auch die Sicherungskopien bleiben in unserer Hand, verschlüsselt und ebenfalls 
 ## An wen wir Daten weitergeben
 
 **Wir verkaufen Ihre Daten nicht, wir tauschen sie nicht, wir verleihen sie nicht zu Marketingzwecken,
-und wir teilen sie nicht mit „Partnern“.** Es gibt keinen Dritten, der für eigene geschäftliche Zwecke
-— etwa für Marketing oder Profilbildung — auf Ihre Daten zugreifen könnte.
+und wir teilen sie nicht mit „Partnern“.** Kein Dritter erhält Ihre Daten für Marketing oder Profilbildung.
+Der einzige überhaupt beteiligte Dritte ist Google, über die reCAPTCHA-Bot-Prüfung auf unseren
+Formularen (siehe *Cookies* weiter oben sowie die Abschnitte 5–7 unserer DSGVO-Datenschutzerklärung)
+— und Google erhält nur die technischen Signale, die reCAPTCHA benötigt, niemals die Angaben, die Sie
+in das Formular eingeben.
 
 In zwei Fällen können Daten dennoch aus unserer Hand gelangen, und beide müssen wir ehrlich nennen —
 denn eine runde Behauptung „niemals, an niemanden“ wäre schlicht nicht wahr:
@@ -299,15 +302,19 @@ Eine einzige Sache speichern wir in Ihrem Browser: den zweibuchstabigen Code der
 Browserspeicher (`localStorage`); er gelangt nicht zum Server und dient ausschließlich dazu, dass Sie
 beim nächsten Mal nicht erneut eine Sprache auswählen müssen.
 
-Deshalb empfängt Sie kein Cookie-Banner. Nicht, weil wir ihn vergessen hätten, sondern weil es nichts
-gibt, worin Sie einwilligen müssten.
+Deshalb empfängt Sie für das, was *wir* speichern, kein Cookie-Banner — es gibt nichts von uns, worin
+einzuwilligen wäre.
 
-**Und deshalb gibt es auch kein CAPTCHA.** Unsere Formulare schützt kein externer Dienst vor Robotern,
-sondern eine serverseitige Prüfung in unserem eigenen System: ein Honeypot-Feld, das leer ankommen
-muss, eine Mindestausfüllzeit und die Prüfung der absendenden Seite. Ein CAPTCHA-Widget hätte ein
-Cookie gesetzt, eine vorherige Einwilligung erfordert und Ihre Gerätedaten an ein anderes Unternehmen
-geschickt — und hätte obendrein genau den Endpunkt, auf den es ankommt, nicht einmal geschützt. Diese
-Entscheidung begründet Abschnitt 7 der `server-side notes` ausführlich.
+**Die Formulare sind jedoch durch Google reCAPTCHA v3 geschützt.** reCAPTCHA läuft unauffällig im
+Hintergrund, um echte Besucher von Bots zu unterscheiden, und setzt dazu eigene Cookies und sendet
+einige Geräteinformationen sowie Ihre IP-Adresse an Google, das sie in den Vereinigten Staaten
+verarbeitet. Wir setzen es *zusätzlich zu* unseren eigenen serverseitigen Prüfungen ein — einem
+versteckten Honeypot-Feld, das leer ankommen muss, einer Mindestausfüllzeit und einer Prüfung der
+absendenden Seite —, die der eigentliche Schutz für den Teil bleiben, der uns tatsächlich erreicht. Da
+reCAPTCHA einen Dritten hinzuzieht, legen wir in unserer DSGVO-Datenschutzerklärung (Abschnitte 5, 6
+und 7) dar, was es erfasst und welche Garantien für die Übermittlung in die USA gelten. Ob reCAPTCHA
+zusätzlich einen eigenen Einwilligungsschritt benötigt, ist der eine Punkt, den unser
+Datenschutzberater vor dem Livegang klärt.
 
 ---
 

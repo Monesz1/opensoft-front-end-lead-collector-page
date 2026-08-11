@@ -75,7 +75,7 @@ The backups likewise remain under our control, encrypted, and equally within the
 
 ## Who we pass it to
 
-**We do not sell your data, do not trade it, do not lend it for marketing purposes, and do not share it with "partners".** There is no third party that could access your data for its own business purposes — for example for marketing or profiling.
+**We do not sell your data, do not trade it, do not lend it for marketing purposes, and do not share it with "partners".** No third party receives your data for marketing or profiling. The one third party involved at all is Google, via the reCAPTCHA anti-bot check on our forms (see *Cookies* above, and sections 5–7 of our GDPR notice) — and it receives only the technical signals reCAPTCHA needs, never the details you type into the form.
 
 There are nonetheless two cases in which data may leave our hands, and we have to mention both honestly — because a neat "never, to no one" claim simply would not be true:
 
@@ -179,9 +179,9 @@ A few principles we consider binding on ourselves:
 
 There is a single thing we store in your browser: the two-letter code of the selected language (for example `hu`). Technically this is not even a cookie, but an entry placed in browser storage (`localStorage`); it does not reach the server, and its sole purpose is that next time you do not have to choose a language again.
 
-That is why no cookie banner greets you. Not because we forgot about it, but because there is nothing for you to consent to.
+That is why, for the things *we* store, no cookie banner greets you — there is nothing of ours to consent to.
 
-**And that is also why there is no CAPTCHA.** Our forms are protected against bots not by an external service, but by server-side checks in our own system: a honeypot field that must arrive empty, a minimum fill-in time, and a check of the submitting page. A CAPTCHA widget would have placed a cookie, would have required prior consent, and would have sent your device data to another company — and, on top of that, it would not even have protected the endpoint that matters. This decision is justified in detail in section 7 of `server-side notes`.
+**The forms, however, are protected by Google reCAPTCHA v3.** reCAPTCHA runs quietly in the background to tell real visitors from bots, and to do that it sets its own cookies and sends some device information and your IP address to Google, which processes it in the United States. We use it *in addition to* our own server-side checks — a hidden honeypot field that must arrive empty, a minimum fill-in time, and a check of the submitting page — which remain the real protection for the part that actually reaches us. Because reCAPTCHA brings in a third party, we spell out what it collects and the safeguards for the US transfer in our GDPR notice (sections 5, 6 and 7). Whether reCAPTCHA additionally needs its own consent step is the one point our data-protection adviser is confirming before we launch.
 
 ---
 

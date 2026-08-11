@@ -167,28 +167,33 @@ výslovně požádali.
 |---|---|---|---|---|
 | `lang` | položka v `localStorage`, nikoli cookie | Pamatuje si vámi zvolený jazyk rozhraní | Ne — nezbytně nutné pro funkci, o kterou jste požádali | Dokud nevymažete úložiště svého prohlížeče |
 
-To je úplný seznam. **Tyto webové stránky nenastavují žádné cookies**, a proto se vám nezobrazuje
-cookie lišta — není k čemu udělovat souhlas.
+To je jediná položka, kterou **my** umísťujeme. Sami nenastavujeme žádné cookies pro analytiku,
+reklamu ani sledování a žádné takové nástroje neprovozujeme.
 
-Jde o záměrné rozhodnutí při návrhu, nikoli o opomenutí. Naše formuláře jsou proti automatizovanému
-zneužití chráněny **na straně serveru** — návnadovým polem, minimální dobou vyplnění a kontrolou
-původu, přičemž vše je vyhodnocováno na našich vlastních systémech — nikoli službou CAPTCHA třetí
-strany. Prvek CAPTCHA by nastavoval cookies, vyžadoval by váš předchozí souhlas a odesílal by údaje
-o vašem zařízení jiné společnosti. Byl odmítnut z těchto důvodů a také proto, že by ve skutečnosti
-nechránil ten koncový bod, na kterém záleží.
+Naše formuláře pro žádost o ukázku a kontaktní formuláře jsou navíc chráněny službou
+**Google reCAPTCHA v3**, která běží na pozadí a odlišuje lidi od automatizovaného zneužití. reCAPTCHA
+nastavuje své vlastní cookies a shromažďuje informace o zařízení a jeho používání (včetně vaší IP
+adresy), které odesílá společnosti Google k analýze — je uvedena jako zpracovatel v části 6
+a předání do Spojených států amerických je popsáno v části 7. Spoléháme na ni **nad rámec** našich
+vlastních kontrol na straně serveru — návnadového pole, minimální doby vyplnění a kontroly původu,
+vyhodnocovaných na našich systémech — které zůstávají rozhodující ochranou koncového bodu, který se
+k nám skutečně dostává. Právním základem pro reCAPTCHA je náš oprávněný zájem na předcházení zneužití
+(čl. 6 odst. 1 písm. f)); zda navíc vyžaduje předchozí souhlas — a tedy souhlasovou lištu — je otázka,
+kterou je třeba před spuštěním potvrdit s poradcem pro ochranu osobních údajů.
 
 
 **Nepoužíváme žádnou analytiku, žádnou reklamu ani žádné sledovací či profilovací cookies jakéhokoli
 druhu.** Nevytváříme profily chování, neprovádíme automatizované rozhodování ve smyslu čl. 22 GDPR
 a za žádných okolností nikomu údaje neprodáváme.
 
-> **Poznámka pro editora — tato otázka je vyřešena, ať zůstane vyřešena.** Žádná CAPTCHA se
-> nepoužívá a tato část je na tom závislá. Pokud někdo později přidá Google reCAPTCHA, Cloudflare
-> Turnstile nebo hCaptcha, stane se tato část nepravdivou: tyto nástroje nastavují cookies, vyžadují
-> předchozí souhlas, činí z poskytovatele příjemce v části 6 a přidávají další předání do třetí země
-> v části 7. Krok `Policy check` v souboru `.github/workflows/deploy.yml` nechá build selhat při
-> jakémkoli aktivu třetí strany, což je mechanická pojistka tohoto slibu. Odůvodnění a to, jak jsou
-> formuláře ve skutečnosti chráněny, viz `server-side notes` §7.
+> **Poznámka pro editora — reCAPTCHA se nyní používá; právník musí potvrdit otázku souhlasu.** Od
+> srpna 2026 formuláře pro žádost o ukázku a kontaktní formuláře používají Google reCAPTCHA v3, takže
+> Google je nyní příjemcem v části 6 a v části 7 přibývá další předání do USA (obojí aktualizováno).
+> reCAPTCHA nastavuje cookies a zpracovává údaje o zařízení; zda smí být provozována pouze na základě
+> oprávněného zájmu, nebo vyžaduje lištu s předchozím souhlasem, je sporné a MUSÍ to před spuštěním
+> vyřešit maďarský advokát specializovaný na ochranu osobních údajů. Je-li souhlas vyžadován,
+> přidejte lištu, která zabrání načtení reCAPTCHA, dokud návštěvník nevysloví souhlas. Jak jsou
+> formuláře chráněny na straně serveru, viz `server-side notes` §7.
 
 ---
 
@@ -202,6 +207,7 @@ Využíváme následující zpracovatele, kteří jednají pouze na základě na
 | Zpracovatel | Role | Místo zpracování |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — společnost skupiny Microsoft | Poskytování statických stránek těchto webových stránek | Spojené státy americké, s globální sítí pro doručování obsahu |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Ochrana formulářů pro žádost o ukázku a kontaktních formulářů proti automatizovanému zneužití; přijímá údaje o zařízení a jeho používání a IP adresu návštěvníka | Irsko, se zpracováním společností Google LLC ve Spojených státech amerických |
 | {{HOSTING_PROVIDER_CRM}} | Hostování CRM, webhookového koncového bodu a záloh | Evropská unie |
 | {{EMAIL_PROVIDER}} | Odesílání transakčních a případně též marketingových e-mailů | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -246,6 +252,12 @@ GitHub, která zahrnuje **standardní smluvní doložky** Evropské komise (GDPR
 GitHub je součástí společnosti Microsoft, která je rovněž certifikována v rámci **EU–US Data Privacy
 Framework** (odpovídající ochrana podle čl. 45). Podrobnosti o použité záruce můžete získat písemně
 na adrese {{PRIVACY_EMAIL}}.
+
+**Také Google reCAPTCHA v3 zahrnuje předání do Spojených států amerických.** Když reCAPTCHA běží na
+našich formulářích, odesílá společnosti Google IP adresu návštěvníka a údaje o zařízení a jeho
+používání. Google LLC je certifikována v rámci **EU–US Data Privacy Framework** a podmínky zpracování
+údajů společnosti Google zahrnují **standardní smluvní doložky**; tyto záruky se pro uvedené předání
+uplatní. reCAPTCHA se načítá pouze na stránkách, které obsahují formulář.
 
 **Žádné osobní údaje, které odešlete, neprocházejí přes GitHub.** Formulář se odesílá přímo z vašeho
 prohlížeče na náš vlastní webhook na infrastruktuře v EU. GitHub doručuje stránku; obsah formuláře

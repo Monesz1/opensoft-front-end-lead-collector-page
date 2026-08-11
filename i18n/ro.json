@@ -68,6 +68,8 @@
   "form_terms_link": "termenii și condițiile",
   "form_terms_error": "Pentru a continua, acceptați termenii.",
   "card_cta_soon": "În curând",
+  "demo_sent_title": "Verificați-vă e-mailul",
+  "demo_sent_msg": "V-am trimis un link de confirmare. Faceți clic pe el pentru a începe demonstrația.",
   "contact_form_label": "Scrieți-ne",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Sisteme de afaceri open source, administrate din Ungaria.",

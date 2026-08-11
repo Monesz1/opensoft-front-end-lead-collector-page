@@ -175,15 +175,20 @@ strettamente necessario per la fornitura del servizio da Lei esplicitamente rich
 |---|---|---|---|---|
 | `lang` | voce di `localStorage`, non un cookie | Memorizza la lingua dell'interfaccia da Lei selezionata | No — strettamente necessaria per una funzione da Lei richiesta | Fino a quando non cancella l'archiviazione del Suo browser |
 
-Questo è l'elenco completo. **Questo sito web non imposta alcun cookie**, motivo per cui non Le viene
-mostrato alcun banner sui cookie: non vi è nulla a cui prestare il consenso.
+Questa è l'unica voce che **noi** collochiamo. Noi stessi non impostiamo alcun cookie a fini di
+analisi, pubblicità o tracciamento e non utilizziamo strumenti di questo tipo.
 
-Si tratta di una scelta progettuale deliberata, non di una dimenticanza. I nostri moduli sono protetti
-dagli abusi automatizzati **lato server** — mediante un campo esca, un tempo minimo di compilazione e
-un controllo dell'origine, tutti valutati sui nostri stessi sistemi — anziché da un servizio CAPTCHA
-di terze parti. Un widget CAPTCHA avrebbe impostato cookie, avrebbe richiesto il Suo previo consenso e
-avrebbe trasmesso i dati del Suo dispositivo a un'altra società. È stato scartato per queste ragioni e
-perché, di fatto, non avrebbe protetto l'endpoint che conta.
+I nostri moduli di richiesta di dimostrazione e di contatto sono inoltre protetti da **Google
+reCAPTCHA v3**, che opera in secondo piano per distinguere gli esseri umani dagli abusi automatizzati.
+reCAPTCHA imposta cookie propri e raccoglie informazioni sul dispositivo e sull'utilizzo (compreso il
+Suo indirizzo IP), che invia a Google per l'analisi: è indicato come responsabile del trattamento alla
+sezione 6, e il trasferimento verso gli Stati Uniti è trattato alla sezione 7. Vi facciamo affidamento
+**in aggiunta** ai nostri controlli lato server — un campo esca, un tempo minimo di compilazione e un
+controllo dell'origine, tutti valutati sui nostri sistemi — che restano la protezione decisiva per
+l'endpoint che effettivamente ci perviene. La base giuridica di reCAPTCHA è il nostro legittimo
+interesse a prevenire gli abusi (articolo 6, paragrafo 1, lettera f)); se esso richieda inoltre il
+previo consenso — e quindi un banner di consenso — è un punto da confermare con un consulente in
+materia di protezione dei dati prima del lancio.
 
 
 **Non utilizziamo strumenti di analisi, pubblicità né cookie di tracciamento o di profilazione di
@@ -191,14 +196,15 @@ alcun tipo.** Non costruiamo profili comportamentali, non effettuiamo processi d
 automatizzati ai sensi dell'articolo 22 del GDPR e non vendiamo dati a nessuno, in nessuna
 circostanza.
 
-> **Nota per il redattore — la questione è chiusa, resti chiusa.** Non viene utilizzato alcun CAPTCHA
-> e la presente sezione si fonda su questo. Se in futuro qualcuno aggiungesse Google reCAPTCHA,
-> Cloudflare Turnstile o hCaptcha, questa sezione diventerebbe falsa: tali strumenti impostano cookie,
-> richiedono il previo consenso, rendono il fornitore un destinatario ai sensi della sezione 6 e
-> aggiungono un ulteriore trasferimento verso un paese terzo alla sezione 7. Il passaggio
-> `Policy check` in `.github/workflows/deploy.yml` fa fallire la build in presenza di qualsiasi
-> risorsa di terze parti, ed è la garanzia meccanica di questa promessa. Si veda `server-side notes` §7
-> per le motivazioni e per il modo in cui i moduli sono effettivamente protetti.
+> **Nota per il redattore — reCAPTCHA è ora in uso; un avvocato deve confermare la posizione sul
+> consenso.** Dal 2026-08 i moduli di richiesta di dimostrazione e di contatto utilizzano Google
+> reCAPTCHA v3, sicché Google è ora un destinatario alla sezione 6 e un ulteriore trasferimento verso
+> gli Stati Uniti alla sezione 7 (entrambe aggiornate). reCAPTCHA imposta cookie e tratta dati del
+> dispositivo; se esso possa operare sul solo legittimo interesse o richieda un banner di consenso
+> preventivo è questione controversa e DEVE essere risolta da un avvocato ungherese esperto in
+> materia di protezione dei dati prima del lancio. Se il consenso è richiesto, aggiunga un banner che
+> impedisca il caricamento di reCAPTCHA finché il visitatore non presta il proprio accordo. Si veda
+> `server-side notes` §7 per il modo in cui i moduli sono protetti lato server.
 
 ---
 
@@ -213,6 +219,7 @@ istruzioni documentate:
 | Responsabile del trattamento | Ruolo | Luogo del trattamento |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — società del gruppo Microsoft | Erogazione delle pagine statiche di questo sito web | Stati Uniti, con una rete globale di distribuzione dei contenuti |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Protezione dei moduli di richiesta di dimostrazione e di contatto dagli abusi automatizzati; riceve dati sul dispositivo e sull'utilizzo e l'indirizzo IP del visitatore | Irlanda, con trattamento da parte di Google LLC negli Stati Uniti |
 | {{HOSTING_PROVIDER_CRM}} | Hosting del CRM, dell'endpoint webhook e dei backup | Unione europea |
 | {{EMAIL_PROVIDER}} | Invio di email transazionali e, ove applicabile, di email di marketing | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -259,6 +266,13 @@ contrattuali tipo** della Commissione europea (articolo 46, paragrafo 2, lettera
 GitHub fa parte di Microsoft, che è altresì certificata nell'ambito dell'**EU–US Data Privacy
 Framework** (adeguatezza ai sensi dell'articolo 45). Può ottenere informazioni dettagliate sulla
 garanzia applicata scrivendo a {{PRIVACY_EMAIL}}.
+
+**Google reCAPTCHA v3 comporta anch'esso un trasferimento verso gli Stati Uniti.** Quando reCAPTCHA
+opera sui nostri moduli, invia a Google l'indirizzo IP del visitatore e i dati sul dispositivo e
+sull'utilizzo. Google LLC è certificata nell'ambito dell'**EU–US Data Privacy Framework** e le
+condizioni di trattamento dei dati di Google incorporano le **clausole contrattuali tipo**; queste
+sono le garanzie applicate a tale trasferimento. reCAPTCHA viene caricato soltanto sulle pagine che
+contengono un modulo.
 
 **Nessun dato personale da Lei inviato transita attraverso GitHub.** Il modulo viene inviato
 direttamente dal Suo browser al nostro webhook su infrastruttura UE. GitHub eroga la pagina; non

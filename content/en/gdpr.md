@@ -163,28 +163,31 @@ except where it is strictly necessary for providing the service you explicitly r
 |---|---|---|---|---|
 | `lang` | `localStorage` entry, not a cookie | Remembers the interface language you selected | No — strictly necessary for a function you requested | Until you clear your browser storage |
 
-That is the complete list. **No cookies are set by this website**, which is why you are not shown a
-cookie banner — there is nothing to consent to.
+That is the only entry **we** place. We ourselves set no cookies for analytics, advertising or
+tracking, and we run no such tools.
 
-This is a deliberate design decision, not an oversight. Our forms are protected against automated
-abuse **server-side** — by a decoy field, a minimum completion time, and an origin check, all
-evaluated on our own systems — rather than by a third-party CAPTCHA service. A CAPTCHA widget would
-have set cookies, required your prior consent, and sent your device data to another company. It was
-rejected for those reasons and because it would not, in fact, have protected the endpoint that
-matters.
+Our demo-request and contact forms are additionally protected by **Google reCAPTCHA v3**, which runs
+in the background to distinguish humans from automated abuse. reCAPTCHA sets its own cookies and
+collects device and usage information (including your IP address), which it sends to Google for
+analysis — it is named as a processor in section 6, and the transfer to the United States is covered
+in section 7. We rely on it **in addition to** server-side checks of our own — a decoy field, a
+minimum completion time and an origin check, all evaluated on our systems — which remain the decisive
+protection for the endpoint that actually reaches us. The legal basis for reCAPTCHA is our legitimate
+interest in preventing abuse (Article 6(1)(f)); whether it additionally requires prior consent — and
+therefore a consent banner — is a point to confirm with a data-protection adviser before launch.
 
 
 **We use no analytics, no advertising, and no tracking or profiling cookies of any kind.** We do not
 build behavioural profiles, we do not carry out automated decision-making within the meaning of GDPR
 Article 22, and we do not sell data to anybody, in any circumstances.
 
-> **Editor note — this question is settled, keep it settled.** No CAPTCHA is used, and this section
-> depends on that. If anyone later adds Google reCAPTCHA, Cloudflare Turnstile or hCaptcha, this
-> section becomes false: those set cookies, require prior consent, make the provider a recipient in
-> section 6, and add a further third-country transfer to section 7. The `Policy check` step in
-> `.github/workflows/deploy.yml` fails the build on any third-party asset, which is the mechanical
-> guard on this promise. See `server-side notes` §7 for the reasoning and for how the forms are actually
-> protected.
+> **Editor note — reCAPTCHA is now in use; a lawyer must confirm the consent position.** As of
+> 2026-08 the demo-request and contact forms use Google reCAPTCHA v3, so Google is now a recipient in
+> section 6 and a further US transfer in section 7 (both updated). reCAPTCHA sets cookies and processes
+> device data; whether it may run on legitimate interest alone or requires a prior-consent banner is
+> contested and MUST be settled by a Hungarian data-protection lawyer before launch. If consent is
+> required, add a banner that blocks reCAPTCHA from loading until the visitor agrees. See
+> `server-side notes` §7 for how the forms are protected server-side.
 
 ---
 
@@ -198,6 +201,7 @@ We use the following processors, who act only on our documented instructions:
 | Processor | Role | Location of processing |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — a Microsoft company | Serving this website's static pages | United States, with a global content delivery network |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Protecting the demo-request and contact forms from automated abuse; receives device/usage data and the visitor's IP | Ireland, with processing by Google LLC in the United States |
 | {{HOSTING_PROVIDER_CRM}} | Hosting the CRM, the webhook endpoint and backups | European Union |
 | {{EMAIL_PROVIDER}} | Sending transactional and, where applicable, marketing email | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -239,6 +243,12 @@ The transfer is covered by GitHub's Data Protection Agreement, which incorporate
 Commission's **standard contractual clauses** (GDPR Article 46(2)(c)). GitHub is part of Microsoft,
 which is also certified under the **EU–US Data Privacy Framework** (Article 45 adequacy). You may
 obtain details of the safeguard relied on by writing to {{PRIVACY_EMAIL}}.
+
+**Google reCAPTCHA v3 also involves a transfer to the United States.** When reCAPTCHA runs on our
+forms it sends the visitor's IP address and device/usage data to Google. Google LLC is certified under
+the **EU–US Data Privacy Framework**, and Google's data-processing terms incorporate the **standard
+contractual clauses**; these are the safeguards relied on for that transfer. reCAPTCHA loads only on
+the pages that carry a form.
 
 **No personal data you submit passes through GitHub.** The form posts directly from your browser to
 our own webhook on EU infrastructure. GitHub delivers the page; it does not receive the contents of

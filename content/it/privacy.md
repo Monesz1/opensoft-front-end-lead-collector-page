@@ -75,7 +75,7 @@ Le copie di backup restano anch'esse sotto il nostro controllo, cifrate, e parim
 
 ## A chi li trasmettiamo
 
-**Non vendiamo i Suoi dati, non li scambiamo, non li cediamo a fini di marketing e non li condividiamo con «partner».** Non esiste alcun terzo che possa accedere ai Suoi dati per proprie finalità commerciali — ad esempio a fini di marketing o di profilazione.
+**Non vendiamo i Suoi dati, non li scambiamo, non li cediamo a fini di marketing e non li condividiamo con «partner».** Nessun terzo riceve i Suoi dati a fini di marketing o di profilazione. L'unico terzo comunque coinvolto è Google, tramite il controllo anti-bot reCAPTCHA sui nostri moduli (si veda *Cookie* più sopra e i punti 5–7 della nostra informativa GDPR) — e riceve soltanto i segnali tecnici di cui reCAPTCHA ha bisogno, mai i dati che Lei digita nel modulo.
 
 In due casi, tuttavia, i dati possono uscire dalle nostre mani, e dobbiamo menzionarli onestamente entrambi — perché un'affermazione categorica del tipo «mai, a nessuno» semplicemente non sarebbe vera:
 
@@ -194,9 +194,9 @@ Alcuni principi che consideriamo vincolanti nei nostri stessi confronti:
 
 C'è una sola cosa che memorizziamo nel Suo browser: il codice di due lettere della lingua selezionata (ad esempio `hu`). Tecnicamente non è nemmeno un cookie, bensì una voce inserita nella memoria del browser (`localStorage`); non raggiunge il server e ha come unico scopo evitarle di dover scegliere di nuovo la lingua la prossima volta.
 
-Ecco perché nessun banner dei cookie La accoglie. Non perché ce ne siamo dimenticati, ma perché non c'è nulla a cui prestare il consenso.
+Ecco perché, per le cose che memorizziamo noi, nessun banner dei cookie La accoglie — non c'è nulla di nostro a cui prestare il consenso.
 
-**Ed è anche per questo che non c'è alcun CAPTCHA.** I nostri moduli non sono protetti dai bot mediante un servizio esterno, bensì mediante controlli lato server all'interno del nostro sistema: un campo trappola che deve arrivare vuoto, un tempo minimo di compilazione e la verifica della pagina di provenienza. Un widget CAPTCHA avrebbe depositato un cookie, avrebbe richiesto un consenso preventivo e avrebbe inviato i dati del Suo dispositivo a un'altra azienda — e, per giunta, non avrebbe nemmeno protetto l'endpoint che conta davvero. Questa decisione è motivata in dettaglio al punto 7 di `server-side notes`.
+**I moduli, però, sono protetti da Google reCAPTCHA v3.** reCAPTCHA opera silenziosamente in secondo piano per distinguere i visitatori reali dai bot e, per farlo, imposta cookie propri e invia alcune informazioni sul dispositivo e il Suo indirizzo IP a Google, che li tratta negli Stati Uniti. Lo utilizziamo in aggiunta ai nostri controlli lato server — un campo trappola nascosto che deve arrivare vuoto, un tempo minimo di compilazione e la verifica della pagina di provenienza — che restano la vera protezione per la parte che effettivamente ci perviene. Poiché reCAPTCHA coinvolge un terzo, illustriamo che cosa raccoglie e le garanzie per il trasferimento verso gli Stati Uniti nella nostra informativa GDPR (punti 5, 6 e 7). Se reCAPTCHA necessiti inoltre di un proprio passaggio di consenso è l'unico punto che il nostro consulente in materia di protezione dei dati sta confermando prima del lancio.
 
 ---
 

@@ -114,8 +114,12 @@ Kopie zapasowe również pozostają pod naszym zarządem, zaszyfrowane i także 
 ## Komu przekazujemy dane
 
 **Pana/Pani danych nie sprzedajemy, nie wymieniamy, nie użyczamy do celów marketingowych i nie
-udostępniamy „partnerom".** Nie istnieje żadna strona trzecia, która mogłaby uzyskać dostęp do
-Pana/Pani danych do własnych celów biznesowych — na przykład marketingu lub profilowania.
+udostępniamy „partnerom".** Żaden podmiot trzeci nie otrzymuje
+Pana/Pani danych do celów marketingowych ani profilowania. Jedynym podmiotem trzecim, który w ogóle
+bierze w tym udział, jest Google — za pośrednictwem kontroli antybotowej reCAPTCHA w naszych
+formularzach (zob. *Pliki cookie* powyżej oraz punkty 5–7 naszej informacji RODO) — i otrzymuje on
+wyłącznie techniczne sygnały, których reCAPTCHA potrzebuje, nigdy zaś danych, które wpisuje Pan/Pani
+do formularza.
 
 W dwóch przypadkach dane mogą jednak wyjść spod naszej kontroli i oba musimy uczciwie wymienić — bo
 gładkie stwierdzenie „nigdy, nikomu" po prostu nie byłoby prawdziwe:
@@ -283,15 +287,19 @@ przykład `hu`). Technicznie nie jest to nawet plik cookie, lecz wpis umieszczon
 przeglądarki (`localStorage`); nie trafia on do serwera i służy wyłącznie temu, aby następnym razem
 nie trzeba było ponownie wybierać języka.
 
-Dlatego nie wita Pana/Pani baner plików cookie. Nie dlatego, że o nim zapomnieliśmy, lecz dlatego, że
-nie ma na co wyrażać zgody.
+Dlatego — jeśli chodzi o to, co przechowujemy my — nie wita Pana/Pani żaden baner plików cookie: po
+naszej stronie nie ma na co wyrażać zgody.
 
-**I dlatego nie ma też CAPTCHA.** Naszych formularzy nie chroni przed robotami usługa zewnętrzna,
-lecz kontrola po stronie serwera we własnym systemie: pole-pułapka, które musi dotrzeć puste,
-minimalny czas wypełniania oraz sprawdzenie strony wysyłającej. Widżet CAPTCHA umieściłby plik
-cookie, wymagałby uprzedniej zgody i wysłałby Pana/Pani dane urządzenia do innej firmy — a przy tym
-nawet by nie ochronił tego punktu końcowego, na którym naprawdę zależy. Tę decyzję szczegółowo
-uzasadnia punkt 7 pliku `server-side notes`.
+**Formularze są jednak chronione przez Google reCAPTCHA v3.** reCAPTCHA działa dyskretnie w tle, aby
+odróżniać prawdziwych odwiedzających od botów, a żeby to robić, ustawia własne pliki cookie i przesyła
+pewne informacje o urządzeniu oraz Pana/Pani adres IP do Google, które przetwarza je w Stanach
+Zjednoczonych. Stosujemy ją *w uzupełnieniu* naszych własnych kontroli po stronie serwera — ukrytego
+pola-pułapki, które musi dotrzeć puste, minimalnego czasu wypełniania oraz sprawdzenia strony
+wysyłającej — które pozostają rzeczywistą ochroną tej części, która faktycznie do nas dociera.
+Ponieważ reCAPTCHA wprowadza podmiot trzeci, w naszej informacji RODO (punkty 5, 6 i 7) szczegółowo
+opisujemy, co zbiera oraz jakie są zabezpieczenia przekazania danych do USA. To, czy reCAPTCHA wymaga
+dodatkowo osobnego kroku zgody, jest jedyną kwestią, którą nasz doradca ds. ochrony danych potwierdza
+przed uruchomieniem.
 
 ---
 

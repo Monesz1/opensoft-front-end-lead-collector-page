@@ -68,6 +68,8 @@
   "form_terms_link": "obchodnými podmienkami",
   "form_terms_error": "Ak chcete pokračovať, prijmite podmienky.",
   "card_cta_soon": "Čoskoro",
+  "demo_sent_title": "Skontrolujte si e-mail",
+  "demo_sent_msg": "Poslali sme Vám potvrdzovací odkaz. Kliknutím naň spustíte demo.",
   "contact_form_label": "Napíšte nám",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Open source firemné systémy prevádzkované maďarským tímom.",

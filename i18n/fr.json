@@ -68,6 +68,8 @@
   "form_terms_link": "conditions générales",
   "form_terms_error": "Veuillez accepter les conditions pour continuer.",
   "card_cta_soon": "Bientôt",
+  "demo_sent_title": "Vérifiez vos e-mails",
+  "demo_sent_msg": "Nous vous avons envoyé un lien de confirmation. Cliquez dessus pour lancer votre démo.",
   "contact_form_label": "Écrivez-nous",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Systèmes de gestion open source, exploités depuis la Hongrie.",

@@ -176,15 +176,21 @@ nécessaire à la fourniture du service que vous avez expressément demandé.
 |---|---|---|---|---|
 | `lang` | Entrée `localStorage`, et non un cookie | Mémorise la langue d'interface que vous avez sélectionnée | Non — strictement nécessaire à une fonction que vous avez demandée | Jusqu'à ce que vous effaciez le stockage de votre navigateur |
 
-Cette liste est exhaustive. **Aucun cookie n'est déposé par ce site web**, raison pour laquelle
-aucune bannière cookies ne vous est présentée — il n'y a rien à quoi consentir.
+Il s'agit de la seule entrée que **nous** plaçons. Nous ne déposons nous-mêmes aucun cookie à des
+fins de mesure d'audience, de publicité ou de suivi, et nous n'exploitons aucun outil de ce type.
 
-Il s'agit d'un choix de conception délibéré, et non d'un oubli. Nos formulaires sont protégés contre
-les abus automatisés **côté serveur** — par un champ leurre, un temps de remplissage minimal et une
-vérification de l'origine, tous évalués sur nos propres systèmes — plutôt que par un service CAPTCHA
-tiers. Un widget CAPTCHA aurait déposé des cookies, exigé votre consentement préalable et transmis
-les données de votre appareil à une autre société. Il a été écarté pour ces raisons et parce qu'il
-n'aurait pas, en réalité, protégé le point de terminaison qui importe.
+Nos formulaires de demande de démonstration et de contact sont en outre protégés par **Google
+reCAPTCHA v3**, qui s'exécute en arrière-plan afin de distinguer les êtres humains des abus
+automatisés. reCAPTCHA dépose ses propres cookies et collecte des informations relatives à votre
+appareil et à votre utilisation (y compris votre adresse IP), qu'il transmet à Google à des fins
+d'analyse — il est mentionné comme sous-traitant à la section 6, et le transfert vers les États-Unis
+est traité à la section 7. Nous nous appuyons sur lui **en complément de** vérifications côté serveur
+qui nous sont propres — un champ leurre, un temps de remplissage minimal et une vérification de
+l'origine, tous évalués sur nos propres systèmes — qui demeurent la protection décisive du point de
+terminaison qui nous parvient réellement. La base juridique du recours à reCAPTCHA est notre intérêt
+légitime à prévenir les abus (article 6(1)(f)) ; la question de savoir s'il requiert en outre un
+consentement préalable — et donc une bannière de consentement — est un point à confirmer avec un
+conseil en protection des données avant la mise en ligne.
 
 
 **Nous n'utilisons aucun outil de mesure d'audience, aucune publicité et aucun cookie de suivi ou de
@@ -192,14 +198,16 @@ profilage, de quelque nature que ce soit.** Nous ne constituons pas de profils c
 ne procédons à aucune prise de décision automatisée au sens de l'article 22 du RGPD et nous ne
 vendons de données à personne, en aucune circonstance.
 
-> **Note à l'éditeur — la question est tranchée, qu'elle le reste.** Aucun CAPTCHA n'est utilisé, et
-> la présente section en dépend. Si quelqu'un ajoute ultérieurement Google reCAPTCHA, Cloudflare
-> Turnstile ou hCaptcha, cette section deviendra fausse : ces services déposent des cookies, exigent
-> un consentement préalable, font du fournisseur un destinataire à la section 6 et ajoutent un
-> transfert supplémentaire vers un pays tiers à la section 7. L'étape `Policy check` de
-> `.github/workflows/deploy.yml` fait échouer la compilation en présence de toute ressource tierce,
-> ce qui constitue la garantie mécanique de cet engagement. Voir `server-side notes` §7 pour le
-> raisonnement et pour la manière dont les formulaires sont effectivement protégés.
+> **Note à l'éditeur — reCAPTCHA est désormais utilisé ; un avocat doit confirmer la position sur
+> le consentement.** Depuis 2026-08, les formulaires de demande de démonstration et de contact
+> utilisent Google reCAPTCHA v3 ; Google est donc désormais un destinataire à la section 6 et
+> constitue un transfert supplémentaire vers les États-Unis à la section 7 (les deux ont été mis à
+> jour). reCAPTCHA dépose des cookies et traite des données relatives à l'appareil ; la question
+> de savoir s'il peut fonctionner sur le seul fondement de l'intérêt légitime ou s'il requiert une
+> bannière de consentement préalable est controversée et DOIT être tranchée par un avocat hongrois
+> spécialisé en protection des données avant la mise en ligne. Si le consentement est requis, ajoutez
+> une bannière qui empêche reCAPTCHA de se charger tant que le visiteur n'a pas donné son accord. Voir
+> `server-side notes` §7 pour la manière dont les formulaires sont protégés côté serveur.
 
 ---
 
@@ -213,6 +221,7 @@ Nous faisons appel aux sous-traitants suivants, qui n'agissent que sur nos instr
 | Sous-traitant | Rôle | Lieu du traitement |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — une société du groupe Microsoft | Diffusion des pages statiques de ce site web | États-Unis, avec un réseau mondial de diffusion de contenu |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Protection des formulaires de demande de démonstration et de contact contre les abus automatisés ; reçoit les données relatives à l'appareil et à l'utilisation ainsi que l'adresse IP du visiteur | Irlande, le traitement étant assuré par Google LLC aux États-Unis |
 | {{HOSTING_PROVIDER_CRM}} | Hébergement du CRM, du point de terminaison webhook et des sauvegardes | Union européenne |
 | {{EMAIL_PROVIDER}} | Envoi des courriels transactionnels et, le cas échéant, des courriels de prospection | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -259,6 +268,13 @@ contractuelles types** de la Commission européenne (article 46(2)(c) du RGPD). 
 Microsoft, qui est en outre certifié au titre du **cadre de protection des données UE–États-Unis**
 (adéquation au titre de l'article 45). Vous pouvez obtenir des précisions sur la garantie invoquée en
 écrivant à {{PRIVACY_EMAIL}}.
+
+**Google reCAPTCHA v3 implique lui aussi un transfert vers les États-Unis.** Lorsque reCAPTCHA
+s'exécute sur nos formulaires, il transmet à Google l'adresse IP du visiteur ainsi que des données
+relatives à l'appareil et à l'utilisation. Google LLC est certifié au titre du **cadre de protection
+des données UE–États-Unis**, et les conditions de traitement des données de Google intègrent les
+**clauses contractuelles types** ; telles sont les garanties invoquées pour ce transfert.
+reCAPTCHA ne se charge que sur les pages qui comportent un formulaire.
 
 **Aucune donnée à caractère personnel que vous transmettez ne passe par GitHub.** Le formulaire est
 envoyé directement depuis votre navigateur vers notre propre webhook situé sur une infrastructure de

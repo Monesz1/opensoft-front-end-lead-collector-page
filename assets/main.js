@@ -3,26 +3,22 @@
 (function () {
 'use strict';
 
-/* Per-product config. To activate a product: set enabled:true and fill webhookUrl + demoUrl,
-   then set data-disabled + demo-button label on its card in index.html. Order matches the cards.
-   Only enabled products appear in the form picker; disabled ones show "Coming soon". */
+/* One n8n webhook handles every product; the workflow routes by the `product` field in the payload.
+   The demo URL is NOT returned here - n8n emails a confirmation link, then the demo after confirming. */
+const WEBHOOK_URL = 'https://n8n.opensoft.hu/webhook/demo-request';
+const RECAPTCHA_SITE_KEY = '6Lc6YX4tAAAAALDBYk7jw3GpDot2ZAcRexsxGCVT';
+
+/* Set enabled:true to show a product in the picker. Only enabled products appear; the rest show a
+   greyed "Coming soon" card. Order matches the cards in index.html. */
 const PRODUCTS = [
-  { id: 'vtiger', name: 'vTiger CRM', enabled: true,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-vtiger', demoUrl: 'https://demo.opensoft.hu' },
-  { id: 'odoo', name: 'Odoo', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-odoo', demoUrl: '' },
-  { id: 'dolibarr', name: 'Dolibarr', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-dolibarr', demoUrl: '' },
-  { id: 'espocrm', name: 'EspoCRM', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-espocrm', demoUrl: '' },
-  { id: 'suitecrm', name: 'SuiteCRM', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-suitecrm', demoUrl: '' },
-  { id: 'erpnext', name: 'ERPNext', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-erpnext', demoUrl: '' },
-  { id: 'axelor', name: 'Axelor', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-axelor', demoUrl: '' },
-  { id: 'metasfresh', name: 'metasfresh', enabled: false,
-    webhookUrl: 'https://n8n.opensoft.hu/webhook/demo-metasfresh', demoUrl: '' }
+  { id: 'vtiger', name: 'vTiger CRM', enabled: true },
+  { id: 'odoo', name: 'Odoo', enabled: false },
+  { id: 'dolibarr', name: 'Dolibarr', enabled: false },
+  { id: 'espocrm', name: 'EspoCRM', enabled: false },
+  { id: 'suitecrm', name: 'SuiteCRM', enabled: false },
+  { id: 'erpnext', name: 'ERPNext', enabled: false },
+  { id: 'axelor', name: 'Axelor', enabled: false },
+  { id: 'metasfresh', name: 'metasfresh', enabled: false }
 ].map(p => ({ ...p, icon: `assets/icons/${p.id}.svg` }));
 
 const RE_MOBILE = /^\+?[1-9]\d{7,14}$/;
@@ -189,7 +185,8 @@ async function buildPayload() {
     elapsedMs: Date.now() - loadedAt,        /* must be >= MIN_FILL_MS */
     termsAccepted: $('#terms').checked,      /* T&C consent, re-checked server-side */
     powChallenge: challenge,                 /* proof-of-work challenge string */
-    powNonce: await proofOfWork(challenge)   /* -1 if crypto.subtle is unavailable */
+    powNonce: await proofOfWork(challenge),  /* -1 if crypto.subtle is unavailable */
+    recaptcha_token: await recaptchaToken()  /* reCAPTCHA v3 token, verified in n8n */
   };
 }
 
@@ -210,46 +207,43 @@ async function submitForm(event) {
   event.preventDefault();
   if (!validateForm()) return focusFirstInvalid();
   const product = PRODUCTS.find(p => p.id === $('#selected-product').value);
-  if (!product || !product.enabled || !product.webhookUrl) {
+  if (!product || !product.enabled) {
     return showToast(OS.dict.form_error_no_product || OS.dict.err_product, 'error');
   }
   const btn = $('#submit-btn');
   btn.disabled = true;
   btn.textContent = OS.dict.form_submitting || '...';
   try {
-    const res = await fetch(product.webhookUrl, {
+    const res = await fetch(WEBHOOK_URL, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(await buildPayload())
     });
     const d = await res.json().catch(() => ({}));
-    if (res.ok && d && d.demo_url) return startDemoCountdown(d.demo_url, Number(d.ready_in_seconds) || 60);
+    if (res.ok && d && d.status === 'pending_confirmation') return showCheckEmail();
     onSubmitFail(btn);
   } catch (e) { onSubmitFail(btn); }
 }
 
-/* n8n responds { demo_url, ready_in_seconds }; show a countdown, then redirect.
-   No localStorage — the URL lives only in this closure (KERNEL: lost on redirect otherwise). */
-function startDemoCountdown(demoUrl, seconds) {
-  const card = OS.mk('div', { id: 'demo-countdown', className: 'success-card' },
+/* reCAPTCHA v3: fetch a fresh token at submit time; '' if the script did not load (n8n then rejects). */
+function recaptchaToken() {
+  return new Promise(resolve => {
+    if (!(window.grecaptcha && grecaptcha.execute)) return resolve('');
+    grecaptcha.ready(() =>
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'demo' }).then(resolve, () => resolve('')));
+  });
+}
+
+/* n8n replies {status:"pending_confirmation"} and emails a confirmation link; the demo URL follows by
+   email once the visitor confirms. Replace the form with a "check your email" card. */
+function showCheckEmail() {
+  const card = OS.mk('div', { id: 'demo-sent', className: 'success-card' },
     { role: 'alert', 'aria-live': 'polite', tabindex: '-1' });
-  const num = OS.mk('strong', { id: 'countdown-num', textContent: String(seconds) });
-  const line = OS.mk('p', { className: 'countdown-line' });
-  line.append(
-    document.createTextNode((OS.dict.demo_redirect_in || 'Redirecting in') + ' '),
-    num, document.createTextNode(' s'));
   card.append(
-    OS.mk('div', { className: 'success-icon', textContent: '✓' }),
-    OS.mk('p', { className: 'success-title', textContent: OS.dict.demo_provisioning_msg || 'Preparing your system…' }),
-    line);
+    OS.mk('div', { className: 'success-icon', textContent: '✉' }),
+    OS.mk('p', { className: 'success-title', textContent: OS.dict.demo_sent_title || 'Check your email' }),
+    OS.mk('p', { className: 'success-text', textContent: OS.dict.demo_sent_msg || '' }));
   $('#lead-form-el').replaceWith(card);
   card.focus({ preventScroll: true });
-  let r = seconds;
-  const timer = setInterval(() => {
-    r -= 1;
-    const el = $('#countdown-num');
-    if (el) el.textContent = String(Math.max(0, r));
-    if (r <= 0) { clearInterval(timer); window.location.href = demoUrl; }
-  }, 1000);
 }
 
 function showToast(message, type) {

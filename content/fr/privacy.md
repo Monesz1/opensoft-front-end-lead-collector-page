@@ -122,9 +122,11 @@ Les sauvegardes restent elles aussi sous notre gestion, chiffrées, et égalemen
 ## À qui nous les transmettons
 
 **Nous ne vendons pas vos données, nous ne les échangeons pas, nous ne les prêtons pas à des fins de
-marketing et nous ne les partageons pas avec des « partenaires ».** Il n'existe aucun tiers qui
-pourrait accéder à vos données à ses propres fins commerciales — par exemple à des fins de marketing
-ou de profilage.
+marketing et nous ne les partageons pas avec des « partenaires ».** Aucun tiers ne reçoit vos
+données à des fins de marketing ou de profilage. Le seul tiers concerné, en définitive, est Google,
+via la vérification anti-robots reCAPTCHA présente sur nos formulaires (voir la section *Cookies*
+ci-dessus, ainsi que les points 5 à 7 de notre avis RGPD) — et il ne reçoit que les signaux
+techniques dont reCAPTCHA a besoin, jamais les informations que vous saisissez dans le formulaire.
 
 Dans deux cas, des données peuvent néanmoins sortir de nos mains, et nous devons mentionner honnêtement
 les deux — car une affirmation catégorique du type « jamais, à personne » ne serait tout simplement
@@ -300,16 +302,20 @@ choisie (par exemple `hu`). Techniquement, ce n'est même pas un cookie, mais un
 stockage du navigateur (`localStorage`) ; elle ne parvient pas au serveur et sert uniquement à vous
 éviter d'avoir à choisir de nouveau la langue la prochaine fois.
 
-C'est pourquoi aucune bannière de cookies ne vous accueille. Non pas parce que nous l'avons oubliée,
-mais parce qu'il n'y a rien à quoi consentir.
+C'est pourquoi, pour les éléments que *nous* stockons, aucune bannière de cookies ne vous accueille —
+il n'y a rien de notre part à quoi consentir.
 
-**Et c'est pourquoi il n'y a pas non plus de CAPTCHA.** Nos formulaires ne sont pas protégés des
-robots par un service externe, mais par une vérification côté serveur au sein de notre propre système :
-un champ-piège qui doit arriver vide, un temps de remplissage minimal et la vérification de la page
-émettrice. Un widget CAPTCHA aurait déposé un cookie, aurait exigé un consentement préalable et aurait
-envoyé les données de votre appareil à une autre entreprise — et, de surcroît, n'aurait même pas
-protégé le point d'accès qui compte. Cette décision est justifiée en détail au point 7 de
-`server-side notes`.
+**Les formulaires, en revanche, sont protégés par Google reCAPTCHA v3.** reCAPTCHA s'exécute
+discrètement en arrière-plan pour distinguer les vrais visiteurs des robots et, pour ce faire, il
+dépose ses propres cookies et transmet à Google certaines informations relatives à votre appareil
+ainsi que votre adresse IP, que Google traite aux États-Unis. Nous l'utilisons *en complément de* nos
+propres vérifications côté serveur — un champ-piège caché qui doit arriver vide, un temps de
+remplissage minimal et une vérification de la page émettrice — qui demeurent la véritable protection
+de la partie qui nous parvient réellement. Parce que reCAPTCHA fait intervenir un tiers, nous
+détaillons ce qu'il collecte et les garanties encadrant le transfert vers les États-Unis dans notre
+avis RGPD (points 5, 6 et 7). La question de savoir si reCAPTCHA nécessite en outre sa propre étape de
+consentement est le seul point que notre conseil en protection des données est en train de confirmer
+avant notre mise en ligne.
 
 ---
 

@@ -167,28 +167,33 @@ usluge koju ste izričito zatražili.
 |---|---|---|---|---|
 | `lang` | unos u `localStorage`, nije kolačić | Pamti jezik sučelja koji ste odabrali | Ne — nužno potrebno za funkciju koju ste zatražili | Dok ne izbrišete pohranu svojeg preglednika |
 
-To je potpun popis. **Ova internetska stranica ne postavlja nikakve kolačiće**, zbog čega Vam se ne
-prikazuje traka o kolačićima — nema ničega na što biste pristali.
+To je jedini unos koji **mi** postavljamo. Sami ne postavljamo nikakve kolačiće za analitiku,
+oglašavanje ili praćenje i ne upotrebljavamo nikakve takve alate.
 
-Riječ je o namjernoj projektantskoj odluci, a ne o propustu. Naši su obrasci zaštićeni od
-automatizirane zlouporabe **na strani poslužitelja** — poljem-mamcem, najkraćim vremenom
-ispunjavanja i provjerom izvorišta, pri čemu se sve vrednuje na našim vlastitim sustavima — a ne
-uslugom CAPTCHA treće strane. CAPTCHA widget postavljao bi kolačiće, zahtijevao Vašu prethodnu
-privolu i slao podatke o Vašem uređaju drugom društvu. Odbačen je iz tih razloga i zato što zapravo
-ne bi zaštitio krajnju točku koja je važna.
+Naši obrasci za zahtjev za demonstraciju i za kontakt dodatno su zaštićeni uslugom **Google
+reCAPTCHA v3**, koja radi u pozadini kako bi razlikovala ljude od automatizirane zlouporabe.
+reCAPTCHA postavlja vlastite kolačiće i prikuplja informacije o uređaju i uporabi (uključujući Vašu
+IP adresu), koje šalje Googleu na analizu — naveden je kao izvršitelj obrade u odjeljku 6., a
+prijenos u Sjedinjene Američke Države obrađen je u odjeljku 7. Oslanjamo se na nju **uz** vlastite
+provjere na strani poslužitelja — polje-mamac, najkraće vrijeme ispunjavanja i provjeru izvorišta,
+pri čemu se sve vrednuje na našim sustavima — koje ostaju odlučujuća zaštita za krajnju točku koja
+doista dopire do nas. Pravna osnova za reCAPTCHA-u naš je legitimni interes za sprječavanje
+zlouporabe (članak 6. stavak 1. točka (f)); je li joj dodatno potrebna prethodna privola — a time i
+traka za privolu — pitanje je koje treba potvrditi sa savjetnikom za zaštitu podataka prije objave.
 
 
 **Ne upotrebljavamo nikakvu analitiku, nikakvo oglašavanje ni bilo kakve kolačiće za praćenje ili
 izradu profila.** Ne izrađujemo profile ponašanja, ne provodimo automatizirano donošenje odluka u
 smislu članka 22. GDPR-a i ni pod kojim okolnostima nikome ne prodajemo podatke.
 
-> **Napomena urednika — ovo je pitanje riješeno, neka takvo i ostane.** CAPTCHA se ne upotrebljava i
-> ovaj odjeljak o tome ovisi. Ako netko poslije doda Google reCAPTCHA, Cloudflare Turnstile ili
-> hCaptcha, ovaj odjeljak postaje neistinit: oni postavljaju kolačiće, zahtijevaju prethodnu privolu,
-> čine pružatelja primateljem u odjeljku 6. i dodaju još jedan prijenos u treću zemlju u odjeljku 7.
-> Korak `Policy check` u `.github/workflows/deploy.yml` obara build pri svakom resursu treće strane,
-> što je mehanička zaštita ovog obećanja. Vidjeti `server-side notes` §7 za obrazloženje i za to kako su
-> obrasci doista zaštićeni.
+> **Napomena urednika — reCAPTCHA je sada u uporabi; odvjetnik mora potvrditi stajalište o privoli.**
+> Od 2026-08 obrasci za zahtjev za demonstraciju i za kontakt upotrebljavaju Google reCAPTCHA v3, pa
+> je Google sada primatelj u odjeljku 6., a u odjeljku 7. i još jedan prijenos u SAD (oboje
+> ažurirano). reCAPTCHA postavlja kolačiće i obrađuje podatke o uređaju; pitanje smije li raditi samo
+> na temelju legitimnog interesa ili zahtijeva traku za prethodnu privolu sporno je i to MORA
+> razriješiti mađarski odvjetnik za zaštitu podataka prije objave. Ako je privola potrebna, dodajte
+> traku koja sprječava učitavanje reCAPTCHA-e dok posjetitelj ne pristane. Vidjeti `server-side notes` §7
+> za to kako su obrasci zaštićeni na strani poslužitelja.
 
 ---
 
@@ -203,6 +208,7 @@ uputama:
 | Izvršitelj obrade | Uloga | Mjesto obrade |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — društvo grupe Microsoft | Posluživanje statičnih stranica ove internetske stranice | Sjedinjene Američke Države, uz globalnu mrežu za isporuku sadržaja |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Zaštita obrazaca za zahtjev za demonstraciju i za kontakt od automatizirane zlouporabe; prima podatke o uređaju/uporabi i IP adresu posjetitelja | Irska, uz obradu koju Google LLC provodi u Sjedinjenim Američkim Državama |
 | {{HOSTING_PROVIDER_CRM}} | Hosting CRM-a, webhook krajnje točke i sigurnosnih kopija | Europska unija |
 | {{EMAIL_PROVIDER}} | Slanje transakcijske i, ondje gdje je primjenjivo, marketinške e-pošte | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -246,6 +252,12 @@ uključuje **standardne ugovorne klauzule** Europske komisije (članak 46. stava
 GDPR-a). GitHub je dio Microsofta, koji je uz to certificiran u okviru **Okvira EU-a i SAD-a za
 privatnost podataka** (primjerenost na temelju članka 45.). Pojedinosti o zaštitnoj mjeri na koju se
 oslanjamo možete dobiti pisanjem na {{PRIVACY_EMAIL}}.
+
+**I Google reCAPTCHA v3 uključuje prijenos u Sjedinjene Američke Države.** Kada reCAPTCHA radi na
+našim obrascima, šalje Googleu IP adresu posjetitelja i podatke o uređaju/uporabi. Google LLC
+certificiran je u okviru **Okvira EU-a i SAD-a za privatnost podataka**, a Googleovi uvjeti obrade
+podataka uključuju **standardne ugovorne klauzule**; to su zaštitne mjere na koje se oslanjamo za
+taj prijenos. reCAPTCHA se učitava samo na stranicama koje sadržavaju obrazac.
 
 **Nijedan osobni podatak koji pošaljete ne prolazi kroz GitHub.** Obrazac se šalje izravno iz Vašeg
 preglednika na naš vlastiti webhook na infrastrukturi u EU-u. GitHub isporučuje stranicu; ne prima

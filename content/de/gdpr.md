@@ -174,29 +174,35 @@ Erbringung des von Ihnen ausdrücklich gewünschten Dienstes unbedingt erforderl
 |---|---|---|---|---|
 | `lang` | `localStorage`-Eintrag, kein Cookie | Merkt sich die von Ihnen gewählte Sprache der Benutzeroberfläche | Nein — unbedingt erforderlich für eine von Ihnen gewünschte Funktion | Bis Sie Ihren Browserspeicher löschen |
 
-Das ist die vollständige Liste. **Von dieser Website werden keine Cookies gesetzt**, weshalb Ihnen
-kein Cookie-Banner angezeigt wird — es gibt nichts, worin einzuwilligen wäre.
+Das ist der einzige Eintrag, den **wir** setzen. Wir selbst setzen keine Cookies für Analyse, Werbung
+oder Tracking, und wir betreiben keine derartigen Werkzeuge.
 
-Dies ist eine bewusste Gestaltungsentscheidung, kein Versehen. Unsere Formulare sind **serverseitig**
-gegen automatisierten Missbrauch geschützt — durch ein Köderfeld, eine Mindestausfüllzeit und eine
-Herkunftsprüfung, die sämtlich auf unseren eigenen Systemen ausgewertet werden — und nicht durch
-einen CAPTCHA-Dienst eines Dritten. Ein CAPTCHA-Widget hätte Cookies gesetzt, Ihre vorherige
-Einwilligung erfordert und Ihre Gerätedaten an ein anderes Unternehmen übermittelt. Es wurde aus
-diesen Gründen abgelehnt und weil es den maßgeblichen Endpunkt tatsächlich nicht geschützt hätte.
+Unsere Demoanfrage- und Kontaktformulare sind zusätzlich durch **Google reCAPTCHA v3** geschützt, das
+im Hintergrund läuft, um Menschen von automatisiertem Missbrauch zu unterscheiden. reCAPTCHA setzt
+eigene Cookies und erhebt Geräte- und Nutzungsinformationen (einschließlich Ihrer IP-Adresse), die es
+zur Analyse an Google übermittelt — es ist in Abschnitt 6 als Auftragsverarbeiter benannt, und die
+Übermittlung in die Vereinigten Staaten wird in Abschnitt 7 behandelt. Wir stützen uns darauf
+**zusätzlich zu** eigenen serverseitigen Prüfungen — einem Köderfeld, einer Mindestausfüllzeit und
+einer Herkunftsprüfung, die sämtlich auf unseren Systemen ausgewertet werden —, die der maßgebliche
+Schutz für den Endpunkt bleiben, der uns tatsächlich erreicht. Die Rechtsgrundlage für reCAPTCHA ist
+unser berechtigtes Interesse an der Verhinderung von Missbrauch (Artikel 6 Abs. 1 lit. f); ob es
+zusätzlich einer vorherigen Einwilligung — und damit eines Einwilligungsbanners — bedarf, ist ein
+Punkt, der vor der Freischaltung mit einem Datenschutzberater zu klären ist.
 
 
 **Wir verwenden keinerlei Analyse-, Werbe-, Tracking- oder Profiling-Cookies.** Wir erstellen keine
 Verhaltensprofile, wir führen keine automatisierte Entscheidungsfindung im Sinne des Artikels 22
 DSGVO durch, und wir verkaufen unter keinen Umständen Daten an irgendjemanden.
 
-> **Redaktionshinweis — diese Frage ist entschieden, lassen Sie sie entschieden.** Es wird kein
-> CAPTCHA eingesetzt, und dieser Abschnitt hängt davon ab. Fügt später jemand Google reCAPTCHA,
-> Cloudflare Turnstile oder hCaptcha hinzu, wird dieser Abschnitt unwahr: Diese setzen Cookies,
-> erfordern eine vorherige Einwilligung, machen den Anbieter zu einem Empfänger in Abschnitt 6 und
-> fügen Abschnitt 7 eine weitere Drittlandsübermittlung hinzu. Der Schritt `Policy check` in
-> `.github/workflows/deploy.yml` lässt den Build bei jedem Drittanbieter-Asset fehlschlagen, was die
-> maschinelle Absicherung dieses Versprechens ist. Siehe `server-side notes` §7 für die Begründung und
-> dafür, wie die Formulare tatsächlich geschützt sind.
+> **Redaktionshinweis — reCAPTCHA wird nun eingesetzt; ein Rechtsanwalt muss die Einwilligungslage
+> bestätigen.** Mit Stand August 2026 verwenden die Demoanfrage- und Kontaktformulare Google
+> reCAPTCHA v3, sodass Google nun ein Empfänger in Abschnitt 6 und eine weitere Übermittlung in die
+> USA in Abschnitt 7 ist (beide aktualisiert). reCAPTCHA setzt Cookies und verarbeitet Gerätedaten;
+> ob es allein auf das berechtigte Interesse gestützt werden darf oder ein Banner mit vorheriger
+> Einwilligung erfordert, ist umstritten und MUSS vor der Freischaltung von einem ungarischen
+> Datenschutzanwalt geklärt werden. Ist eine Einwilligung erforderlich, fügen Sie ein Banner hinzu,
+> das das Laden von reCAPTCHA blockiert, bis der Besucher zustimmt. Siehe `server-side notes` §7 dafür,
+> wie die Formulare serverseitig geschützt sind.
 
 ---
 
@@ -211,6 +217,7 @@ Weisungen hin tätig werden:
 | Auftragsverarbeiter | Rolle | Ort der Verarbeitung |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — ein Unternehmen von Microsoft | Auslieferung der statischen Seiten dieser Website | Vereinigte Staaten, mit einem weltweiten Content Delivery Network |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Schutz der Demoanfrage- und Kontaktformulare vor automatisiertem Missbrauch; erhält Geräte-/Nutzungsdaten und die IP-Adresse des Besuchers | Irland, mit Verarbeitung durch Google LLC in den Vereinigten Staaten |
 | {{HOSTING_PROVIDER_CRM}} | Hosting des CRM, des Webhook-Endpunkts und der Backups | Europäische Union |
 | {{EMAIL_PROVIDER}} | Versand von Transaktions- und, soweit einschlägig, Marketing-E-Mails | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -258,6 +265,13 @@ Die Übermittlung ist durch das Data Protection Agreement von GitHub gedeckt, da
 DSGVO). GitHub gehört zu Microsoft, das zudem unter dem **EU–US Data Privacy Framework** zertifiziert
 ist (Angemessenheit nach Artikel 45). Einzelheiten zu der herangezogenen Garantie erhalten Sie per
 Schreiben an {{PRIVACY_EMAIL}}.
+
+**Auch Google reCAPTCHA v3 ist mit einer Übermittlung in die Vereinigten Staaten verbunden.** Wenn
+reCAPTCHA auf unseren Formularen läuft, übermittelt es die IP-Adresse des Besuchers sowie Geräte- und
+Nutzungsdaten an Google. Google LLC ist unter dem **EU–US Data Privacy Framework** zertifiziert, und
+die Datenverarbeitungsbedingungen von Google beziehen die **Standardvertragsklauseln** ein; dies sind
+die für diese Übermittlung herangezogenen Garantien. reCAPTCHA wird nur auf den Seiten geladen, die
+ein Formular enthalten.
 
 **Keine der von Ihnen übermittelten personenbezogenen Daten läuft über GitHub.** Das Formular wird
 unmittelbar aus Ihrem Browser an unseren eigenen Webhook auf EU-Infrastruktur gesendet. GitHub

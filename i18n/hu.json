@@ -68,6 +68,8 @@
   "form_terms_link": "Általános Szerződési Feltételeket",
   "form_terms_error": "A folytatáshoz fogadja el a feltételeket.",
   "card_cta_soon": "Hamarosan",
+  "demo_sent_title": "Nézze meg az e-mailjeit",
+  "demo_sent_msg": "Megerősítő linket küldtünk az e-mail-címére. Kattintson rá a demó indításához.",
   "contact_form_label": "Üzenjen nekünk",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Nyílt forráskódú üzleti rendszerek, magyar üzemeltetéssel.",

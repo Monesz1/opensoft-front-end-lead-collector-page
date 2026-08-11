@@ -174,29 +174,35 @@ explicit de dumneavoastră.
 |---|---|---|---|---|
 | `lang` | intrare `localStorage`, nu un modul cookie | Reține limba interfeței pe care ați selectat-o | Nu — strict necesară pentru o funcție solicitată de dumneavoastră | Până când ștergeți spațiul de stocare al browserului |
 
-Aceasta este lista completă. **Acest site web nu plasează niciun modul cookie**, motiv pentru care nu vi se
-afișează un banner privind modulele cookie — nu există nimic pentru care să vă dați consimțământul.
+Aceasta este singura intrare pe care o plasăm **noi**. Noi înșine nu plasăm niciun modul cookie de
+analiză, de publicitate sau de urmărire și nu utilizăm niciun astfel de instrument.
 
-Aceasta este o decizie deliberată de proiectare, nu o omisiune. Formularele noastre sunt protejate
-împotriva abuzurilor automatizate **pe partea de server** — printr-un câmp-capcană, un timp minim de
-completare și o verificare a originii, toate evaluate pe sistemele noastre proprii — și nu printr-un
-serviciu CAPTCHA terț. Un widget CAPTCHA ar fi plasat module cookie, ar fi necesitat consimțământul
-dumneavoastră prealabil și ar fi trimis datele dispozitivului dumneavoastră către o altă societate. A fost
-respins din aceste motive și pentru că, în realitate, nu ar fi protejat punctul final care contează.
+Formularele noastre de solicitare a demonstrației și de contact sunt protejate suplimentar de **Google
+reCAPTCHA v3**, care rulează în fundal pentru a distinge oamenii de abuzurile automatizate. reCAPTCHA
+plasează propriile module cookie și colectează informații despre dispozitiv și despre utilizare (inclusiv
+adresa dumneavoastră IP), pe care le trimite către Google pentru analiză — este menționat ca persoană
+împuternicită de operator în secțiunea 6, iar transferul către Statele Unite este tratat în secțiunea 7.
+Ne bazăm pe acesta **în plus față de** verificări proprii pe partea de server — un câmp-capcană, un timp
+minim de completare și o verificare a originii, toate evaluate pe sistemele noastre — care rămân protecția
+decisivă pentru punctul final care ajunge efectiv la noi. Temeiul juridic pentru reCAPTCHA este interesul
+nostru legitim de a preveni abuzurile (articolul 6 alineatul (1) litera (f)); dacă acesta necesită în plus
+un consimțământ prealabil — și, prin urmare, un banner de consimțământ — este un aspect care trebuie
+confirmat cu un consilier în domeniul protecției datelor înainte de lansare.
 
 
 **Nu utilizăm niciun instrument de analiză, nicio publicitate și niciun modul cookie de urmărire sau de
 creare de profiluri, de niciun fel.** Nu construim profiluri comportamentale, nu efectuăm un proces
 decizional automatizat în sensul articolului 22 din GDPR și nu vindem date nimănui, în nicio circumstanță.
 
-> **Notă pentru editor — această chestiune este tranșată, păstrați-o astfel.** Nu se utilizează niciun
-> CAPTCHA, iar prezenta secțiune depinde de acest lucru. Dacă cineva adaugă ulterior Google reCAPTCHA,
-> Cloudflare Turnstile sau hCaptcha, această secțiune devine falsă: acestea plasează module cookie, necesită
-> consimțământ prealabil, transformă furnizorul într-un destinatar în secțiunea 6 și adaugă un nou transfer
-> către o țară terță în secțiunea 7. Pasul `Policy check` din `.github/workflows/deploy.yml` face ca
-> build-ul să eșueze la orice resursă terță, ceea ce constituie garanția mecanică a acestei promisiuni.
-> A se vedea `server-side notes` §7 pentru raționament și pentru modul în care sunt protejate în realitate
-> formularele.
+> **Notă pentru editor — reCAPTCHA este acum în uz; un avocat trebuie să confirme poziția privind
+> consimțământul.** Începând din 2026-08, formularele de solicitare a demonstrației și de contact utilizează
+> Google reCAPTCHA v3, așadar Google este acum un destinatar în secțiunea 6 și un transfer suplimentar către
+> SUA în secțiunea 7 (ambele actualizate). reCAPTCHA plasează module cookie și prelucrează date privind
+> dispozitivul; dacă poate funcționa numai în temeiul interesului legitim sau necesită un banner de
+> consimțământ prealabil este o chestiune contestată și TREBUIE tranșată de un avocat maghiar specializat în
+> protecția datelor înainte de lansare. Dacă este necesar consimțământul, adăugați un banner care împiedică
+> încărcarea reCAPTCHA până când vizitatorul își dă acordul. A se vedea `server-side notes` §7 pentru modul în
+> care formularele sunt protejate pe partea de server.
 
 ---
 
@@ -211,6 +217,7 @@ noastre documentate:
 | Persoană împuternicită de operator | Rol | Locul prelucrării |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — o societate a grupului Microsoft | Servirea paginilor statice ale acestui site web | Statele Unite, cu o rețea globală de livrare de conținut |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Protejarea formularelor de solicitare a demonstrației și de contact împotriva abuzurilor automatizate; primește date privind dispozitivul/utilizarea și adresa IP a vizitatorului | Irlanda, prelucrarea fiind efectuată de Google LLC în Statele Unite |
 | {{HOSTING_PROVIDER_CRM}} | Găzduirea CRM, a punctului final webhook și a copiilor de rezervă | Uniunea Europeană |
 | {{EMAIL_PROVIDER}} | Trimiterea de e-mailuri tranzacționale și, după caz, de marketing | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -255,6 +262,13 @@ contractuale standard** ale Comisiei Europene (articolul 46 alineatul (2) litera
 parte din Microsoft, care este de asemenea certificată în cadrul **EU–US Data Privacy Framework** (caracterul
 adecvat în temeiul articolului 45). Puteți obține detalii despre garanția pe care ne întemeiem scriind la
 {{PRIVACY_EMAIL}}.
+
+**Google reCAPTCHA v3 implică, de asemenea, un transfer către Statele Unite.** Atunci când reCAPTCHA
+rulează pe formularele noastre, acesta trimite către Google adresa IP a vizitatorului și date privind
+dispozitivul/utilizarea. Google LLC este certificată în cadrul **EU–US Data Privacy Framework**, iar
+condițiile Google privind prelucrarea datelor încorporează **clauzele contractuale standard**; acestea sunt
+garanțiile pe care ne întemeiem pentru acel transfer. reCAPTCHA se încarcă numai pe paginile care conțin un
+formular.
 
 **Niciun fel de date cu caracter personal pe care le transmiteți nu trec prin GitHub.** Formularul se
 transmite direct din browserul dumneavoastră către propriul nostru webhook, aflat pe infrastructură din UE.

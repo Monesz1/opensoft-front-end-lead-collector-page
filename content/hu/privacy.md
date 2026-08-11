@@ -113,8 +113,11 @@ A biztonsági mentések szintén a mi kezelésünkben maradnak, titkosítva, és
 ## Kinek adjuk át
 
 **Az adatait nem adjuk el, nem cseréljük el, nem adjuk kölcsön marketingcélra, és nem osztjuk meg
-„partnerekkel”.** Nincs olyan harmadik fél, amelyik saját üzleti céljára — például marketingre vagy
-profilalkotásra — hozzáférhetne az adataihoz.
+„partnerekkel”.** Egyetlen harmadik fél sem kapja meg az adatait marketing vagy profilalkotás
+céljából. Az egyetlen harmadik fél, amely egyáltalán érintett, a Google, az űrlapjainkon működő
+reCAPTCHA robotszűrésen keresztül (lásd fentebb a *Sütik* szakaszt, valamint a GDPR-tájékoztatónk
+5–7. pontját) — és az kizárólag azokat a technikai jelzéseket kapja meg, amelyekre a reCAPTCHA-nak
+szüksége van, soha nem az Ön által az űrlapba beírt adatokat.
 
 Két esetben mégis kikerülhet adat a kezünkből, és mindkettőt őszintén meg kell említenünk — mert egy
 kerek „soha, senkinek” állítás egyszerűen nem lenne igaz:
@@ -268,15 +271,19 @@ Egyetlen dolgot tárolunk a böngészőjében: a kiválasztott nyelv kétbetűs 
 technikailag nem is süti, hanem böngészőtárolóban (`localStorage`) elhelyezett bejegyzés, nem jut el
 a kiszolgálóhoz, és kizárólag azt szolgálja, hogy legközelebb ne kelljen újra nyelvet választania.
 
-Ezért nem fogadja Önt sütibanner. Nem azért, mert megfeledkeztünk róla, hanem mert nincs mihez
-hozzájárulnia.
+Ezért – ami a *mi* tárolt adatainkat illeti – nem fogadja Önt sütibanner: a mi oldalunkon nincs
+semmi, amihez hozzá kellene járulnia.
 
-**És ezért nincs CAPTCHA sem.** Az űrlapjainkat nem külső szolgáltatás védi a robotoktól, hanem
-szerveroldali ellenőrzés a saját rendszerünkben: egy csapdamező, amelynek üresen kell érkeznie, egy
-minimális kitöltési idő, és a küldő oldal ellenőrzése. Egy CAPTCHA-widget sütit helyezett volna el,
-előzetes hozzájárulást igényelt volna, és elküldte volna az eszközadatait egy másik cégnek — ráadásul
-azt a végpontot, amelyik számít, meg sem védte volna. Ezt a döntést az `server-side notes` 7. pontja
-részletesen indokolja.
+**Az űrlapokat azonban a Google reCAPTCHA v3 védi.** A reCAPTCHA csendben, a háttérben fut, hogy
+megkülönböztesse a valódi látogatókat a botoktól, és ehhez saját sütiket helyez el, valamint bizonyos
+eszközadatokat és az Ön IP-címét elküldi a Google-nek, amely azokat az Egyesült Államokban kezeli. A
+saját szerveroldali ellenőrzéseinken *felül* használjuk — egy rejtett csapdamező (honeypot), amelynek
+üresen kell megérkeznie, egy minimális kitöltési idő, és a küldő oldal ellenőrzése —, amelyek továbbra
+is a valódi védelmet jelentik arra a részre nézve, amely ténylegesen eljut hozzánk. Mivel a reCAPTCHA
+harmadik felet von be, a GDPR-tájékoztatónkban (5., 6. és 7. pont) részletezzük, mit gyűjt, és milyen
+garanciák vonatkoznak az egyesült államokbeli adattovábbításra. Hogy a reCAPTCHA emellett igényel-e
+saját hozzájárulási lépést, az az egyetlen pont, amelyet adatvédelmi tanácsadónk az indulásunk előtt
+megerősít.
 
 ---
 

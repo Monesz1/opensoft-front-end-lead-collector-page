@@ -174,29 +174,35 @@ szükséges az Ön által kifejezetten kért szolgáltatás nyújtásához.
 |---|---|---|---|---|
 | `lang` | `localStorage` bejegyzés, nem süti | Megjegyzi az Ön által választott felületnyelvet | Nem — feltétlenül szükséges az Ön által kért funkcióhoz | A böngészőtároló törléséig |
 
-Ez a teljes lista. **Ez a webhely egyetlen sütit sem helyez el**, ezért nem is jelenik meg
-sütibanner — nincs mihez hozzájárulnia.
+Ez az egyetlen bejegyzés, amelyet **mi** helyezünk el. Magunk semmilyen sütit nem helyezünk el
+látogatottságmérés, hirdetés vagy követés céljából, és nem is működtetünk ilyen eszközöket.
 
-Ez tudatos tervezési döntés, nem mulasztás. Az űrlapjainkat **szerveroldalon** védjük az
-automatizált visszaélésekkel szemben — csapdamezővel, minimális kitöltési idővel és a küldő oldal
-(origin) ellenőrzésével, mindezt a saját rendszereinken kiértékelve —, nem pedig harmadik fél
-CAPTCHA-szolgáltatásával. Egy CAPTCHA-widget sütiket helyezett volna el, előzetes hozzájárulást
-igényelt volna, és elküldte volna az eszközadatait egy másik cégnek. Ezek miatt vetettük el, és
-azért is, mert valójában nem védte volna meg azt a végpontot, amelyik számít.
+A bemutatókérő és a kapcsolatfelvételi űrlapjainkat ezen felül a **Google reCAPTCHA v3** védi, amely
+a háttérben fut, hogy megkülönböztesse az embereket az automatizált visszaélésektől. A reCAPTCHA
+saját sütiket helyez el, és eszköz- és használati adatokat (köztük az Ön IP-címét) gyűjt, amelyeket
+elemzés céljából elküld a Google-nek — a szolgáltatót a 6. pont adatfeldolgozóként nevesíti, az
+Egyesült Államokba irányuló adattovábbítást pedig a 7. pont tárgyalja. Erre a saját szerveroldali
+ellenőrzéseinken **felül** támaszkodunk — csapdamező, minimális kitöltési idő és a küldő oldal
+(origin) ellenőrzése, mindezt a saját rendszereinken kiértékelve —, amelyek továbbra is a hozzánk
+ténylegesen eljutó végpont meghatározó védelmét jelentik. A reCAPTCHA jogalapja a visszaélések
+megelőzéséhez fűződő jogos érdekünk (6. cikk (1) bekezdés f) pont); hogy emellett szükséges-e
+előzetes hozzájárulás — és ezáltal hozzájárulási banner —, azt élesítés előtt adatvédelmi
+tanácsadóval kell megerősíteni.
 
 
 **Nem használunk látogatottságmérőt, hirdetési rendszert, sem semmiféle követő vagy profilalkotó
 sütit.** Nem építünk viselkedési profilokat, nem végzünk a GDPR 22. cikke szerinti automatizált
 döntéshozatalt, és semmilyen körülmények között nem adunk el adatot senkinek.
 
-> **Megjegyzés a szerkesztőnek — ez a kérdés eldőlt, maradjon is eldöntve.** Nem használunk
-> CAPTCHA-t, és ez a szakasz erre épül. Ha bárki később hozzáadja a Google reCAPTCHA-t, a Cloudflare
-> Turnstile-t vagy a hCaptchát, ez a szakasz valótlanná válik: ezek sütit helyeznek el, előzetes
-> hozzájárulást igényelnek, a szolgáltatót a 6. pont szerinti címzetté teszik, és a 7. pontot egy
-> további, harmadik országba irányuló adattovábbítással bővítik. A `.github/workflows/deploy.yml`
-> `Policy check` lépése minden külső erőforráson megbuktatja a buildet, és ez ennek az ígéretnek a
-> gépi biztosítéka. Az indoklásért és azért, hogy az űrlapokat ténylegesen mi védi, lásd az
-> `server-side notes` 7. pontját.
+> **Megjegyzés a szerkesztőnek — a reCAPTCHA már használatban van; a hozzájárulási álláspontot
+> ügyvédnek kell megerősítenie.** 2026-08 óta a bemutatókérő és a kapcsolatfelvételi űrlap a Google
+> reCAPTCHA v3-at használja, így a Google immár a 6. pont szerinti címzett, és a 7. pontban egy
+> további, Egyesült Államokba irányuló adattovábbítás szerepel (mindkettő frissítve). A reCAPTCHA
+> sütiket helyez el, és eszközadatokat kezel; hogy futhat-e pusztán jogos érdek alapján, vagy
+> előzetes hozzájárulást kérő bannert igényel, vitatott, és azt élesítés előtt magyar adatvédelmi
+> ügyvédnek KELL eldöntenie. Ha hozzájárulás szükséges, helyezzen el egy bannert, amely
+> megakadályozza a reCAPTCHA betöltődését, amíg a látogató bele nem egyezik. Arról, hogy az
+> űrlapokat szerveroldalon mi védi, lásd az `server-side notes` 7. pontját.
 
 ---
 
@@ -211,6 +217,7 @@ járnak el:
 | Adatfeldolgozó | Szerepkör | Az adatkezelés helye |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — a Microsoft vállalatcsoport tagja | A weboldal statikus oldalainak kiszolgálása | Egyesült Államok, globális tartalomkézbesítő hálózattal |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | A bemutatókérő és a kapcsolatfelvételi űrlapok védelme az automatizált visszaélésekkel szemben; eszköz- és használati adatokat, valamint a látogató IP-címét kapja meg | Írország, az adatkezelést a Google LLC az Egyesült Államokban végzi |
 | {{HOSTING_PROVIDER_CRM}} | A CRM, a webhook-végpont és a biztonsági mentések tárhelye | Európai Unió |
 | {{EMAIL_PROVIDER}} | Tranzakciós és — adott esetben — marketingcélú e-mailek küldése | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -255,6 +262,13 @@ magában foglalja az Európai Bizottság **általános adatvédelmi kikötéseit
 bekezdés c) pont). A GitHub a Microsoft része, amely az **EU–USA adatvédelmi keretrendszer** alapján
 is tanúsított (45. cikk szerinti megfelelőség). Az alkalmazott garanciáról a {{PRIVACY_EMAIL}} címre
 írva kaphat részletes tájékoztatást.
+
+**A Google reCAPTCHA v3 szintén az Egyesült Államokba irányuló adattovábbítással jár.** Amikor a
+reCAPTCHA az űrlapjainkon fut, elküldi a látogató IP-címét, valamint eszköz- és használati adatait a
+Google-nek. A Google LLC az **EU–USA adatvédelmi keretrendszer** alapján tanúsított, a Google
+adatkezelési feltételei pedig magukban foglalják az **általános adatvédelmi kikötéseket**; ezek az
+adott adattovábbításra alkalmazott garanciák. A reCAPTCHA kizárólag azokon az oldalakon töltődik be,
+amelyeken űrlap található.
 
 **Az Ön által beküldött személyes adatok egyike sem halad át a GitHubon.** Az űrlap közvetlenül az
 Ön böngészőjéből küld a saját, uniós infrastruktúrán futó webhookunkra. A GitHub az oldalt

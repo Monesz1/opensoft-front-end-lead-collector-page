@@ -68,6 +68,8 @@
   "form_terms_link": "Terms & Conditions",
   "form_terms_error": "Please accept the terms to continue.",
   "card_cta_soon": "Coming soon",
+  "demo_sent_title": "Check your email",
+  "demo_sent_msg": "We've sent a confirmation link to your inbox. Click it to start your demo.",
   "contact_form_label": "Send us a message",
   "contact_form_url": "https://n8n.opensoft.hu/webhook/contact",
   "footer_tagline": "Open-source business systems, run and supported from Hungary.",

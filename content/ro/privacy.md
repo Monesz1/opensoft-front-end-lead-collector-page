@@ -115,8 +115,11 @@ Copiile de siguranță rămân, de asemenea, în administrarea noastră, criptat
 ## Cui transmitem datele
 
 **Datele dumneavoastră nu le vindem, nu le schimbăm, nu le împrumutăm în scop de marketing și nu le
-partajăm cu „parteneri”.** Nu există nicio terță parte care să poată accesa datele dumneavoastră în scop
-comercial propriu — de exemplu pentru marketing sau creare de profiluri.
+partajăm cu „parteneri”.** Nicio terță parte nu primește datele dumneavoastră în scop de marketing sau de
+creare de profiluri. Singura terță parte implicată în vreun fel este Google, prin verificarea anti-robot
+reCAPTCHA de pe formularele noastre (a se vedea *Cookie-uri* mai sus și secțiunile 5–7 din informarea
+noastră GDPR) — iar aceasta primește doar semnalele tehnice de care are nevoie reCAPTCHA, niciodată
+detaliile pe care le introduceți în formular.
 
 În două situații datele pot totuși ieși din mâinile noastre, și trebuie să le menționăm pe amândouă în
 mod sincer — pentru că o afirmație rotundă de tipul „niciodată, nimănui” pur și simplu nu ar fi
@@ -285,15 +288,19 @@ Un singur lucru stocăm în browserul dumneavoastră: codul din două litere al 
 browserului (`localStorage`), nu ajunge la server și servește exclusiv la a nu fi nevoie să alegeți din
 nou limba data viitoare.
 
-De aceea nu vă întâmpină niciun banner de cookie-uri. Nu pentru că am uitat de el, ci pentru că nu aveți
-la ce să consimțiți.
+De aceea, pentru lucrurile pe care le stocăm *noi*, nu vă întâmpină niciun banner de cookie-uri — nu
+există nimic de-al nostru la care să consimțiți.
 
-**Și de aceea nu există nici CAPTCHA.** Formularele noastre nu sunt protejate împotriva roboților de un
-serviciu extern, ci de o verificare pe partea de server în propriul nostru sistem: un câmp-capcană care
-trebuie să sosească gol, un timp minim de completare și verificarea paginii expeditoare. Un widget
-CAPTCHA ar fi plasat un cookie, ar fi necesitat un consimțământ prealabil și ar fi trimis datele
-dispozitivului dumneavoastră către o altă companie — ba mai mult, nici măcar nu ar fi protejat punctul
-final care contează. Această decizie este motivată în detaliu la punctul 7 din `server-side notes`.
+**Formularele, în schimb, sunt protejate de Google reCAPTCHA v3.** reCAPTCHA rulează discret în fundal
+pentru a deosebi vizitatorii reali de roboți, iar pentru aceasta plasează propriile cookie-uri și trimite
+către Google unele informații despre dispozitiv și adresa dumneavoastră IP, pe care Google le prelucrează
+în Statele Unite. O folosim *în plus față de* propriile noastre verificări pe partea de server — un
+câmp-capcană ascuns care trebuie să sosească gol, un timp minim de completare și o verificare a paginii
+expeditoare — care rămân protecția reală pentru partea care ajunge efectiv la noi. Întrucât reCAPTCHA
+implică o terță parte, detaliem ce colectează aceasta și garanțiile pentru transferul către SUA în
+informarea noastră GDPR (secțiunile 5, 6 și 7). Dacă reCAPTCHA are nevoie, în plus, de un pas propriu de
+consimțământ este singurul aspect pe care consilierul nostru în domeniul protecției datelor îl confirmă
+înainte de lansare.
 
 ---
 

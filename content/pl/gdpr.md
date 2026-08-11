@@ -172,29 +172,35 @@ Pana/Pani uprzednią świadomą zgodą** — z wyjątkiem sytuacji, w której je
 |---|---|---|---|---|
 | `lang` | wpis w `localStorage`, nie plik cookie | Zapamiętuje wybrany przez Pana/Panią język interfejsu | Nie — ściśle niezbędne do funkcji, o którą Pan/Pani wystąpił(-a) | Do czasu wyczyszczenia pamięci przeglądarki |
 
-To jest pełna lista. **Ta strona internetowa nie ustawia żadnych plików cookie**, dlatego nie jest
-wyświetlany baner cookie — nie ma na co wyrażać zgody.
+To jedyny wpis, który umieszczamy **my**. My sami nie ustawiamy żadnych plików cookie do celów
+analitycznych, reklamowych ani śledzących i nie stosujemy żadnych takich narzędzi.
 
-Jest to świadoma decyzja projektowa, a nie przeoczenie. Nasze formularze są chronione przed
-zautomatyzowanymi nadużyciami **po stronie serwera** — przez pole-pułapkę, minimalny czas wypełnienia
-i sprawdzenie źródła żądania, oceniane w całości w naszych własnych systemach — a nie przez zewnętrzną
-usługę CAPTCHA. Widget CAPTCHA ustawiałby pliki cookie, wymagałby Pana/Pani uprzedniej zgody i
-przesyłałby dane o Pana/Pani urządzeniu do innej firmy. Został odrzucony z tych powodów, a także
-dlatego, że w rzeczywistości nie chroniłby tego punktu końcowego, który ma znaczenie.
+Nasze formularze prośby o prezentację (demo) i kontaktowy są dodatkowo chronione przez **Google
+reCAPTCHA v3**, która działa w tle, aby odróżniać ludzi od zautomatyzowanych nadużyć. reCAPTCHA
+ustawia własne pliki cookie i zbiera informacje o urządzeniu i sposobie korzystania (w tym Pana/Pani
+adres IP), które przesyła do Google w celu analizy — jest wymieniona jako podmiot przetwarzający w
+punkcie 6, a przekazanie do Stanów Zjednoczonych omówiono w punkcie 7. Opieramy się na niej **oprócz**
+własnych kontroli po stronie serwera — pola-pułapki, minimalnego czasu wypełnienia i sprawdzenia
+źródła żądania, ocenianych w naszych własnych systemach — które pozostają rozstrzygającą ochroną
+punktu końcowego, który faktycznie do nas dociera. Podstawą prawną dla reCAPTCHA jest nasz prawnie
+uzasadniony interes polegający na zapobieganiu nadużyciom (art. 6 ust. 1 lit. f)); to, czy dodatkowo
+wymaga ona uprzedniej zgody — a tym samym banera zgody — jest kwestią do potwierdzenia z doradcą
+ds. ochrony danych przed uruchomieniem.
 
 
 **Nie stosujemy żadnej analityki, żadnej reklamy ani żadnych plików cookie służących śledzeniu lub
 profilowaniu.** Nie budujemy profili behawioralnych, nie podejmujemy zautomatyzowanych decyzji w
 rozumieniu art. 22 RODO i nie sprzedajemy danych nikomu, w żadnych okolicznościach.
 
-> **Uwaga redakcyjna — ta kwestia jest rozstrzygnięta i ma taka pozostać.** Nie jest stosowany żaden
-> CAPTCHA, a niniejszy punkt jest od tego zależny. Jeżeli ktokolwiek doda później Google reCAPTCHA,
-> Cloudflare Turnstile albo hCaptcha, punkt ten stanie się nieprawdziwy: rozwiązania te ustawiają
-> pliki cookie, wymagają uprzedniej zgody, czynią dostawcę odbiorcą w punkcie 6 i dodają kolejne
-> przekazanie do państwa trzeciego w punkcie 7. Krok `Policy check` w pliku
-> `.github/workflows/deploy.yml` przerywa budowanie przy każdym zasobie zewnętrznym i stanowi
-> mechaniczne zabezpieczenie tej obietnicy. Uzasadnienie oraz opis rzeczywistej ochrony formularzy
-> zob. `server-side notes` §7.
+> **Uwaga redakcyjna — reCAPTCHA jest już stosowana; prawnik musi potwierdzić stanowisko w sprawie
+> zgody.** Od 2026-08 formularze prośby o prezentację (demo) i kontaktowy korzystają z Google
+> reCAPTCHA v3, przez co Google jest obecnie odbiorcą w punkcie 6 oraz kolejnym przekazaniem do USA w
+> punkcie 7 (oba zaktualizowane). reCAPTCHA ustawia pliki cookie i przetwarza dane o urządzeniu; to,
+> czy może działać wyłącznie na podstawie prawnie uzasadnionego interesu, czy też wymaga banera
+> uprzedniej zgody, jest sporne i MUSI zostać rozstrzygnięte przez węgierskiego prawnika ds. ochrony
+> danych przed uruchomieniem. Jeżeli zgoda jest wymagana, należy dodać baner, który blokuje ładowanie
+> reCAPTCHA do czasu wyrażenia zgody przez odwiedzającego. Opis tego, jak formularze są chronione po
+> stronie serwera, zob. `server-side notes` §7.
 
 ---
 
@@ -209,6 +215,7 @@ polecenie:
 | Podmiot przetwarzający | Rola | Miejsce przetwarzania |
 |---|---|---|
 | **GitHub, Inc.** (GitHub Pages) — spółka z grupy Microsoft | Udostępnianie statycznych stron tej witryny | Stany Zjednoczone, z globalną siecią dostarczania treści |
+| **Google Ireland Ltd. / Google LLC** (reCAPTCHA v3) | Ochrona formularzy prośby o prezentację (demo) i kontaktowego przed zautomatyzowanymi nadużyciami; otrzymuje dane o urządzeniu/sposobie korzystania oraz adres IP odwiedzającego | Irlandia, z przetwarzaniem przez Google LLC w Stanach Zjednoczonych |
 | {{HOSTING_PROVIDER_CRM}} | Hosting systemu CRM, punktu końcowego webhooka i kopii zapasowych | Unia Europejska |
 | {{EMAIL_PROVIDER}} | Wysyłka poczty transakcyjnej oraz, w stosownych przypadkach, marketingowej | {{EMAIL_PROVIDER_LOCATION}} |
 | {{OTHER_PROCESSORS}} | {{OTHER_PROCESSOR_ROLE}} | {{OTHER_PROCESSOR_LOCATION}} |
@@ -254,6 +261,13 @@ klauzule umowne** Komisji Europejskiej (art. 46 ust. 2 lit. c) RODO). GitHub nal
 Microsoft, która posiada również certyfikację w ramach **ram ochrony danych UE–USA (EU–US Data
 Privacy Framework)** (odpowiedni stopień ochrony na podstawie art. 45). Szczegóły dotyczące
 zastosowanego zabezpieczenia można uzyskać, pisząc na adres {{PRIVACY_EMAIL}}.
+
+**Google reCAPTCHA v3 również wiąże się z przekazaniem danych do Stanów Zjednoczonych.** Gdy reCAPTCHA
+działa w naszych formularzach, przesyła do Google adres IP odwiedzającego oraz dane o
+urządzeniu/sposobie korzystania. Google LLC posiada certyfikację w ramach **ram ochrony danych UE–USA
+(EU–US Data Privacy Framework)**, a warunki przetwarzania danych Google inkorporują **standardowe
+klauzule umowne**; są to zabezpieczenia, na których opiera się to przekazanie. reCAPTCHA ładuje się
+wyłącznie na stronach zawierających formularz.
 
 **Żadne przekazane przez Pana/Panią dane osobowe nie przechodzą przez GitHub.** Formularz przesyłany
 jest bezpośrednio z Pana/Pani przeglądarki do naszego własnego webhooka na infrastrukturze w UE.
