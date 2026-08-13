@@ -220,9 +220,13 @@ a{color:var(--navy-500);text-decoration:none}
 .ce-progress{width:100%;max-width:340px;margin-top:20px}
 .ce-bar{height:6px;border-radius:999px;background:var(--grey-200);overflow:hidden}
 .ce-bar>span{display:block;height:100%;width:0;border-radius:999px;background:var(--blue-500);
-  transition:width 85s cubic-bezier(.15,.6,.25,1)}
+  transition:width 180s cubic-bezier(.12,.6,.2,1)}
 .ce-status{margin-top:8px;font-size:.8125rem;color:var(--grey-600)}
 .check-email.ce-ready .ce-status{color:var(--success);font-weight:600}
+.check-email.ce-warn .ce-bar>span{background:var(--warning,#d97706)}
+.check-email.ce-warn .ce-status{color:var(--warning,#d97706);font-weight:600}
+.check-email.ce-warn .ce-spinner.done{border-color:var(--warning,#d97706)}
+.check-email.ce-warn .ce-spinner.done::after{display:none}
 .ce-back{margin-top:20px;background:none;border:none;color:var(--grey-600);font-size:.875rem;
   cursor:pointer;text-decoration:underline;padding:6px;font-family:inherit}
 .ce-back:hover{color:var(--blue-500)}

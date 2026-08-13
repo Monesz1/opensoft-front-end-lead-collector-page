@@ -136,5 +136,8 @@
   "doc_lang_en": "Ten dokument jest dostępny w języku angielskim.",
   "doc_lang_hu": "Ten dokument jest dostępny w języku węgierskim.",
   "privacy_h6": "Gdzie znajduje się ta strona",
-  "privacy_p6": "Samą stronę udostępnia GitHub Pages (GitHub, Inc., Stany Zjednoczone), który do jej wyświetlenia siłą rzeczy widzi adresy IP odwiedzających, a własne logi przetwarza samodzielnie jako odrębny administrator danych. Dane podane przez Państwa w formularzu trafiają natomiast bezpośrednio na nasz własny serwer w Unii Europejskiej i nie przechodzą przez systemy firmy GitHub."
+  "privacy_p6": "Samą stronę udostępnia GitHub Pages (GitHub, Inc., Stany Zjednoczone), który do jej wyświetlenia siłą rzeczy widzi adresy IP odwiedzających, a własne logi przetwarza samodzielnie jako odrębny administrator danych. Dane podane przez Państwa w formularzu trafiają natomiast bezpośrednio na nasz własny serwer w Unii Europejskiej i nie przechodzą przez systemy firmy GitHub.",
+  "demo_prep_capacity": "Wszystkie dema są teraz zajęte. Wysłaliśmy do Państwa e-mail — prosimy spróbować ponownie za około 30 minut.",
+  "demo_prep_failed": "Podczas przygotowywania demo wystąpił błąd. Prosimy spróbować ponownie za kilka minut.",
+  "demo_prep_slow": "Przygotowanie demo trwa nieco dłużej niż zwykle. Prześlemy Państwu link e-mailem, gdy tylko będzie gotowe — prosimy wkrótce sprawdzić skrzynkę."
 }

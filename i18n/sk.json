@@ -136,5 +136,8 @@
   "doc_lang_en": "Tento dokument je k dispozícii v angličtine.",
   "doc_lang_hu": "Tento dokument je k dispozícii v maďarčine.",
   "privacy_h6": "Kde je tento web hostovaný",
-  "privacy_p6": "Samotný web je prevádzkovaný na službe GitHub Pages (GitHub, Inc., Spojené štáty). GitHub preto pri jeho zobrazení nevyhnutne vidí IP adresy návštevníkov a svoje vlastné logy spracúva ako samostatný prevádzkovateľ. Údaje odoslané formulárom však smerujú priamo na náš vlastný server v Európskej únii a systémami GitHubu neprechádzajú."
+  "privacy_p6": "Samotný web je prevádzkovaný na službe GitHub Pages (GitHub, Inc., Spojené štáty). GitHub preto pri jeho zobrazení nevyhnutne vidí IP adresy návštevníkov a svoje vlastné logy spracúva ako samostatný prevádzkovateľ. Údaje odoslané formulárom však smerujú priamo na náš vlastný server v Európskej únii a systémami GitHubu neprechádzajú.",
+  "demo_prep_capacity": "Momentálne sú všetky demá obsadené. Poslali sme vám e-mail — skúste to prosím znova o približne 30 minút.",
+  "demo_prep_failed": "Pri príprave dema sa vyskytla chyba. Skúste to prosím znova o niekoľko minút.",
+  "demo_prep_slow": "Príprava vášho dema trvá o niečo dlhšie než zvyčajne. Hneď ako bude pripravené, pošleme vám odkaz e-mailom — čoskoro si prosím skontrolujte schránku."
 }

@@ -6,7 +6,21 @@
 /* The form is POSTed here; the response is a confirmation status, not the demo URL (a confirmation
    email is sent, and the demo opens after the visitor confirms). */
 const WEBHOOK_URL = 'https://n8n.opensoft.hu/webhook/demo-request';
+/* Polled after submit to learn when the instance is REALLY ready (provisioning ~3 min); keyed by an
+   opaque per-request id so no personal data is put in the URL. */
+const STATUS_URL = 'https://n8n.opensoft.hu/webhook/demo-status';
 const RECAPTCHA_SITE_KEY = '6Lc6YX4tAAAAALDBYk7jw3GpDot2ZAcRexsxGCVT';
+
+/* Opaque random id that ties this submission to its readiness status (crypto.randomUUID on HTTPS,
+   getRandomValues fallback otherwise). */
+function newRequestId() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  if (window.crypto && crypto.getRandomValues) {
+    const a = new Uint8Array(16); crypto.getRandomValues(a);
+    return [...a].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  return 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);   /* last-resort, still unique */
+}
 
 /* Set enabled:true to show a product in the picker. Only enabled products appear; the rest show a
    greyed "Coming soon" card. Order matches the cards in index.html. */
@@ -168,11 +182,12 @@ async function proofOfWork(challenge) {
   return -1;
 }
 
-async function buildPayload() {
+async function buildPayload(requestId) {
   const email = $('#email').value.trim();
   const challenge = email + ':' + Date.now();       /* bound to submitter + submit time */
   return {
     source: 'opensoft-lead-collector',
+    requestId: requestId,                            /* opaque id the page polls for readiness */
     product: $('#selected-product').value,
     firstName: $('#firstName').value.trim(),
     lastName: $('#lastName').value.trim(),
@@ -216,15 +231,16 @@ async function submitForm(event) {
   btn.disabled = true;
   btn.textContent = OS.dict.form_submitting || '...';
   const email = $('#email').value.trim();       /* capture before the form is replaced */
+  const requestId = newRequestId();
   try {
     const res = await fetch(WEBHOOK_URL, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(await buildPayload())
+      body: JSON.stringify(await buildPayload(requestId))
     });
     if (res.status === 429) return onSubmitFail(btn, OS.dict.form_rate_limited);   /* Traefik per-IP limit */
     const d = await res.json().catch(() => ({}));
     if (res.ok && d && (d.status === 'pending_confirmation' || d.status === 'already_requested'))
-      return showCheckEmail(d.status, email);
+      return showCheckEmail(d.status, email, requestId);
     onSubmitFail(btn);
   } catch (e) { onSubmitFail(btn); }
 }
@@ -262,27 +278,58 @@ function mailButtons(email) {
   });
 }
 
-/* The instance provisions in the background (~90s). The demo URL is deliberately NOT shown before the
-   visitor confirms by email, so this is a timed "preparing" indicator that settles into a ready state. */
-function runReadyAnimation(card) {
+/* The instance provisions in the background (~3 min). The demo URL is deliberately NOT shown before the
+   visitor confirms by email — so this polls the backend for the REAL status and only settles into
+   "ready" when provisioning has actually finished (no more guessing with a fixed timer). */
+const POLL_MS = 4000;
+const POLL_MAX = 105;                 /* ~7 min ceiling; then stop claiming, the email still arrives */
+function runReadyAnimation(card, requestId) {
   const bar = card.querySelector('.ce-bar > span');
   const status = card.querySelector('.ce-status');
   const spinner = card.querySelector('.ce-spinner');
-  if (bar) setTimeout(() => { bar.style.width = '92%'; }, 50);   /* CSS eases it over ~85s (setTimeout fires in bg tabs too) */
-  setTimeout(() => { if (status) status.textContent = OS.dict.demo_prep_2 || status.textContent; }, 30000);
-  setTimeout(() => { if (status) status.textContent = OS.dict.demo_prep_3 || status.textContent; }, 60000);
-  setTimeout(() => {
+  const setStatus = k => { if (status && OS.dict[k]) status.textContent = OS.dict[k]; };
+  /* visual reassurance only — the bar eases toward 90% over ~3 min (CSS) but never reaches 100% on a
+     timer; the "ready" jump to 100% is driven by the real status below. */
+  if (bar) setTimeout(() => { bar.style.width = '90%'; }, 50);
+  const t2 = setTimeout(() => setStatus('demo_prep_2'), 40000);
+  const t3 = setTimeout(() => setStatus('demo_prep_3'), 100000);
+
+  let done = false, tries = 0;
+  const stopTimers = () => { clearTimeout(t2); clearTimeout(t3); };
+  const settleReady = () => {
+    done = true; stopTimers();
     if (bar) { bar.style.transition = 'width .5s ease-out'; bar.style.width = '100%'; }
-    if (status) status.textContent = OS.dict.demo_prep_ready || status.textContent;
+    setStatus('demo_prep_ready');
     if (spinner) spinner.classList.add('done');
     card.classList.add('ce-ready');
-  }, 88000);
+  };
+  const settleOther = key => {                 /* capacity / failed / slow: honest, not "ready" */
+    done = true; stopTimers();
+    if (spinner) spinner.classList.add('done');
+    setStatus(key);
+    if (key !== 'demo_prep_slow') card.classList.add('ce-warn');
+  };
+  const poll = () => {
+    if (done) return;
+    if (++tries > POLL_MAX) return settleOther('demo_prep_slow');
+    fetch(STATUS_URL + '?rid=' + encodeURIComponent(requestId), { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null)).catch(() => null)
+      .then(d => {
+        if (done) return;
+        const s = d && d.status;
+        if (s === 'ready') return settleReady();
+        if (s === 'capacity') return settleOther('demo_prep_capacity');
+        if (s === 'failed') return settleOther('demo_prep_failed');
+        setTimeout(poll, POLL_MS);            /* pending / null / network blip -> keep waiting */
+      });
+  };
+  setTimeout(poll, POLL_MS);
 }
 
 /* n8n replies {status:"pending_confirmation"} (new) or {status:"already_requested"} (duplicate within the
    cooldown) and emails a confirmation link. Replace the WHOLE form card (heading, intro, form) with a
    focused "check your email" panel: inbox shortcut(s) + a live "preparing your demo" indicator. */
-function showCheckEmail(status, email) {
+function showCheckEmail(status, email, requestId) {
   const dup = status === 'already_requested';
   const card = OS.mk('div', { id: 'demo-sent', className: 'success-card check-email' + (dup ? ' ce-dup' : '') },
     { role: 'status', 'aria-live': 'polite', tabindex: '-1' });
@@ -309,7 +356,7 @@ function showCheckEmail(status, email) {
   host.textContent = '';                          /* drop heading, intro, required-note and the form */
   host.append(card);
   card.focus({ preventScroll: true });
-  if (!dup) runReadyAnimation(card);
+  if (!dup) runReadyAnimation(card, requestId);
 }
 
 function showToast(message, type) {

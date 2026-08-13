@@ -136,5 +136,8 @@
   "doc_lang_en": "Ce document est disponible en anglais.",
   "doc_lang_hu": "Ce document est disponible en hongrois.",
   "privacy_h6": "Où ce site est hébergé",
-  "privacy_p6": "Ce site est servi par GitHub Pages (GitHub, Inc., États-Unis), qui voit nécessairement l'adresse IP des visiteurs et gère ses propres journaux en tant que responsable du traitement distinct. Les données que vous saisissez dans le formulaire arrivent en revanche directement sur notre serveur situé dans l'Union européenne : elles ne transitent pas par GitHub."
+  "privacy_p6": "Ce site est servi par GitHub Pages (GitHub, Inc., États-Unis), qui voit nécessairement l'adresse IP des visiteurs et gère ses propres journaux en tant que responsable du traitement distinct. Les données que vous saisissez dans le formulaire arrivent en revanche directement sur notre serveur situé dans l'Union européenne : elles ne transitent pas par GitHub.",
+  "demo_prep_capacity": "Toutes les démos sont occupées pour le moment. Nous vous avons envoyé un e-mail — veuillez réessayer dans environ 30 minutes.",
+  "demo_prep_failed": "Une erreur s'est produite lors de la préparation de votre démo. Veuillez réessayer dans quelques minutes.",
+  "demo_prep_slow": "La préparation de votre démo prend un peu plus de temps que d'habitude. Nous vous enverrons le lien par e-mail dès qu'elle sera prête — veuillez consulter votre boîte de réception sous peu."
 }
