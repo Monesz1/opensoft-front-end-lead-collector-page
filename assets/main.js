@@ -9,6 +9,7 @@ const WEBHOOK_URL = 'https://n8n.opensoft.hu/webhook/demo-request';
 /* Polled after submit to learn when the instance is REALLY ready (provisioning ~3 min); keyed by an
    opaque per-request id so no personal data is put in the URL. */
 const STATUS_URL = 'https://n8n.opensoft.hu/webhook/demo-status';
+const ADMIN_EMAIL = 'administrator@opensoft.hu';   /* shown when provisioning fails or never completes */
 const RECAPTCHA_SITE_KEY = '6Lc6YX4tAAAAALDBYk7jw3GpDot2ZAcRexsxGCVT';
 
 /* Opaque random id that ties this submission to its readiness status (crypto.randomUUID on HTTPS,
@@ -282,7 +283,15 @@ function mailButtons(email) {
    visitor confirms by email — so this polls the backend for the REAL status and only settles into
    "ready" when provisioning has actually finished (no more guessing with a fixed timer). */
 const POLL_MS = 4000;
-const POLL_MAX = 105;                 /* ~7 min ceiling; then stop claiming, the email still arrives */
+const POLL_MAX = 105;                 /* ~7 min ceiling; provisioning is ~3 min, so this only trips when
+                                         something is badly wrong (n8n/Redis down) — treated as "contact us" */
+/* On a failed / didn't-complete outcome, offer a direct line to a human. */
+function appendContact(card) {
+  if (card.querySelector('.ce-contact')) return;
+  const a = OS.mk('a', { className: 'ce-contact', textContent: ADMIN_EMAIL },
+    { href: 'mailto:' + ADMIN_EMAIL });
+  (card.querySelector('.ce-progress') || card).append(a);
+}
 function runReadyAnimation(card, requestId) {
   const bar = card.querySelector('.ce-bar > span');
   const status = card.querySelector('.ce-status');
@@ -308,6 +317,7 @@ function runReadyAnimation(card, requestId) {
     if (spinner) spinner.classList.add('done');
     setStatus(key);
     if (key !== 'demo_prep_slow') card.classList.add('ce-warn');
+    if (key === 'demo_prep_failed' || key === 'demo_prep_slow') appendContact(card);   /* broke / never finished */
   };
   const poll = () => {
     if (done) return;

@@ -138,6 +138,6 @@
   "privacy_h6": "Gdje je smještena ova internetska stranica",
   "privacy_p6": "Samu internetsku stranicu poslužuje GitHub Pages (GitHub, Inc., Sjedinjene Američke Države), koji za posluživanje nužno vidi IP adrese posjetitelja, a vlastite zapisnike obrađuje kao samostalni voditelj obrade. Podaci koje unesete u obrazac ipak stižu izravno na naš poslužitelj u Europskoj uniji i ne prolaze kroz sustave GitHuba.",
   "demo_prep_capacity": "Trenutačno su svi demo termini zauzeti. Poslali smo vam e-poruku — pokušajte ponovno za otprilike 30 minuta.",
-  "demo_prep_failed": "Došlo je do pogreške pri pripremi demoa. Pokušajte ponovno za nekoliko minuta.",
-  "demo_prep_slow": "Priprema vašeg demoa traje malo dulje nego inače. Poslat ćemo vam poveznicu e-poštom čim bude spremna — uskoro provjerite svoj sandučić."
+  "demo_prep_failed": "Nismo uspjeli pripremiti vaš demo. Pokušajte ponovno za nekoliko minuta. Ako se problem nastavi, obratite se našem administratoru:",
+  "demo_prep_slow": "Priprema vašeg demoa traje dulje nego očekivano i možda nije dovršena. Ako uskoro ne primite e-poruku od nas, obratite se našem administratoru:"
 }

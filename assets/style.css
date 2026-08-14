@@ -227,6 +227,10 @@ a{color:var(--navy-500);text-decoration:none}
 .check-email.ce-warn .ce-status{color:var(--warning,#d97706);font-weight:600}
 .check-email.ce-warn .ce-spinner.done{border-color:var(--warning,#d97706)}
 .check-email.ce-warn .ce-spinner.done::after{display:none}
+.ce-contact{display:inline-block;margin-top:8px;font-size:.875rem;font-weight:600;
+  color:var(--blue-500);text-decoration:none}
+.ce-contact:hover{text-decoration:underline}
+.check-email.ce-warn .ce-contact{color:var(--warning,#d97706)}
 .ce-back{margin-top:20px;background:none;border:none;color:var(--grey-600);font-size:.875rem;
   cursor:pointer;text-decoration:underline;padding:6px;font-family:inherit}
 .ce-back:hover{color:var(--blue-500)}

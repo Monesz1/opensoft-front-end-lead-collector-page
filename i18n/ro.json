@@ -138,6 +138,6 @@
   "privacy_h6": "Unde este găzduit acest site web",
   "privacy_p6": "Site-ul în sine este servit de GitHub Pages (GitHub, Inc., Statele Unite), care, pentru livrarea paginilor, vede în mod necesar adresele IP ale vizitatorilor și își gestionează propriile jurnale în calitate de operator independent. În schimb, datele furnizate în formular ajung direct pe serverul nostru din Uniunea Europeană și nu trec prin sistemele GitHub.",
   "demo_prep_capacity": "În acest moment toate demonstrațiile sunt ocupate. V-am trimis un e-mail — vă rugăm să încercați din nou peste aproximativ 30 de minute.",
-  "demo_prep_failed": "A apărut o eroare la pregătirea demonstrației. Vă rugăm să încercați din nou peste câteva minute.",
-  "demo_prep_slow": "Pregătirea demonstrației durează puțin mai mult decât de obicei. Vă vom trimite linkul pe e-mail imediat ce este gata — vă rugăm să verificați în curând căsuța de e-mail."
+  "demo_prep_failed": "Nu am putut pregăti demonstrația. Vă rugăm să încercați din nou peste câteva minute. Dacă problema persistă, vă rugăm să contactați administratorul nostru:",
+  "demo_prep_slow": "Pregătirea demonstrației durează mai mult decât de obicei și este posibil să nu se fi finalizat. Dacă nu primiți în curând un e-mail de la noi, vă rugăm să contactați administratorul nostru:"
 }

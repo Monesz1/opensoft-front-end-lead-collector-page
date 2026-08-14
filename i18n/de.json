@@ -138,6 +138,6 @@
   "privacy_h6": "Wo diese Website gehostet wird",
   "privacy_p6": "Die Website selbst wird von GitHub Pages (GitHub, Inc., Vereinigte Staaten) ausgeliefert. Für die Auslieferung sieht GitHub zwangsläufig die IP-Adressen der Besucher und verarbeitet die eigenen Protokolldaten als eigenständiger Verantwortlicher. Die von Ihnen im Formular angegebenen Daten gelangen dagegen direkt auf unseren eigenen Server in der EU und durchlaufen die Systeme von GitHub nicht.",
   "demo_prep_capacity": "Derzeit sind alle Demo-Plätze belegt. Wir haben Ihnen eine E-Mail gesendet – bitte versuchen Sie es in etwa 30 Minuten erneut.",
-  "demo_prep_failed": "Bei der Vorbereitung Ihrer Demo ist ein Fehler aufgetreten. Bitte versuchen Sie es in einigen Minuten erneut.",
-  "demo_prep_slow": "Die Vorbereitung Ihrer Demo dauert etwas länger als gewöhnlich. Sobald sie fertig ist, senden wir Ihnen den Link per E-Mail – bitte sehen Sie bald in Ihrem Postfach nach."
+  "demo_prep_failed": "Ihre Demo konnte nicht vorbereitet werden. Bitte versuchen Sie es in einigen Minuten erneut. Falls das Problem weiterhin besteht, wenden Sie sich bitte an unseren Administrator:",
+  "demo_prep_slow": "Die Vorbereitung Ihrer Demo dauert länger als erwartet und wurde möglicherweise nicht abgeschlossen. Falls Sie in Kürze keine E-Mail von uns erhalten, wenden Sie sich bitte an unseren Administrator:"
 }
