@@ -139,5 +139,12 @@
   "privacy_p6": "Samotný web je provozován na službě GitHub Pages (GitHub, Inc., Spojené státy). GitHub proto při jeho zobrazení nutně vidí IP adresy návštěvníků a své vlastní logy zpracovává jako samostatný správce. Údaje odeslané formulářem však míří přímo na náš vlastní server v Evropské unii a systémy GitHubu neprocházejí.",
   "demo_prep_capacity": "Momentálně jsou všechna dema obsazená. Poslali jsme vám e-mail — zkuste to prosím znovu asi za 30 minut.",
   "demo_prep_failed": "Vaše demo se nepodařilo připravit. Zkuste to prosím znovu za několik minut. Pokud problém přetrvává, kontaktujte prosím našeho administrátora:",
-  "demo_prep_slow": "Příprava vašeho dema trvá déle, než se očekávalo, a je možné, že se nedokončila. Pokud od nás brzy neobdržíte e-mail, kontaktujte prosím našeho administrátora:"
+  "demo_prep_slow": "Příprava vašeho dema trvá déle, než se očekávalo, a je možné, že se nedokončila. Pokud od nás brzy neobdržíte e-mail, kontaktujte prosím našeho administrátora:",
+  "demo_prep_title": "Připravujeme vaše demo…",
+  "demo_prep_msg": "Obvykle to trvá 1–2 minuty. Jakmile bude hotové, pošleme přihlašovací odkaz na tuto adresu:",
+  "demo_ready_title": "Vaše demo je připravené! 🎉",
+  "demo_ready_msg": "Přihlašovací odkaz jsme poslali na vaši e-mailovou adresu — otevřete jej a kliknutím spusťte demo.",
+  "demo_cap_title": "Momentálně jsou všechna dema obsazená",
+  "demo_err_title": "Vaše demo se nepodařilo vytvořit",
+  "demo_slow_title": "Trvá to déle než obvykle"
 }

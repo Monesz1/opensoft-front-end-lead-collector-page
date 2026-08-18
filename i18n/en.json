@@ -139,5 +139,12 @@
   "privacy_p6": "The website itself is served by GitHub Pages (GitHub, Inc., United States), which necessarily sees visitors' IP addresses in order to deliver the pages and handles its own logs as a separate controller. The data you enter in the form, however, goes directly to our own server in the EU: it does not pass through GitHub's systems.",
   "demo_prep_capacity": "All demo slots are busy right now. We've emailed you — please try again in about 30 minutes.",
   "demo_prep_failed": "We couldn't prepare your demo. Please try again in a few minutes. If the problem continues, please contact our administrator:",
-  "demo_prep_slow": "Your demo is taking longer than expected and may not have completed. If you don't receive an email from us shortly, please contact our administrator:"
+  "demo_prep_slow": "Your demo is taking longer than expected and may not have completed. If you don't receive an email from us shortly, please contact our administrator:",
+  "demo_prep_title": "Preparing your demo…",
+  "demo_prep_msg": "This usually takes 1–2 minutes. As soon as it's ready, we'll email the login link to this address:",
+  "demo_ready_title": "Your demo is ready! 🎉",
+  "demo_ready_msg": "We've sent the login link to your email — open it and click to start your demo.",
+  "demo_cap_title": "All demos are currently busy",
+  "demo_err_title": "We couldn't create your demo",
+  "demo_slow_title": "This is taking longer than usual"
 }

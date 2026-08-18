@@ -139,5 +139,12 @@
   "privacy_p6": "Samu internetsku stranicu poslužuje GitHub Pages (GitHub, Inc., Sjedinjene Američke Države), koji za posluživanje nužno vidi IP adrese posjetitelja, a vlastite zapisnike obrađuje kao samostalni voditelj obrade. Podaci koje unesete u obrazac ipak stižu izravno na naš poslužitelj u Europskoj uniji i ne prolaze kroz sustave GitHuba.",
   "demo_prep_capacity": "Trenutačno su svi demo termini zauzeti. Poslali smo vam e-poruku — pokušajte ponovno za otprilike 30 minuta.",
   "demo_prep_failed": "Nismo uspjeli pripremiti vaš demo. Pokušajte ponovno za nekoliko minuta. Ako se problem nastavi, obratite se našem administratoru:",
-  "demo_prep_slow": "Priprema vašeg demoa traje dulje nego očekivano i možda nije dovršena. Ako uskoro ne primite e-poruku od nas, obratite se našem administratoru:"
+  "demo_prep_slow": "Priprema vašeg demoa traje dulje nego očekivano i možda nije dovršena. Ako uskoro ne primite e-poruku od nas, obratite se našem administratoru:",
+  "demo_prep_title": "Pripremamo vaš demo…",
+  "demo_prep_msg": "To obično traje 1–2 minute. Čim bude spreman, poslat ćemo poveznicu za prijavu na ovu adresu:",
+  "demo_ready_title": "Vaš demo je spreman! 🎉",
+  "demo_ready_msg": "Poslali smo poveznicu za prijavu na vašu e-adresu — otvorite je i kliknite za pokretanje demoa.",
+  "demo_cap_title": "Trenutačno su svi demoi zauzeti",
+  "demo_err_title": "Nismo uspjeli izraditi vaš demo",
+  "demo_slow_title": "Ovo traje dulje nego inače"
 }

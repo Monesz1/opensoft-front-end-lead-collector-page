@@ -139,5 +139,12 @@
   "privacy_p6": "Magát a weboldalt a GitHub Pages (GitHub, Inc., Egyesült Államok) szolgálja ki, amely a kiszolgáláshoz szükségszerűen látja a látogatók IP-címét, és a saját naplóit önálló adatkezelőként maga kezeli. Az űrlapon megadott adatai viszont közvetlenül a saját uniós kiszolgálónkra érkeznek: a GitHub rendszereit nem érintik.",
   "demo_prep_capacity": "Jelenleg minden demó helyünk foglalt. Küldtünk egy e-mailt — kérjük, próbálja újra kb. 30 perc múlva.",
   "demo_prep_failed": "A demó előkészítése nem sikerült. Kérjük, próbálja újra néhány perc múlva. Ha a probléma továbbra is fennáll, vegye fel a kapcsolatot az adminisztrátorunkkal:",
-  "demo_prep_slow": "A demó előkészítése a vártnál tovább tart, és elképzelhető, hogy nem készült el. Ha rövidesen nem kap tőlünk e-mailt, kérjük, vegye fel a kapcsolatot az adminisztrátorunkkal:"
+  "demo_prep_slow": "A demó előkészítése a vártnál tovább tart, és elképzelhető, hogy nem készült el. Ha rövidesen nem kap tőlünk e-mailt, kérjük, vegye fel a kapcsolatot az adminisztrátorunkkal:",
+  "demo_prep_title": "Előkészítjük a demóját…",
+  "demo_prep_msg": "Ez általában 1–2 percet vesz igénybe. Amint elkészült, e-mailben küldjük a belépési linket erre a címre:",
+  "demo_ready_title": "A demója készen áll! 🎉",
+  "demo_ready_msg": "Elküldtük a belépési linket az e-mail-címére – nyissa meg és kattintson rá a demó indításához.",
+  "demo_cap_title": "Jelenleg minden demó foglalt",
+  "demo_err_title": "Nem sikerült elkészíteni a demót",
+  "demo_slow_title": "Ez tovább tart a vártnál"
 }

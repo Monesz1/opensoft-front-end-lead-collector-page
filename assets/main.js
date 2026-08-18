@@ -297,6 +297,8 @@ function runReadyAnimation(card, requestId) {
   const status = card.querySelector('.ce-status');
   const spinner = card.querySelector('.ce-spinner');
   const setStatus = k => { if (status && OS.dict[k]) status.textContent = OS.dict[k]; };
+  const setTitle = k => { const t = card.querySelector('.success-title'); if (t && OS.dict[k]) t.textContent = OS.dict[k]; };
+  const setText = k => { const p = card.querySelector('.success-text'); if (p) p.textContent = OS.dict[k] || ''; };
   /* visual reassurance only — the bar eases toward 90% over ~3 min (CSS) but never reaches 100% on a
      timer; the "ready" jump to 100% is driven by the real status below. */
   if (bar) setTimeout(() => { bar.style.width = '90%'; }, 50);
@@ -305,31 +307,36 @@ function runReadyAnimation(card, requestId) {
 
   let done = false, tries = 0;
   const stopTimers = () => { clearTimeout(t2); clearTimeout(t3); };
-  const settleReady = () => {
+  const settleReady = () => {                  /* provisioning finished -> the email has just been sent */
     done = true; stopTimers();
     if (bar) { bar.style.transition = 'width .5s ease-out'; bar.style.width = '100%'; }
-    setStatus('demo_prep_ready');
     if (spinner) spinner.classList.add('done');
     card.classList.add('ce-ready');
+    setTitle('demo_ready_title');              /* only now claim it's ready + emailed */
+    setText('demo_ready_msg');
+    setStatus('demo_prep_ready');
+    const mb = card.querySelector('.ce-mail-btns'); if (mb) mb.hidden = false;   /* now there's mail to open */
   };
-  const settleOther = key => {                 /* capacity / failed / slow: honest, not "ready" */
+  const settleOther = (msgKey, titleKey) => {  /* capacity / failed / slow: honest, not "ready" */
     done = true; stopTimers();
     if (spinner) spinner.classList.add('done');
-    setStatus(key);
-    if (key !== 'demo_prep_slow') card.classList.add('ce-warn');
-    if (key === 'demo_prep_failed' || key === 'demo_prep_slow') appendContact(card);   /* broke / never finished */
+    setTitle(titleKey);
+    setText(msgKey);                           /* the detail becomes the main message */
+    if (status) status.textContent = '';       /* drop the little "preparing…" step line */
+    if (msgKey !== 'demo_prep_slow') card.classList.add('ce-warn');
+    if (msgKey === 'demo_prep_failed' || msgKey === 'demo_prep_slow') appendContact(card);
   };
   const poll = () => {
     if (done) return;
-    if (++tries > POLL_MAX) return settleOther('demo_prep_slow');
+    if (++tries > POLL_MAX) return settleOther('demo_prep_slow', 'demo_slow_title');
     fetch(STATUS_URL + '?rid=' + encodeURIComponent(requestId), { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null)).catch(() => null)
       .then(d => {
         if (done) return;
         const s = d && d.status;
         if (s === 'ready') return settleReady();
-        if (s === 'capacity') return settleOther('demo_prep_capacity');
-        if (s === 'failed') return settleOther('demo_prep_failed');
+        if (s === 'capacity') return settleOther('demo_prep_capacity', 'demo_cap_title');
+        if (s === 'failed') return settleOther('demo_prep_failed', 'demo_err_title');
         setTimeout(poll, POLL_MS);            /* pending / null / network blip -> keep waiting */
       });
   };
@@ -344,13 +351,20 @@ function showCheckEmail(status, email, requestId) {
   const card = OS.mk('div', { id: 'demo-sent', className: 'success-card check-email' + (dup ? ' ce-dup' : '') },
     { role: 'status', 'aria-live': 'polite', tabindex: '-1' });
   card.append(OS.mk('div', { className: 'ce-spinner' + (dup ? ' done' : '') }, { 'aria-hidden': 'true' }));
+  /* New submits start in the "preparing" phase (the email is only sent when provisioning finishes ~3 min
+     later); the title/text flip to the "ready" copy in settleReady(). Duplicates keep the sent-copy. */
   card.append(OS.mk('h2', { className: 'success-title',
-    textContent: OS.dict[dup ? 'demo_sent_again_title' : 'demo_sent_title'] || 'Check your email' }));
+    textContent: OS.dict[dup ? 'demo_sent_again_title' : 'demo_prep_title'] || 'Preparing your demo…' }));
   card.append(OS.mk('p', { className: 'success-text',
-    textContent: OS.dict[dup ? 'demo_sent_again_msg' : 'demo_sent_msg'] || '' }));
+    textContent: OS.dict[dup ? 'demo_sent_again_msg' : 'demo_prep_msg'] || '' }));
   if (email) card.append(OS.mk('p', { className: 'ce-email', textContent: email }));
   const btns = mailButtons(email || '');
-  if (btns.length) { const w = OS.mk('div', { className: 'ce-mail-btns' }); w.append(...btns); card.append(w); }
+  if (btns.length) {
+    const w = OS.mk('div', { className: 'ce-mail-btns' });
+    w.append(...btns);
+    if (!dup) w.hidden = true;                   /* nothing to open yet — revealed once really ready */
+    card.append(w);
+  }
   if (!dup) {
     const prog = OS.mk('div', { className: 'ce-progress' });
     const bar = OS.mk('div', { className: 'ce-bar' }); bar.append(OS.mk('span', {}));

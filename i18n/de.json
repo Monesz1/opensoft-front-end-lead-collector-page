@@ -139,5 +139,12 @@
   "privacy_p6": "Die Website selbst wird von GitHub Pages (GitHub, Inc., Vereinigte Staaten) ausgeliefert. Für die Auslieferung sieht GitHub zwangsläufig die IP-Adressen der Besucher und verarbeitet die eigenen Protokolldaten als eigenständiger Verantwortlicher. Die von Ihnen im Formular angegebenen Daten gelangen dagegen direkt auf unseren eigenen Server in der EU und durchlaufen die Systeme von GitHub nicht.",
   "demo_prep_capacity": "Derzeit sind alle Demo-Plätze belegt. Wir haben Ihnen eine E-Mail gesendet – bitte versuchen Sie es in etwa 30 Minuten erneut.",
   "demo_prep_failed": "Ihre Demo konnte nicht vorbereitet werden. Bitte versuchen Sie es in einigen Minuten erneut. Falls das Problem weiterhin besteht, wenden Sie sich bitte an unseren Administrator:",
-  "demo_prep_slow": "Die Vorbereitung Ihrer Demo dauert länger als erwartet und wurde möglicherweise nicht abgeschlossen. Falls Sie in Kürze keine E-Mail von uns erhalten, wenden Sie sich bitte an unseren Administrator:"
+  "demo_prep_slow": "Die Vorbereitung Ihrer Demo dauert länger als erwartet und wurde möglicherweise nicht abgeschlossen. Falls Sie in Kürze keine E-Mail von uns erhalten, wenden Sie sich bitte an unseren Administrator:",
+  "demo_prep_title": "Wir bereiten Ihre Demo vor…",
+  "demo_prep_msg": "Das dauert in der Regel 1–2 Minuten. Sobald sie fertig ist, senden wir den Zugangslink an diese Adresse:",
+  "demo_ready_title": "Ihre Demo ist bereit! 🎉",
+  "demo_ready_msg": "Wir haben den Zugangslink an Ihre E-Mail-Adresse gesendet – öffnen Sie sie und klicken Sie darauf, um die Demo zu starten.",
+  "demo_cap_title": "Derzeit sind alle Demos belegt",
+  "demo_err_title": "Ihre Demo konnte nicht erstellt werden",
+  "demo_slow_title": "Das dauert länger als gewöhnlich"
 }

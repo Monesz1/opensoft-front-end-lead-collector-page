@@ -216,6 +216,7 @@ a{color:var(--navy-500);text-decoration:none}
 @keyframes ce-spin{to{transform:rotate(360deg)}}
 .ce-email{font-weight:600;color:var(--text);margin-top:0}
 .ce-mail-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.ce-mail-btns[hidden]{display:none}
 .ce-mail-btn{text-decoration:none}
 .ce-progress{width:100%;max-width:340px;margin-top:20px}
 .ce-bar{height:6px;border-radius:999px;background:var(--grey-200);overflow:hidden}

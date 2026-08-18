@@ -139,5 +139,12 @@
   "privacy_p6": "Site-ul în sine este servit de GitHub Pages (GitHub, Inc., Statele Unite), care, pentru livrarea paginilor, vede în mod necesar adresele IP ale vizitatorilor și își gestionează propriile jurnale în calitate de operator independent. În schimb, datele furnizate în formular ajung direct pe serverul nostru din Uniunea Europeană și nu trec prin sistemele GitHub.",
   "demo_prep_capacity": "În acest moment toate demonstrațiile sunt ocupate. V-am trimis un e-mail — vă rugăm să încercați din nou peste aproximativ 30 de minute.",
   "demo_prep_failed": "Nu am putut pregăti demonstrația. Vă rugăm să încercați din nou peste câteva minute. Dacă problema persistă, vă rugăm să contactați administratorul nostru:",
-  "demo_prep_slow": "Pregătirea demonstrației durează mai mult decât de obicei și este posibil să nu se fi finalizat. Dacă nu primiți în curând un e-mail de la noi, vă rugăm să contactați administratorul nostru:"
+  "demo_prep_slow": "Pregătirea demonstrației durează mai mult decât de obicei și este posibil să nu se fi finalizat. Dacă nu primiți în curând un e-mail de la noi, vă rugăm să contactați administratorul nostru:",
+  "demo_prep_title": "Vă pregătim demonstrația…",
+  "demo_prep_msg": "De obicei durează 1–2 minute. Imediat ce este gata, vă trimitem linkul de acces la această adresă:",
+  "demo_ready_title": "Demonstrația dvs. este gata! 🎉",
+  "demo_ready_msg": "Am trimis linkul de acces pe adresa dvs. de e-mail — deschideți-l și dați clic pentru a începe demonstrația.",
+  "demo_cap_title": "În acest moment toate demonstrațiile sunt ocupate",
+  "demo_err_title": "Nu am putut crea demonstrația",
+  "demo_slow_title": "Durează mai mult decât de obicei"
 }
