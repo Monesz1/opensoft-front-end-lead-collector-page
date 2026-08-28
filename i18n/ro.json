@@ -190,5 +190,9 @@
   "faq_q5": "Putem prelua datele noastre existente?",
   "faq_a5": "Da. Clienții, partenerii, produsele și istoricul pot fi preluate din Excel sau dintr-un export al sistemului anterior. Este o sarcină de implementare, deci se consumă din pachetul de ore; numărul necesar de ore vi-l comunicăm în avans.",
   "faq_q6": "Cum pot cere ajutor dacă mă blochez?",
-  "faq_a6": "Printr-un sistem de tichete, în maghiară — și nu doar în caz de defecțiune tehnică. Vă ajutăm și cu întrebări legate de utilizarea software-ului, iar dacă este mai rapid, parcurgem totul împreună într-o întâlnire online."
+  "faq_a6": "Printr-un sistem de tichete, în maghiară — și nu doar în caz de defecțiune tehnică. Vă ajutăm și cu întrebări legate de utilizarea software-ului, iar dacă este mai rapid, parcurgem totul împreună într-o întâlnire online.",
+  "feature_5_title": "Materiale video în maghiară",
+  "feature_5_desc": "O serie video completă în limba maghiară despre sistem. Instruirea unui nou coleg durează minute, nu săptămâni.",
+  "feature_6_title": "Module în creștere, fără cost suplimentar",
+  "feature_6_desc": "Dezvoltăm continuu integrările și funcțiile utile. Puteți folosi și modulele apărute ulterior, fără cost suplimentar."
 }

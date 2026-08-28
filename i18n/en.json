@@ -190,5 +190,9 @@
   "faq_q5": "Can we bring our existing data over?",
   "faq_a5": "Yes. Customers, partners, products and history can be taken over from Excel or an export of your previous system. This is a rollout task, so it comes out of the hour package; we tell you the number of hours needed in advance.",
   "faq_q6": "How do I get help if I get stuck?",
-  "faq_a6": "Through a ticket system, in Hungarian — and not only for technical faults. We also help with questions about using the software, and if that is quicker, we go through it together in an online meeting."
+  "faq_a6": "Through a ticket system, in Hungarian — and not only for technical faults. We also help with questions about using the software, and if that is quicker, we go through it together in an online meeting.",
+  "feature_5_title": "Hungarian training videos",
+  "feature_5_desc": "A complete Hungarian video series for the system. Onboarding a new colleague takes minutes rather than weeks.",
+  "feature_6_title": "Growing modules, no surcharge",
+  "feature_6_desc": "We keep building integrations and convenience features. Modules released later are yours to use too, at no extra cost."
 }

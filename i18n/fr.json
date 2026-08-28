@@ -190,5 +190,9 @@
   "faq_q5": "Pouvons-nous reprendre nos données existantes ?",
   "faq_a5": "Oui. Les clients, partenaires, produits et l'historique peuvent être repris depuis Excel ou depuis un export de votre système précédent. Il s'agit d'une tâche de mise en place, elle est donc décomptée du forfait d'heures ; nous vous indiquons à l'avance le nombre d'heures nécessaires.",
   "faq_q6": "Comment obtenir de l'aide en cas de blocage ?",
-  "faq_a6": "Via un système de tickets, en hongrois — et pas seulement en cas de panne technique. Nous répondons aussi aux questions d'utilisation du logiciel et, si c'est plus rapide, nous les examinons ensemble lors d'une réunion en ligne."
+  "faq_a6": "Via un système de tickets, en hongrois — et pas seulement en cas de panne technique. Nous répondons aussi aux questions d'utilisation du logiciel et, si c'est plus rapide, nous les examinons ensemble lors d'une réunion en ligne.",
+  "feature_5_title": "Vidéos de formation en hongrois",
+  "feature_5_desc": "Une série vidéo complète en hongrois sur le système. Former un nouveau collaborateur prend des minutes, pas des semaines.",
+  "feature_6_title": "Des modules qui s'enrichissent, sans supplément",
+  "feature_6_desc": "Nous développons en continu les intégrations et les fonctions pratiques. Les modules publiés plus tard sont également à votre disposition, sans supplément."
 }

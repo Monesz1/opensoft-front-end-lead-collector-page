@@ -190,5 +190,9 @@
   "faq_q5": "Át tudjuk vinni a régi adatainkat?",
   "faq_a5": "Igen. Ügyfelek, partnerek, termékek és előzmények Excelből vagy a korábbi rendszer exportjából átvehetők. Ez bevezetési feladat, tehát az óracsomagból megy; a szükséges óraszámot előre megmondjuk.",
   "faq_q6": "Hogyan kérhetek segítséget, ha elakadok?",
-  "faq_a6": "Ticketrendszeren keresztül, magyarul — és nemcsak technikai hiba esetén. Szoftverhasználati kérdésekben is segítünk, és ha úgy gyorsabb, egy online meetingen közösen nézzük végig."
+  "faq_a6": "Ticketrendszeren keresztül, magyarul — és nemcsak technikai hiba esetén. Szoftverhasználati kérdésekben is segítünk, és ha úgy gyorsabb, egy online meetingen közösen nézzük végig.",
+  "feature_5_title": "Magyar oktatóvideók",
+  "feature_5_desc": "Teljes magyar nyelvű videósorozat a rendszerhez. Egy új kolléga betanítása így percek kérdése, nem heteké.",
+  "feature_6_title": "Bővülő modulok, felár nélkül",
+  "feature_6_desc": "Az integrációkat és a kényelmi funkciókat folyamatosan fejlesztjük. A később elkészülő modulokat is használhatja, felár nélkül."
 }
