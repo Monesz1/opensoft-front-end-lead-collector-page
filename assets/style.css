@@ -327,3 +327,51 @@ a{color:var(--navy-500);text-decoration:none}
 .product-card[data-disabled]::after{content:attr(data-soon);position:absolute;top:10px;right:10px;
   background:var(--grey-600);color:var(--white);font-size:.65rem;font-weight:700;
   text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:999px}
+
+/* ---------- pricing + FAQ (landing sections) ---------- */
+.container-narrow{max-width:760px}
+.section-lead{max-width:62ch;margin:0 auto 32px;text-align:center;color:var(--grey-600)}
+.proof-value--sm{font-size:1.75rem}
+.proof-per{font-size:.9rem;font-weight:600}
+
+.pricing{padding:72px 0;background:var(--grey-50)}
+.pricing-grid{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:32px;align-items:start}
+.price-card{background:var(--white);border:2px solid var(--navy-500);border-radius:var(--radius-lg);
+  padding:28px 26px;box-shadow:var(--shadow)}
+.price-label{display:block;font-size:.875rem;font-weight:600;color:var(--grey-600);
+  text-transform:uppercase;letter-spacing:.06em}
+.price-value{font-size:2.25rem;font-weight:700;color:var(--navy-500);margin:8px 0 4px;line-height:1.15}
+.price-value span{font-size:1rem;font-weight:600;color:var(--grey-600)}
+.price-sub{font-size:.9375rem;color:var(--grey-600);margin:0 0 20px}
+.price-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.price-list li{position:relative;padding-left:30px;line-height:1.55}
+.price-list li::before{content:"";position:absolute;left:2px;top:7px;width:14px;height:8px;
+  border-left:2px solid var(--success);border-bottom:2px solid var(--success);transform:rotate(-45deg)}
+
+.hours-title{margin:56px 0 8px;text-align:center;font-size:1.5rem}
+.hours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hour-card{background:var(--white);border:1px solid var(--grey-200);border-radius:var(--radius-lg);
+  padding:24px 22px;position:relative;transition:transform var(--transition),box-shadow var(--transition)}
+.hour-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.hour-card--hl{border:2px solid var(--success)}
+.hour-badge{position:absolute;top:-12px;left:22px;background:var(--success);color:var(--white);
+  font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:999px}
+.hour-name{display:block;font-weight:700;color:var(--text)}
+.hour-price{font-size:1.5rem;font-weight:700;color:var(--navy-500);margin:6px 0 2px}
+.hour-sub{font-size:.875rem;color:var(--grey-600);margin:0 0 10px}
+.hour-desc{font-size:.9375rem;margin:0;color:var(--grey-600)}
+.hours-note{max-width:680px;margin:20px auto 0;text-align:center;font-size:.875rem;color:var(--grey-600)}
+
+.faq{padding:72px 0}
+.faq-list{border-top:1px solid var(--grey-200)}
+.faq-list details{border-bottom:1px solid var(--grey-200);padding:18px 0}
+.faq-list summary{cursor:pointer;list-style:none;font-weight:700;color:var(--text);
+  display:flex;justify-content:space-between;gap:16px;line-height:1.4}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";color:var(--navy-500);font-size:1.4rem;line-height:1}
+.faq-list details[open] summary::after{content:"3"}
+.faq-list p{margin:12px 0 0;color:var(--grey-600);line-height:1.65}
+
+@media(max-width:900px){
+  .pricing-grid,.hours-grid{grid-template-columns:1fr}
+}
