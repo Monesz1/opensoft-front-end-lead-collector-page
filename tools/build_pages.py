@@ -267,9 +267,9 @@ TPL = '''<!doctype html>
 <meta property="og:type" content="article">
 <meta property="og:title" content="{title} | OpenSoft">
 <link rel="icon" href="assets/opensoft-icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=5">
-<link rel="stylesheet" href="assets/prose.css?v=5">
-<script src="assets/i18n.js?v=5" defer></script>
+<link rel="stylesheet" href="assets/style.css?v=21">
+<link rel="stylesheet" href="assets/prose.css?v=21">
+<script src="assets/i18n.js?v=21" defer></script>
 </head>
 <body>
 

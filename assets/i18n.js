@@ -41,7 +41,16 @@ const api = { LANGUAGES, lang: DEFAULT_LANG, dict: {}, mk, onApply: null };
 const pickLang = () => [store('lang'), (navigator.language || '').slice(0, 2).toLowerCase()]
   .find(c => LANGUAGES.some(l => l.code === c)) || DEFAULT_LANG;
 
-const loadDict = code => fetch(`i18n/${code}.json`).then(res => {
+/* Same ?v= as this script, so bumping the asset version also busts the language files
+   and page fragments. Without it they are fetched unversioned and a cached copy keeps
+   serving until max-age expires, leaving newly added keys blank. */
+const ASSET_V = (() => {
+  const el = document.querySelector('script[src*="i18n.js"]');
+  const m = el && el.getAttribute('src').match(/[?&]v=([^&]+)/);
+  return m ? `?v=${m[1]}` : '';
+})();
+
+const loadDict = code => fetch(`i18n/${code}.json${ASSET_V}`).then(res => {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 });
@@ -83,7 +92,7 @@ function load() {
 let docLoaded = DEFAULT_LANG;
 
 function loadDoc(box, lang, fallback) {
-  return fetch(`pages/${lang}/${box.dataset.doc}.html`)
+  return fetch(`pages/${lang}/${box.dataset.doc}.html${ASSET_V}`)
     .then(res => { if (!res.ok) throw new Error(`HTTP ${res.status}`); return res.text(); })
     .then(html => {
       if (!fallback && lang !== api.lang) return;   // a later switch already won
